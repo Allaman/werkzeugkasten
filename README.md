@@ -21,20 +21,21 @@ This is where Werkzeugkasten comes in. You simply need to download the werkzeugk
 
 ## Get Werkzeugkasten
 
-```sh
-curl -sLo werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/0.9.0/werkzeugkasten_0.9.0_darwin_arm64
-curl -sLo werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/0.9.0/werkzeugkasten_0.9.0_linux_arm64
+curl
 
-curl -sLo werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/0.9.0/werkzeugkasten_0.9.0_darwin_amd64
-curl -sLo werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/0.9.0/werkzeugkasten_0.9.0_linux_amd64
+```sh
+curl -sLo werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/0.9.0/werkzeugkasten_0.9.0_$(uname -s)_$(uname -m)
+```
+
+wget
+
+```sh
+wget -qO werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/0.9.0/werkzeugkasten_0.9.0_$(uname -s)_$(uname -m)
 ```
 
 ```sh
-wget -qO werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/0.9.0/werkzeugkasten_0.9.0_darwin_arm64
-wget -qO werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/0.9.0/werkzeugkasten_0.9.0_linux_arm64
-
-wget -qO werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/0.9.0/werkzeugkasten_0.9.0_darwin_amd64
-wget -qO werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/0.9.0/werkzeugkasten_0.9.0_linux_amd64
+chmod +x werkzeugkasten
+./werkzeugkasten
 ```
 
 ## How it works
