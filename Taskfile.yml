@@ -1,0 +1,48 @@
+---
+version: "3"
+
+tasks:
+  default:
+    silent: true
+    cmds:
+      - task -l
+
+  install:
+    desc: Install App
+    cmds:
+      - task: fmt
+      - task: lint
+      - task: vet
+      - task: build
+      - go install
+
+  build:
+    desc: Build App
+    cmds:
+      - go build
+
+  run:
+    desc: Run App
+    cmds:
+      - go build && ./magic
+
+  lint:
+    desc: Run linter
+    cmds:
+      - golangci-lint run .
+
+  fmt:
+    desc: Run formatter
+    cmds:
+      - go fmt .
+
+  upgrade-deps:
+    desc: Upgrade all dependencies
+    cmds:
+      - go get -u ./...
+
+  vet:
+    desc: Run go vet
+    cmds:
+      - go vet
+

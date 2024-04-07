@@ -1,0 +1,199 @@
+---
+tools:
+  kustomize:
+    identifier: "kubernetes-sigs/kustomize"
+    description: "Customization of kubernetes YAML configurations."
+    categories: ["Kubernetes", "GitOps"]
+    tag: "v5.0.3"
+  flux2:
+    identifier: "fluxcd/flux2"
+    description: "Open and extensible continuous delivery solution for Kubernetes. Powered by GitOps Toolkit."
+    categories: ["Kubernetes", "GitOps"]
+    tag: "2.1.0"
+  k6:
+    identifier: "grafana/k6"
+    description: "A modern load testing tool, using Go and JavaScript"
+    categories: ["Development"]
+    tag: "v0.30.0"
+  kubeconform:
+    identifier: "yannh/kubeconform"
+    description: "A FAST Kubernetes manifests validator, with support for Custom Resources!"
+    categories: ["Kubernetes"]
+    tag: "v0.6.4"
+  kubent:
+    identifier: "doitintl/kube-no-trouble"
+    description: "Easily check your clusters for use of deprecated APIs"
+    categories: ["Kubernetes"]
+    tag: "0.7.1"
+  kyverno:
+    identifier: "kyverno/kyverno"
+    description: "Kubernetes Native Policy Management"
+    categories: ["Kubernetes"]
+    tag: "v1.10.5"
+    asset_filters: ["^sig", "^pem", ".tar.gz"]
+  fd:
+    identifier: "sharkdp/fd"
+    description: "A simple, fast and user-friendly alternative to 'find'."
+    categories: ["Utilities", "Files"]
+    tag: "v9.0.0"
+  ripgrep:
+    identifier: "BurntSushi/ripgrep"
+    description: "ripgrep recursively searches directories for a regex pattern while respecting your gitignore "
+    categories: ["Utilities", "Text"]
+    tag: "14.1.0"
+  bat:
+    identifier: "sharkdp/bat"
+    description: "A cat(1) clone with wings."
+    categories: ["Utilities", "Text"]
+    tag: "v0.24.0"
+  curlie:
+    identifier: "rs/curlie"
+    description: "The power of curl, the ease of use of httpie."
+    categories: ["Utilities", "Network"]
+    tag: "v1.7.2"
+  dua:
+    identifier: "Byron/dua-cli"
+    description: "View disk space usage and delete unwanted data, fast."
+    categories: ["Utilities", "System"]
+    tag: "v.2.29.0"
+  gojq:
+    identifier: "itchyny/gojq"
+    description: "Pure Go implementation of jq"
+    categories: ["Utilities", "Json"]
+    tag: "v0.12.15"
+  bottom:
+    identifier: "ClementTsang/bottom"
+    description: "Yet another cross-platform graphical process/system monitor."
+    categories: ["Utilities", "System"]
+    file: "btm"
+    tag: "0.9.6"
+  dnslookup:
+    identifier: "ameshkov/dnslookup"
+    description: "Simple command line utility to make DNS lookups to the specified server"
+    categories: ["Utilities", "Network"]
+    tag: "v1.10.0"
+  procs:
+    identifier: "dalance/procs"
+    description: "A modern replacement for ps written in Rust"
+    categories: ["Utilities", "system"]
+    tag: "v0.14.5"
+  sd:
+    identifier: "chmln/sd"
+    description: "Intuitive find & replace CLI (sed alternative)"
+    categories: ["Utilities", "Text"]
+    tag: "v1.0.0"
+  zellij:
+    identifier: "zellij-org/zellij/"
+    description: "A terminal workspace with batteries included (screen/tmux alternative)"
+    categories: ["Utilities"]
+    tag: "v0.39.2"
+  micro:
+    identifier: "zyedidia/micro"
+    description: "A modern and intuitive terminal-based text editor"
+    categories: ["Utilities", "Text"]
+    tag: "2.0.13"
+  helix:
+    identifier: "helix-editor/helix"
+    description: "A post-modern modal text editor."
+    categories: ["Utilities", "Text"]
+    tag: "24.03"
+  xplr:
+    identifier: "sayanarijit/xplr"
+    description: "A hackable, minimal, fast TUI file explorer"
+    categories: ["Utilities", "Files"]
+    tag: "v0.21.7"
+  fzf:
+    identifier: "junegunn/fzf"
+    description: "A command-line fuzzy finder"
+    categories: ["Utilities"]
+    tag: 0.48.1
+  s5cmd:
+    identifier: "peak/s5cmd"
+    description: "Parallel S3 and local filesystem execution tool."
+    categories: ["Utilities", "Cloud"]
+    tag: "v2.2.2"
+  task:
+    identifier: "go-task/task"
+    description: "A task runner / simpler Make alternative written in Go"
+    categories: ["Utilities"]
+    tag: "v3.35.1"
+    asset_filters: [".tar.gz"]
+  polaris:
+    identifier: "FairwindsOps/polaris"
+    description: "Validation of best practices in your Kubernetes clusters"
+    categories: ["Kubernetes"]
+    tag: "8.5.5"
+  yamlfmt:
+    identifier: "google/yamlfmt"
+    description: "An extensible command line tool or library to format yaml files."
+    categories: ["Utilities", "Yaml"]
+    tag: "v0.11.0"
+  kube-linter:
+    identifier: "stackrox/kube-linter"
+    description: "KubeLinter is a static analysis tool that checks Kubernetes YAML files and Helm charts to ensure the applications represented in them adhere to best practices."
+    categories: ["Kubernetes"]
+    tag: "v0.6.8"
+    asset_filters: [".tar.gz"]
+  lazygit:
+    identifier: "jesseduffield/lazygit"
+    description: "simple terminal UI for git commands"
+    categories: ["Utilities", "Git"]
+    tag: "v0.41.0"
+  k9s:
+    identifier: "derailed/k9s"
+    description: "Kubernetes CLI To Manage Your Clusters In Style!"
+    categories: ["Kubernetes"]
+    tag: "v0.32.4"
+  lazydocker:
+    identifier: "jesseduffield/lazydocker"
+    description: "The lazier way to manage everything docker"
+    categories: ["Docker"]
+    tag: "v0.32.1"
+  gping:
+    identifier: "orf/gping"
+    description: "Ping, but with a graph"
+    categories: ["Utilities", "Network"]
+    tag: "gping-v1.16.1"
+  stern:
+    identifier: "stern/stern"
+    description: "Multi pod and container log tailing for Kubernetes"
+    categories: ["Kubernetes"]
+    tag: "v1.28.0"
+  lazysql:
+    identifer: "jorgerojas26/lazysql"
+    description: "A cross-platform TUI database management tool written in Go."
+    categories: ["Development", "Database"]
+    tag: "v0.1.8"
+  dive:
+    identifier: "wagoodman/dive"
+    description: "A tool for exploring each layer in a docker image"
+    categories: ["Docker"]
+    tag: "v0.12.0"
+  yazi:
+    identifier: "sxyazi/yazi"
+    description: "Blazing fast terminal file manager written in Rust, based on async I/O."
+    categories: ["Utilities", "Files"]
+    tag: "v0.2.4"
+  glow:
+    identifier: "charmbracelet/glow"
+    description: "Render markdown on the CLI, with pizzazz!"
+    categories: ["Utilities", "Markdown"]
+    tag: "v1.5.1"
+  lf:
+    identifier: "gokcehan/lf"
+    description: "Terminal file manager"
+    categories: ["Utilities", "Files"]
+    tag: "r32"
+  chkRedis:
+    identifier: "Allaman/chkRedis"
+    description: "A minimal helper tool written in Go to verify the connection to a Redis data store"
+    categories: ["Development"]
+    tag: "1.0.9"
+    # yq:
+    #   identifier: "mikefarah/yq"
+    #   description: "yq is a portable command-line YAML, JSON, XML, CSV, TOML and properties processor"
+    #   categories: ["utilites"]
+    #   tag: "v4.42.1"
+    #   asset_filters: [".tar.gz"]
+    #   file: "yq_linux_amd64" # this is very tricky...
+    #   target: "/usr/local/bin/yq" # this must also be handled because we dont want yq_os_arch as binary name
