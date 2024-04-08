@@ -7,6 +7,7 @@ import (
 	"os/exec"
 	"path"
 	"path/filepath"
+	"runtime"
 	"strings"
 
 	"gopkg.in/yaml.v3"
@@ -105,6 +106,8 @@ func normalizePath(dir string) (string, error) {
 }
 
 func downloadToolWithEget(dir string, tool Tool) error {
+	tool.Identifier = strings.Replace(tool.Identifier, "ARCH", runtime.GOARCH, 1)
+	tool.Identifier = strings.Replace(tool.Identifier, "OSNAME", runtime.GOOS, 1)
 	logger.Info(fmt.Sprintf("Downloading %s", tool.Identifier))
 	out, err := execEget(dir, tool)
 	if err != nil {
