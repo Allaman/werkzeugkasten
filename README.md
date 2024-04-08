@@ -1,4 +1,4 @@
-# Werkzeugkasten
+# Werkzeugkasten (German for toolbox)
 
 _Conveniently download your favorite binaries!_
 
