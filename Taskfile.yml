@@ -24,7 +24,7 @@ tasks:
   run:
     desc: Run App
     cmds:
-      - go build && ./magic
+      - go build && ./werkzeugkasten
 
   lint:
     desc: Run linter
@@ -46,3 +46,7 @@ tasks:
     cmds:
       - go vet
 
+  vuln:
+    desc: Check for vulnerabilities
+    cmds:
+      - govulncheck .
