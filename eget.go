@@ -14,16 +14,16 @@ import (
 	"strings"
 )
 
-type egetConfig struct {
+type config struct {
 	arch    string
 	os      string
 	url     string
 	version string
 }
 
-func newDefaultConfig() egetConfig {
+func newDefaultConfig() config {
 	url := "https://github.com/zyedidia/eget/releases/download/v%s/eget-%s-%s_%s.tar.gz"
-	return egetConfig{arch: runtime.GOARCH, os: runtime.GOOS, url: url, version: "1.3.3"}
+	return config{arch: runtime.GOARCH, os: runtime.GOOS, url: url, version: "1.3.3"}
 }
 
 // TODO: check if dir exists
@@ -37,7 +37,7 @@ func createDir(path string) error {
 	return nil
 }
 
-func downloadEgetBinary(dir string, c egetConfig) error {
+func downloadEgetBinary(dir string, c config) error {
 	arch := c.arch
 	operatingSystem := c.os
 	version := c.version
