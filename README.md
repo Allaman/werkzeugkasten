@@ -1,6 +1,19 @@
-# Werkzeugkasten (German for toolbox)
+<h1 align="center">Werkzeugkasten 🧰</h1>
+
+<div align="center">
+  <p>
+    <img src="https://github.com/Allaman/werkzeugkasten/actions/workflows/release.yaml/badge.svg" alt="Release"/>
+    <img src="https://img.shields.io/github/repo-size/Allaman/werkzeugkasten" alt="size"/>
+    <img src="https://img.shields.io/github/issues/Allaman/werkzeugkasten" alt="issues"/>
+    <img src="https://img.shields.io/github/last-commit/Allaman/werkzeugkasten" alt="last commit"/>
+    <img src="https://img.shields.io/github/license/Allaman/werkzeugkasten" alt="license"/>
+    <img src="https://img.shields.io/github/v/release/Allaman/werkzeugkasten?sort=semver" alt="last release"/>
+  </p>
+</div>
 
 _Conveniently download your favorite binaries!_
+
+![](./screenshot.png)
 
 From time to time, I need to connect to containers and VMs to troubleshoot them. These systems typically only have the necessary tools for their specific purpose and nothing else. Additionally, there is no root account available, so installing tools through a package manager is not an option. Furthermore, some tools are either not available in a package or the packaged version is outdated.
 
@@ -8,20 +21,21 @@ This is where Werkzeugkasten comes in. You simply need to download the werkzeugk
 
 ## Get Werkzeugkasten
 
-```sh
-curl -sLo werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/0.9.0/werkzeugkasten_0.9.0_darwin_arm64
-curl -sLo werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/0.9.0/werkzeugkasten_0.9.0_linux_arm64
+curl
 
-curl -sLo werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/0.9.0/werkzeugkasten_0.9.0_darwin_amd64
-curl -sLo werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/0.9.0/werkzeugkasten_0.9.0_linux_amd64
+```sh
+curl -sLo werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/0.9.0/werkzeugkasten_0.9.0_$(uname -s)_$(uname -m)
+```
+
+wget
+
+```sh
+wget -qO werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/0.9.0/werkzeugkasten_0.9.0_$(uname -s)_$(uname -m)
 ```
 
 ```sh
-wget -qO werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/0.9.0/werkzeugkasten_0.9.0_darwin_arm64
-wget -qO werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/0.9.0/werkzeugkasten_0.9.0_linux_arm64
-
-wget -qO werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/0.9.0/werkzeugkasten_0.9.0_darwin_amd64
-wget -qO werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/0.9.0/werkzeugkasten_0.9.0_linux_amd64
+chmod +x werkzeugkasten
+./werkzeugkasten
 ```
 
 ## How it works
