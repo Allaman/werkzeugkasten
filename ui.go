@@ -4,6 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"sort"
 	"strings"
 
 	"github.com/charmbracelet/huh"
@@ -41,10 +42,15 @@ func formatToolString(name string, tool Tool) string {
 
 }
 
-// TODO: sort alphabetically?
 func createToolOptions(tools Tools) []huh.Option[string] {
+	sortedTools := make([]string, 0, len(tools.Tools))
+	for k := range tools.Tools {
+		sortedTools = append(sortedTools, k)
+	}
+	sort.Strings(sortedTools)
 	options := make([]huh.Option[string], 0, len(tools.Tools))
-	for name, tool := range tools.Tools {
+	for _, name := range sortedTools {
+		tool := tools.Tools[name]
 		option := huh.NewOption(formatToolString(name, tool), name)
 		options = append(options, option)
 	}
