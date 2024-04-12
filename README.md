@@ -21,13 +21,15 @@ This is where Werkzeugkasten comes in. You simply need to download the werkzeugk
 
 ## Get Werkzeugkasten
 
-curl
+Unfortunately, a tool to download the wekzeugkasten binary is required. It is possible to download files via bash and `/dev/tcp` **only**, but I couldn't figure out how to handle the redirect from Github when accessing a release URL.
+
+with curl
 
 ```sh
 curl -sLo werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/0.9.0/werkzeugkasten_0.9.0_$(uname -s)_$(uname -m)
 ```
 
-wget
+with wget
 
 ```sh
 wget -qO werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/0.9.0/werkzeugkasten_0.9.0_$(uname -s)_$(uname -m)
