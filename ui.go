@@ -73,10 +73,11 @@ func startUI() {
 
 			huh.NewInput().
 				Title("Where should your tools be installed?").
+				Description("Provide an absolute or relative path where your tools should be downloaded to. All directories are created if needed.").
 				Prompt("#").
 				Validate(func(str string) error {
 					if str == "" {
-						return errors.New("Please provide a path!")
+						return errors.New("You must provide a path.")
 					}
 					return nil
 				}).
@@ -86,10 +87,11 @@ func startUI() {
 		huh.NewGroup(
 			huh.NewMultiSelect[string]().
 				Title("Which tools do you want to install?").
+				Description("Chose one or more tools to be downloaded to the specified path.").
 				Options(createToolOptions(tools)...).
 				Validate(func(t []string) error {
 					if len(t) == 0 {
-						return errors.New("You must select at least one tool")
+						return errors.New("You must select at least one tool.")
 					}
 					return nil
 				}).
@@ -133,5 +135,5 @@ func startUI() {
 	}
 
 	_ = spinner.New().Title("Downloading tools ...").Accessible(accessibleMode).Action(start).Run()
-	logger.Print(fmt.Sprintf("Run 'export PATH=$PATH:%s'", installDir))
+	logger.Print(fmt.Sprintf("Run 'export PATH=$PATH:%s' to add your tools to the PATH", installDir))
 }
