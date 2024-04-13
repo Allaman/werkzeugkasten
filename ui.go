@@ -17,21 +17,23 @@ var (
 	selectedTools []string
 )
 
+// TODO: make configurable
+var theme = huh.ThemeCatppuccin()
+
 func formatToolString(name string, tool Tool) string {
-	// Define the styles
+
 	toolNameStyle := lipgloss.NewStyle().
-		Bold(true).
-		Foreground(lipgloss.Color("#FF4757"))
+		Foreground(theme.Focused.Title.GetForeground())
 
 	versionStyle := lipgloss.NewStyle().
-		Foreground(lipgloss.Color("#1E90FF"))
+		Foreground(theme.Form.GetForeground())
 
 	descriptionStyle := lipgloss.NewStyle().
-		Italic(true).
-		Foreground(lipgloss.Color("#2ED573"))
+		Bold(true).
+		Foreground(theme.Help.ShortDesc.GetForeground())
 
 	categoriesStyle := lipgloss.NewStyle().
-		Foreground(lipgloss.Color("#FFFAAA"))
+		Foreground(theme.Blurred.MultiSelectSelector.GetForeground())
 
 	styledToolName := toolNameStyle.Render(name)
 	styledVersion := versionStyle.Render(tool.Tag)
@@ -99,7 +101,7 @@ func startUI() {
 		),
 	).WithAccessible(accessibleMode)
 
-	form.WithTheme(huh.ThemeBase16())
+	form.WithTheme(theme)
 
 	err = form.Run()
 
