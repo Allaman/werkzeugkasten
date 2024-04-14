@@ -8,11 +8,14 @@ import (
 
 var logger = log.New(os.Stderr)
 
+// will be overwritten in release pipeline
+var version = "dev"
+
 func main() {
-	debugMode := os.Getenv("WK_DEBUG") != ""
-	if debugMode {
+	cfg := cli()
+	if cfg.debug {
 		logger.SetReportCaller(true)
 		logger.SetLevel(log.DebugLevel)
 	}
-	startUI()
+	startUI(cfg)
 }

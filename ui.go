@@ -59,8 +59,7 @@ func createToolOptions(tools Tools) []huh.Option[string] {
 	return options
 }
 
-func startUI() {
-	accessibleMode := os.Getenv("WK_ACCESSIBLE") != ""
+func startUI(cfg cliConfig) {
 	tools, err := createDefaultTools()
 	if err != nil {
 		logger.Error("could not parse tools data", "error", err)
@@ -99,7 +98,7 @@ func startUI() {
 				}).
 				Value(&selectedTools),
 		),
-	).WithAccessible(accessibleMode)
+	).WithAccessible(cfg.accessible)
 
 	form.WithTheme(theme)
 
@@ -136,6 +135,6 @@ func startUI() {
 		}
 	}
 
-	_ = spinner.New().Title("Downloading tools ...").Accessible(accessibleMode).Action(start).Run()
+	_ = spinner.New().Title("Downloading tools ...").Accessible(cfg.accessible).Action(start).Run()
 	logger.Print(fmt.Sprintf("Run 'export PATH=$PATH:%s' to add your tools to the PATH", installDir))
 }

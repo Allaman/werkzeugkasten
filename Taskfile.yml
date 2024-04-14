@@ -14,7 +14,7 @@ tasks:
       - task: lint
       - task: vet
       - task: build
-      - go install
+      - go install -ldflags "-X main.Version=main"
 
   build:
     desc: Build App

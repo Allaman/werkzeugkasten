@@ -52,18 +52,6 @@ Werkzeugkasten is not intended to replace package managers (such as apt, brew, .
 
 Configuration can only be done using environment variables. Since Werkzeugkasten is designed to run on minimal systems, I cannot rely on having an editor available for writing configuration files.
 
-Enable debug output:
-
-```sh
-export WK_DEBUG=true
-```
-
-Enable [accessibility](https://github.com/charmbracelet/huh?tab=readme-ov-file#accessibility) specifically designed for screen readers:
-
-```sh
-export WK_ACCESSIBLE=true
-```
-
 Overwrite tool version/tag defined in [tools.yaml](https://github.com/Allaman/werkzeugkasten/blob/main/tools.yaml):
 
 ```sh
