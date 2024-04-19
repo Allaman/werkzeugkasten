@@ -50,7 +50,20 @@ Werkzeugkasten is not intended to replace package managers (such as apt, brew, .
 
 ## Configuration
 
-Configuration can only be done using environment variables. Since Werkzeugkasten is designed to run on minimal systems, I cannot rely on having an editor available for writing configuration files.
+```
+❯ werkzeugkasten -h
+Usage of werkzeugkasten:
+  -accessible
+        Enable accessibility mode
+  -debug
+        Enable debug output
+  -help
+        Print help message
+  -version
+        Print version
+```
+
+Besides boolean CLI flags, further configuration is possible with environment variables. Since Werkzeugkasten is designed to run on minimal systems, I cannot rely on having an editor available for writing configuration files.
 
 Overwrite tool version/tag defined in [tools.yaml](https://github.com/Allaman/werkzeugkasten/blob/main/tools.yaml):
 
