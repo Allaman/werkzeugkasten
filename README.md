@@ -11,28 +11,30 @@
   </p>
 </div>
 
-_Conveniently download your favorite binaries!_
+_Conveniently download your favorite binaries (currently 63 supported)!_
 
 ![](./screenshot.png)
 
-From time to time, I need to connect to containers and VMs to troubleshoot them. These systems typically only have the necessary tools for their specific purpose and nothing else. Additionally, there is no root account available, so installing tools through a package manager is not an option. Furthermore, some tools are either not available in a package or the packaged version is outdated.
+From time to time, I need to connect to containers and VMs to troubleshoot them. These systems typically only have the necessary tools for their specific purpose and nothing else. Additionally, there is no root account available, so installing tools through a package manager is not an option. Furthermore, some tools are either not available as a package or the packaged version is outdated.
 
-This is where Werkzeugkasten comes in. You simply need to download the werkzeugkasten binary onto the system, and from that point on, there are no additional requirements, particularly the need for root permissions.
+This is where Werkzeugkasten comes in. You simply need to download the werkzeugkasten binary onto your system, and from that point on, there are no additional requirements, particularly the need for root permissions.
 
 ## Get Werkzeugkasten
 
-Unfortunately, a tool to download the wekzeugkasten binary is required. It is possible to download files via bash and `/dev/tcp` **only**, but I couldn't figure out how to handle the redirect from Github when accessing a release URL.
+Unfortunately, a tool to download the werkzeugkasten binary is required. It is possible to download files via bash and `/dev/tcp` **only**, but I couldn't figure out how to handle the redirect from Github when accessing a release URL.
 
 with curl
 
 ```sh
-curl -sLo werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/0.9.0/werkzeugkasten_0.9.0_$(uname -s)_$(uname -m)
+VERSION=$(curl -s https://api.github.com/repos/allaman/werkzeugkasten/releases/latest | grep tag_name | cut -d '"' -f 4)
+curl -sLo werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/${VERSION}/werkzeugkasten_${VERSION}_$(uname -s)_$(uname -m)
 ```
 
 with wget
 
 ```sh
-wget -qO werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/0.9.0/werkzeugkasten_0.9.0_$(uname -s)_$(uname -m)
+VERSION=$(wget -qO - https://api.github.com/repos/allaman/werkzeugkasten/releases/latest | grep tag_name | cut -d '"' -f 4)
+wget -qO werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/${VERSION}/werkzeugkasten_${VERSION}_$(uname -s)_$(uname -m)
 ```
 
 ```sh
@@ -63,7 +65,7 @@ Usage of werkzeugkasten:
         Print version
 ```
 
-Besides boolean CLI flags, further configuration is possible with environment variables. Since Werkzeugkasten is designed to run on minimal systems, I cannot rely on having an editor available for writing configuration files.
+Besides CLI flags, further configuration is possible with environment variables. Since Werkzeugkasten is designed to run on minimal systems, I cannot rely on having an editor available for writing configuration files.
 
 Overwrite tool version/tag defined in [tools.yaml](https://github.com/Allaman/werkzeugkasten/blob/main/tools.yaml):
 
