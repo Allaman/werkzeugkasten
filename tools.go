@@ -51,13 +51,13 @@ func createDefaultTools() (Tools, error) {
 			trimmedKey := strings.TrimPrefix(key, "WK_")
 			splittedKey := strings.Split(trimmedKey, "_")
 			if len(splittedKey) != 2 {
-				logger.Debug("ignoring environment variable", "var", key)
+				logger.Warn("ignoring environment variable", "var", key)
 				continue
 			}
 			tool := strings.ToLower(splittedKey[0])
 			field := strings.ToLower(splittedKey[1])
 			if field != "tag" {
-				logger.Debug("ignoring malformed environment variable", "var", key)
+				logger.Warn("ignoring malformed environment variable", "var", key)
 				continue
 			}
 			// TODO: overwrite more fields dynamically this way
