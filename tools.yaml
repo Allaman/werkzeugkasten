@@ -197,7 +197,7 @@ tools:
     identifier: "Allaman/chkRedis"
     description: "A minimal helper tool written in Go to verify the connection to a Redis data store."
     categories: ["Development"]
-    tag: "1.0.9"
+    tag: "1.0.12"
   tfswitch:
     identifier: "warrensbox/terraform-switcher"
     description: " A command line tool to switch (and install) between different versions of terraform."
