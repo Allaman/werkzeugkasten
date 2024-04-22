@@ -96,6 +96,7 @@ tools:
     identifier: "zyedidia/micro"
     description: "A modern and intuitive terminal-based text editor."
     categories: ["Utilities", "Text"]
+    asset_filters: ["static"]
     tag: "2.0.13"
   helix:
     identifier: "helix-editor/helix"
