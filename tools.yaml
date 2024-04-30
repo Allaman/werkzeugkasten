@@ -340,4 +340,4 @@ tools:
     description: "dev tools, env vars, task runner."
     categories: ["Utilities", "Development"]
     tag: "v2024.4.8"
-    asset_filters: ["^tar"]
+    asset_filters: ["^tar", "^musl"]
