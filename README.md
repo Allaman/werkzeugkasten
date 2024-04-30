@@ -11,7 +11,7 @@
   </p>
 </div>
 
-_Conveniently download your favorite binaries (currently 63 supported)!_
+_Conveniently download your favorite binaries (currently 65 supported)!_
 
 ![](./screenshot.png)
 
