@@ -335,3 +335,9 @@ tools:
     description: "CLI tool to help you manage repositories"
     categories: ["Utilities", "Git"]
     tag: "v0.25.0"
+  mise:
+    identifier: "jdx/mise"
+    description: "dev tools, env vars, task runner."
+    categories: ["Utilities", "Development"]
+    tag: "v2024.4.8"
+    asset_filters: ["^tar"]
