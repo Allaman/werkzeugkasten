@@ -351,3 +351,8 @@ tools:
     description: "GitHub’s official command line tool."
     categories: ["Utilities", "Git"]
     tags: "v2.49.0"
+  gitu:
+    identifier: "altsem/gitu"
+    description: "A TUI Git client inspired by Magit."
+    categories: ["Utilities", "Git"]
+    tags: "v0.19.2"
