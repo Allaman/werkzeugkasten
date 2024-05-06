@@ -346,3 +346,8 @@ tools:
     description: "A system information frontend with an emphasis on performance. (neofetch alternative)"
     categories: ["Utilities", "System"]
     tag: "v6.1.8"
+  github-cli:
+    identifier: "cli/cli"
+    description: "GitHub’s official command line tool."
+    categories: ["Utilities", "Git"]
+    tags: "v2.49.0"
