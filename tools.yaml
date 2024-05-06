@@ -341,3 +341,8 @@ tools:
     categories: ["Utilities", "Development"]
     tag: "v2024.4.8"
     asset_filters: ["^tar", "^musl"]
+  macchina:
+    identifier: "Macchina-CLI/macchina"
+    description: "A system information frontend with an emphasis on performance. (neofetch alternative)"
+    categories: ["Utilities", "System"]
+    tag: "v6.1.8"
