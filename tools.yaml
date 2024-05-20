@@ -356,3 +356,13 @@ tools:
     description: "A TUI Git client inspired by Magit."
     categories: ["Utilities", "Git"]
     tags: "v0.19.2"
+  gstring:
+    identifier: "Allaman/gstring"
+    description: "Swiss army knife for manipulating strings."
+    categories: ["Utilities", "Text"]
+    tag: "1.8.0"
+  difftastic:
+    identifier: "Wilfred/difftastic"
+    description: "A structural diff that understands syntax."
+    categories: ["Utilities", "Git"]
+    tag: "0.58.0"
