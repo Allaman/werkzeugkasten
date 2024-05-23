@@ -82,7 +82,7 @@ func startUI(cfg cliConfig) {
 				Prompt("#").
 				Validate(func(str string) error {
 					if str == "" {
-						return errors.New("You must provide a path.")
+						return errors.New("you must provide a path")
 					}
 					return nil
 				}).
@@ -96,7 +96,7 @@ func startUI(cfg cliConfig) {
 				Options(createToolOptions(tools)...).
 				Validate(func(t []string) error {
 					if len(t) == 0 {
-						return errors.New("You must select at least one tool.")
+						return errors.New("you must select at least one tool")
 					}
 					return nil
 				}).
