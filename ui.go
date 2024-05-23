@@ -25,9 +25,6 @@ func formatToolString(name string, tool Tool) string {
 	toolNameStyle := lipgloss.NewStyle().
 		Foreground(theme.Focused.Title.GetForeground())
 
-	versionStyle := lipgloss.NewStyle().
-		Foreground(theme.Form.GetForeground())
-
 	descriptionStyle := lipgloss.NewStyle().
 		Bold(true).
 		Foreground(theme.Help.ShortDesc.GetForeground())
@@ -36,11 +33,18 @@ func formatToolString(name string, tool Tool) string {
 		Foreground(theme.Blurred.MultiSelectSelector.GetForeground())
 
 	styledToolName := toolNameStyle.Render(name)
-	styledVersion := versionStyle.Render(tool.Tag)
 	styledDescription := descriptionStyle.Render(tool.Description)
 	styledCategories := categoriesStyle.Render(strings.Join(tool.Categories, ","))
 
-	return fmt.Sprintf("%s:%s - %s [%s]", styledToolName, styledVersion, styledDescription, styledCategories)
+	// when a tool version is explicitly set
+	if tool.Tag != "" {
+		versionStyle := lipgloss.NewStyle().
+			Foreground(theme.Form.GetForeground())
+		styledVersion := versionStyle.Render(tool.Tag)
+		return fmt.Sprintf("%s:%s - %s [%s]", styledToolName, styledVersion, styledDescription, styledCategories)
+	}
+
+	return fmt.Sprintf("%s - %s [%s]", styledToolName, styledDescription, styledCategories)
 
 }
 

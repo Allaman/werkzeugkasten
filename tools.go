@@ -108,7 +108,11 @@ func normalizePath(dir string) (string, error) {
 func downloadToolWithEget(dir string, tool Tool) error {
 	tool.Identifier = strings.Replace(tool.Identifier, "ARCH", runtime.GOARCH, 1)
 	tool.Identifier = strings.Replace(tool.Identifier, "OSNAME", runtime.GOOS, 1)
-	logger.Info(fmt.Sprintf("Downloading %s", tool.Identifier))
+	tag := "latest"
+	if tool.Tag != "" {
+		tag = tool.Tag
+	}
+	logger.Info(fmt.Sprintf("Downloading '%s' - version '%s'", tool.Identifier, tag))
 	out, err := execEget(dir, tool)
 	if err != nil {
 		logger.Debug("could not download tool", "tool", tool.Identifier, "error", err, "out", string(out))

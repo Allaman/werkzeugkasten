@@ -44,7 +44,7 @@ chmod +x werkzeugkasten
 
 ## How it works
 
-Werkzeugkasten is basically a wrapper around the excellent [eget](https://github.com/zyedidia/eget) that does the heavy lifting and is responsible for downloading the chosen tools. Eget itself is downloaded as binary via `net/http` call and decompression/extracting logic. The awesome [charmbracelet](https://github.com/charmbracelet) tools [huh](https://github.com/charmbracelet/huh), [log](https://github.com/charmbracelet/log), and [lipgloss](https://github.com/charmbracelet/lipgloss) are used for a modern look and feel.
+Werkzeugkasten is basically a wrapper around the excellent [eget](https://github.com/zyedidia/eget) that does the heavy lifting and is responsible for downloading the chosen tools. Eget itself is downloaded as binary via `net/http` call and decompression/extracting logic. The awesome [charmbracelet](https://github.com/charmbracelet) tools [huh](https://github.com/charmbracelet/huh), [log](https://github.com/charmbracelet/log), and [lipgloss](https://github.com/charmbracelet/lipgloss) are used for a modern look and feel. By default, the latest release of a tool is downloaded (see [Configuration](#configuration)).
 
 ## What Werkzeugkasten is not
 
@@ -67,7 +67,7 @@ Usage of werkzeugkasten:
 
 Besides CLI flags, further configuration is possible with environment variables. Since Werkzeugkasten is designed to run on minimal systems, I cannot rely on having an editor available for writing configuration files.
 
-Overwrite tool version/tag defined in [tools.yaml](https://github.com/Allaman/werkzeugkasten/blob/main/tools.yaml):
+Set a tool's version/tag explicitly:
 
 ```sh
 export WK_<TOO_NAME>_<TAG>>=1.33.7
