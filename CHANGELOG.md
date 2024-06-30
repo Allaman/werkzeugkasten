@@ -1,8 +1,15 @@
-## What's Changed
-* refactor: UI code
-* fix: Idiomatic info message style
-* docs: Add CHANGELOG
+## What's Changed in 1.0.1
+* refactor: UI code by @Allaman
+* fix: Idiomatic info message style by @Allaman
+* docs: Add CHANGELOG by @Allaman
+* chore(deps): bump goreleaser/goreleaser-action from 5 to 6 by @Allaman in [#1](https://github.com/allaman/werkzeugkasten/pull/1)
+* chore(deps): bump goreleaser/goreleaser-action from 5 to 6 by @dependabot[bot]
 * fix: Idiomatic error message style by @Allaman
+
+## New Contributors
+* @dependabot[bot] made their first contribution
+
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/1.0.0...1.0.1
 
 ## What's Changed in 1.0.0
 * feat!: Set default tool versions to "latest" by @Allaman
