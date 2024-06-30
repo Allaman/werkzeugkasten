@@ -1,4 +1,6 @@
 ## What's Changed
+* refactor: UI code
+* fix: Idiomatic info message style
 * docs: Add CHANGELOG
 * fix: Idiomatic error message style by @Allaman
 

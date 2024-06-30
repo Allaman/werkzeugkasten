@@ -33,6 +33,7 @@ func formatToolString(name string, tool Tool) string {
 		Foreground(theme.Blurred.MultiSelectSelector.GetForeground())
 
 	styledToolName := toolNameStyle.Render(name)
+	// TODO: How to handle long descriptions?
 	styledDescription := descriptionStyle.Render(tool.Description)
 	styledCategories := categoriesStyle.Render(strings.Join(tool.Categories, ","))
 
@@ -63,13 +64,7 @@ func createToolOptions(tools Tools) []huh.Option[string] {
 	return options
 }
 
-func startUI(cfg cliConfig) {
-	tools, err := createDefaultTools()
-	if err != nil {
-		logger.Error("could not parse tools data", "error", err)
-		os.Exit(1)
-	}
-
+func createForm(cfg cliConfig, tools Tools) *huh.Form {
 	form := huh.NewForm(
 		huh.NewGroup(
 			huh.NewNote().
@@ -88,7 +83,6 @@ func startUI(cfg cliConfig) {
 				}).
 				Value(&workingDir),
 		),
-
 		huh.NewGroup(
 			huh.NewMultiSelect[string]().
 				Title("Which tools do you want to install?").
@@ -104,6 +98,48 @@ func startUI(cfg cliConfig) {
 		),
 	).WithAccessible(cfg.accessible)
 
+	return form
+}
+
+func process(tools Tools) func() {
+	return func() {
+		installDir, err := normalizePath(workingDir)
+		if err != nil {
+			logger.Error("could not normalize path")
+			os.Exit(1)
+		}
+
+		config := newDefaultConfig()
+		if os.Getenv("WK_EGET_VERSION") != "" {
+			version := os.Getenv("WK_EGET_VERSION")
+			logger.Debug("setting eget version", "version", version)
+			config.version = version
+		}
+		err = downloadEgetBinary(installDir, config)
+		if err != nil {
+			logger.Error("could not download eget binary", "error", err)
+			os.Exit(1)
+		}
+		for _, t := range selectedTools {
+			err = downloadToolWithEget(installDir, tools.Tools[t])
+			if err != nil {
+				logger.Warn("could not download tool", "tool", t, "error", err)
+				continue
+			}
+		}
+		logger.Info(fmt.Sprintf("Run 'export PATH=$PATH:%s' to add your tools to the PATH", installDir))
+	}
+}
+
+func startUI(cfg cliConfig) {
+	tools, err := createDefaultTools()
+	if err != nil {
+		logger.Error("could not parse tools data", "error", err)
+		os.Exit(1)
+	}
+
+	form := createForm(cfg, tools)
+
 	form.WithTheme(theme)
 
 	err = form.Run()
@@ -112,33 +148,7 @@ func startUI(cfg cliConfig) {
 		logger.Fatal(err)
 	}
 
-	installDir, err := normalizePath(workingDir)
-	if err != nil {
-		logger.Error("could not normalize path")
-		os.Exit(1)
-	}
-
-	start := func() {
-		config := newDefaultConfig()
-		if os.Getenv("WK_EGET_VERSION") != "" {
-			version := os.Getenv("WK_EGET_VERSION")
-			logger.Debug("setting eget version", "version", version)
-			config.version = version
-		}
-		err := downloadEgetBinary(installDir, config)
-		if err != nil {
-			logger.Error("could not download eget binary", "error", err)
-			os.Exit(1)
-		}
-		for _, t := range selectedTools {
-			err = downloadToolWithEget(installDir, tools.Tools[t])
-			if err != nil {
-				logger.Warn("could not download tool", "error", err)
-				continue
-			}
-		}
-	}
+	start := process(tools)
 
 	_ = spinner.New().Title("Downloading tools ...").Accessible(cfg.accessible).Action(start).Run()
-	logger.Print(fmt.Sprintf("Run 'export PATH=$PATH:%s' to add your tools to the PATH", installDir))
 }
