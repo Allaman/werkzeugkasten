@@ -112,7 +112,7 @@ func downloadToolWithEget(dir string, tool Tool) error {
 	if tool.Tag != "" {
 		tag = tool.Tag
 	}
-	logger.Info(fmt.Sprintf("Downloading '%s' - version '%s'", tool.Identifier, tag))
+	logger.Info("downloading tool", "tool", tool.Identifier, "tag", tag)
 	out, err := execEget(dir, tool)
 	if err != nil {
 		logger.Debug("could not download tool", "tool", tool.Identifier, "error", err, "out", string(out))
