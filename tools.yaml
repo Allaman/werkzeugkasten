@@ -298,3 +298,7 @@ tools:
     identifier: "Wilfred/difftastic"
     description: "A structural diff that understands syntax."
     categories: ["Utilities", "Git"]
+  doggo:
+    identifier: "mr-karan/doggo"
+    description: "Command-line DNS Client for Humans. Written in Golang."
+    categories: ["Utilities", "Network"]

@@ -1,3 +1,9 @@
+## What's Changed in 1.0.2
+* feat(tools): add mr-karan/doggo
+* docs: Update CHANGELOG by @Allaman
+
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/1.0.1...1.0.2
+
 ## What's Changed in 1.0.1
 * refactor: UI code by @Allaman
 * fix: Idiomatic info message style by @Allaman
