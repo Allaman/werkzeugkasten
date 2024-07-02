@@ -1,5 +1,5 @@
 ## What's Changed in 1.0.2
-* feat(tools): add mr-karan/doggo
+* feat(tools): add mr-karan/doggo by @Allaman
 * docs: Update CHANGELOG by @Allaman
 
 **Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/1.0.1...1.0.2
