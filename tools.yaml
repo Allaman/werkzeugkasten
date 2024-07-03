@@ -302,3 +302,27 @@ tools:
     identifier: "mr-karan/doggo"
     description: "Command-line DNS Client for Humans. Written in Golang."
     categories: ["Utilities", "Network"]
+  serpl:
+    identifier: "yassinebridi/serpl"
+    description: "A simple terminal UI for search and replace, ala VS Code."
+    categories: ["Utilities", "Text"]
+  svu:
+    identifier: "caarlos0/svu"
+    description: "Semantic Version Util."
+    categories: ["Utilities", "Git"]
+  dust:
+    identifier: "bootandy/dust"
+    description: "A more intuitive version of du in rust."
+    categories: ["Utilities", "System"]
+  jnv:
+    identifier: "ynqa/jnv"
+    description: "Interactive JSON filter using jq."
+    categories: ["Utilities", "Json"]
+  fx:
+    identifier: "antonmedv/fx"
+    description: "Terminal JSON viewer & processor"
+    categories: ["Utilities", "Json"]
+  humanlog:
+    identifier: "humanlogio/humanlog"
+    description: "Logs for humans to read."
+    categories: ["Utilities", "System"]
