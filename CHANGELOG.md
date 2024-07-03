@@ -1,3 +1,9 @@
+## What's Changed in 1.1.0
+* feat(tools): Add more tools
+* docs: Update CHANGELOG by @Allaman
+
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/1.0.2...1.1.0
+
 ## What's Changed in 1.0.2
 * feat(tools): add mr-karan/doggo by @Allaman
 * docs: Update CHANGELOG by @Allaman
