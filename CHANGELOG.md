@@ -1,5 +1,11 @@
+## What's Changed in 1.2.0
+* feat(tools): add ayoisaiah/f2 by @Allaman
+* docs: Update CHANGELOG by @Allaman
+
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/1.1.0...1.2.0
+
 ## What's Changed in 1.1.0
-* feat(tools): Add more tools
+* feat(tools): Add more tools by @Allaman
 * docs: Update CHANGELOG by @Allaman
 
 **Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/1.0.2...1.1.0
