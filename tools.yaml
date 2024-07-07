@@ -326,3 +326,7 @@ tools:
     identifier: "humanlogio/humanlog"
     description: "Logs for humans to read."
     categories: ["Utilities", "System"]
+  f2:
+    identifier: "ayoisaiah/f2"
+    description: "F2 is a cross-platform command-line tool for batch renaming files and directories quickly and safely. Written in Go!"
+    categories: ["Utilities", "Files"]
