@@ -50,7 +50,7 @@ Werkzeugkasten is basically a wrapper around the excellent [eget](https://github
 
 ## What Werkzeugkasten is not
 
-Werkzeugkasten is not intended to replace package managers (such as apt, brew, ...) or configuration management tools (such as Ansible, ...). It is also not intended to be used non-interactively.
+Werkzeugkasten is not intended to replace package managers (such as apt, brew, ...) or configuration management tools (such as Ansible, ...).
 
 ## Usage
 
