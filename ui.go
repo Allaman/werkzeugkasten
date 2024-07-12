@@ -3,8 +3,6 @@ package main
 import (
 	"errors"
 	"fmt"
-	"os"
-	"sort"
 	"strings"
 
 	"github.com/charmbracelet/huh"
@@ -13,7 +11,7 @@ import (
 )
 
 var (
-	workingDir    string
+	// workingDir    string
 	selectedTools []string
 )
 
@@ -50,11 +48,7 @@ func formatToolString(name string, tool Tool) string {
 }
 
 func createToolOptions(tools Tools) []huh.Option[string] {
-	sortedTools := make([]string, 0, len(tools.Tools))
-	for k := range tools.Tools {
-		sortedTools = append(sortedTools, k)
-	}
-	sort.Strings(sortedTools)
+	sortedTools := sortTools(tools)
 	options := make([]huh.Option[string], 0, len(tools.Tools))
 	for _, name := range sortedTools {
 		tool := tools.Tools[name]
@@ -64,29 +58,12 @@ func createToolOptions(tools Tools) []huh.Option[string] {
 	return options
 }
 
-func createForm(cfg cliConfig, tools Tools) *huh.Form {
+func createForm(tools Tools) *huh.Form {
 	form := huh.NewForm(
-		huh.NewGroup(
-			huh.NewNote().
-				Title("Your Werkzeugkasten").
-				Description("Installing awesome tools with ease!"),
-
-			huh.NewInput().
-				Title("Where should your tools be installed?").
-				Description("Provide an absolute or relative path where your tools should be downloaded to. All directories are created if needed.").
-				Prompt("#").
-				Validate(func(str string) error {
-					if str == "" {
-						return errors.New("you must provide a path")
-					}
-					return nil
-				}).
-				Value(&workingDir),
-		),
 		huh.NewGroup(
 			huh.NewMultiSelect[string]().
 				Title("Which tools do you want to install?").
-				Description("Chose one or more tools to be downloaded to the specified path.").
+				Description("Chose one or more tools to be downloaded.").
 				Options(createToolOptions(tools)...).
 				Validate(func(t []string) error {
 					if len(t) == 0 {
@@ -96,59 +73,37 @@ func createForm(cfg cliConfig, tools Tools) *huh.Form {
 				}).
 				Value(&selectedTools),
 		),
-	).WithAccessible(cfg.accessible)
+	)
 
 	return form
 }
 
-func process(tools Tools) func() {
+func processSelectedTools(cfg cliConfig, tools Tools) func() {
 	return func() {
-		installDir, err := normalizePath(workingDir)
-		if err != nil {
-			logger.Error("could not normalize path")
-			os.Exit(1)
-		}
-
-		config := newDefaultConfig()
-		if os.Getenv("WK_EGET_VERSION") != "" {
-			version := os.Getenv("WK_EGET_VERSION")
-			logger.Debug("setting eget version", "version", version)
-			config.version = version
-		}
-		err = downloadEgetBinary(installDir, config)
-		if err != nil {
-			logger.Error("could not download eget binary", "error", err)
-			os.Exit(1)
-		}
+		installEget(cfg.downloadDir)
 		for _, t := range selectedTools {
-			err = downloadToolWithEget(installDir, tools.Tools[t])
+			err := downloadToolWithEget(cfg.downloadDir, tools.Tools[t])
 			if err != nil {
 				logger.Warn("could not download tool", "tool", t, "error", err)
 				continue
 			}
 		}
-		logger.Info(fmt.Sprintf("Run 'export PATH=$PATH:%s' to add your tools to the PATH", installDir))
+		logger.Info(fmt.Sprintf("Run 'export PATH=$PATH:%s' to add your tools to the PATH", cfg.downloadDir))
 	}
 }
 
-func startUI(cfg cliConfig) {
-	tools, err := createToolData()
-	if err != nil {
-		logger.Error("could not parse tools data", "error", err)
-		os.Exit(1)
-	}
-
-	form := createForm(cfg, tools)
-
+func startUI(cfg cliConfig, tools Tools) {
+	form := createForm(tools)
+	form.WithAccessible(cfg.accessible)
 	form.WithTheme(theme)
 
-	err = form.Run()
+	err := form.Run()
 
 	if err != nil {
 		logger.Fatal(err)
 	}
 
-	start := process(tools)
+	start := processSelectedTools(cfg, tools)
 
 	_ = spinner.New().Title("Downloading tools ...").Accessible(cfg.accessible).Action(start).Run()
 }

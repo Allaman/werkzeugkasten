@@ -42,6 +42,8 @@ chmod +x werkzeugkasten
 ./werkzeugkasten
 ```
 
+You could also integrate werkzeugkasten in your golden (Docker) image. ⚠️ Keep possible security implications in mind.
+
 ## How it works
 
 Werkzeugkasten is basically a wrapper around the excellent [eget](https://github.com/zyedidia/eget) that does the heavy lifting and is responsible for downloading the chosen tools. Eget itself is downloaded as binary via `net/http` call and decompression/extracting logic. The awesome [charmbracelet](https://github.com/charmbracelet) tools [huh](https://github.com/charmbracelet/huh), [log](https://github.com/charmbracelet/log), and [lipgloss](https://github.com/charmbracelet/lipgloss) are used for a modern look and feel. By default, the latest release of a tool is downloaded (see [Configuration](#configuration)).
@@ -50,20 +52,37 @@ Werkzeugkasten is basically a wrapper around the excellent [eget](https://github
 
 Werkzeugkasten is not intended to replace package managers (such as apt, brew, ...) or configuration management tools (such as Ansible, ...). It is also not intended to be used non-interactively.
 
-## Configuration
+## Usage
 
 ```
-❯ werkzeugkasten -h
-Usage of werkzeugkasten:
+❯ werkzeugkasten -help
+Usage: werkzeugkasten [flags]
+Flags:
   -accessible
-        Enable accessibility mode
+        Enable accessibility mode for interactiveuse
   -debug
         Enable debug output
   -help
         Print help message
+  -installDir string
+        Where to install the tools (default ".")
+  -list
+        Print all available tools
+  -tool value
+        Specify multiple tools to install programmatically (e.g., -tool kustomize -tool task)
   -version
         Print version
 ```
+
+Werkzeugkasten supports an interactive mode and a non-interactive mode.
+
+- `werkzeugkasten` will start the interactive mode where you select your tools you want to install in a menu.
+
+- `werkzeugkasten -list` will print all available tools.
+
+- `werkzeugkasten -tool age -tool kustomize` will download age and kustomize.
+
+## Configuration
 
 Besides CLI flags, further configuration is possible with environment variables. Since Werkzeugkasten is designed to run on minimal systems, I cannot rely on having an editor available for writing configuration files.
 

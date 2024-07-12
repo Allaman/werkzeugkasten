@@ -8,7 +8,9 @@ import (
 	"path"
 	"path/filepath"
 	"runtime"
+	"slices"
 	"strings"
+	"text/tabwriter"
 
 	"gopkg.in/yaml.v3"
 )
@@ -116,4 +118,29 @@ func downloadToolWithEget(workingdir string, tool Tool) error {
 		return err
 	}
 	return nil
+}
+
+func sortTools(tools Tools) []string {
+	sortedTools := make([]string, 0, len(tools.Tools))
+	for k := range tools.Tools {
+		sortedTools = append(sortedTools, k)
+	}
+	slices.Sort(sortedTools)
+	return sortedTools
+}
+
+func printTools(tools Tools) {
+	w := tabwriter.NewWriter(os.Stdout, 1, 1, 1, ' ', 0)
+	fmt.Fprintln(w, "Key\tURL\tDescription")
+	sortedTools := sortTools(tools)
+	for _, tool := range sortedTools {
+		identifier := tools.Tools[tool].Identifier
+		url := fmt.Sprintf("https://github.com/%s", identifier)
+		// handle packages that are not installed from GitHub
+		if strings.HasPrefix(identifier, "https") {
+			url = tools.Tools[tool].Identifier
+		}
+		fmt.Fprintf(w, "%s\t%s\t%s\n", tool, url, tools.Tools[tool].Description)
+	}
+	w.Flush()
 }

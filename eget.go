@@ -21,7 +21,7 @@ type egetConfig struct {
 	version string
 }
 
-func newDefaultConfig() egetConfig {
+func newDefaultEgetConfig() egetConfig {
 	url := "https://github.com/zyedidia/eget/releases/download/v%s/eget-%s-%s_%s.tar.gz"
 	return egetConfig{arch: runtime.GOARCH, os: runtime.GOOS, url: url, version: "1.3.4"}
 }
@@ -177,4 +177,18 @@ func makeExecutable(filePath string) error {
 
 func rename(source, dest string) error {
 	return os.Rename(source, dest)
+}
+
+func installEget(installDir string) {
+	egetConfig := newDefaultEgetConfig()
+	if os.Getenv("WK_EGET_VERSION") != "" {
+		version := os.Getenv("WK_EGET_VERSION")
+		logger.Debug("setting eget version", "version", version)
+		egetConfig.version = version
+	}
+	err := downloadEgetBinary(installDir, egetConfig)
+	if err != nil {
+		logger.Error("could not download eget binary", "error", err)
+		os.Exit(1)
+	}
 }

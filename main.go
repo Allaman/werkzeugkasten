@@ -17,5 +17,32 @@ func main() {
 		logger.SetReportCaller(true)
 		logger.SetLevel(log.DebugLevel)
 	}
-	startUI(cfg)
+	tools, err := createToolData()
+	if err != nil {
+		logger.Fatal("could not parse tools data", "error", err)
+	}
+	logger.Debug("download dir", "dir", cfg.downloadDir)
+
+	installDir, err := normalizePath(cfg.downloadDir)
+	if err != nil {
+		logger.Fatal("could not normalize path")
+	}
+	if cfg.list {
+		printTools(tools)
+		os.Exit(0)
+	}
+	// interactive mode
+	if len(cfg.toolList) == 0 {
+		startUI(cfg, tools)
+	} else {
+		// non-interactive mode
+		installEget(cfg.downloadDir)
+		for _, toolName := range cfg.toolList {
+			err = downloadToolWithEget(installDir, tools.Tools[toolName])
+			if err != nil {
+				logger.Warn("could not download tool", "tool", toolName, "error", err)
+				continue
+			}
+		}
+	}
 }
