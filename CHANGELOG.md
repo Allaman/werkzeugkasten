@@ -1,3 +1,16 @@
+## What's Changed in 2.0.0
+* feat!: Implement non-interactive mode by @Allaman
+* fix(tools): Formatting by @Allaman
+* refactor(tools): Better variable names by @Allaman
+* fix(tools): Add asset_filters for FiloSottile/age by @Allaman
+* feat(eget): Bump eget version to 1.3.4 by @Allaman
+* refactor(tools): Rename createDefaultTools to createToolData by @Allaman
+* fix: Remove obsolet struct by @Allaman
+* dosc: Update README by @Allaman
+* docs: Update CHANGELOG by @Allaman
+
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/1.2.0...2.0.0
+
 ## What's Changed in 1.2.0
 * feat(tools): add ayoisaiah/f2 by @Allaman
 * docs: Update CHANGELOG by @Allaman
