@@ -59,7 +59,7 @@ Werkzeugkasten is not intended to replace package managers (such as apt, brew, .
 Usage: werkzeugkasten [flags]
 Flags:
   -accessible
-        Enable accessibility mode for interactiveuse
+        Enable accessibility mode for interactive use
   -debug
         Enable debug output
   -help

@@ -31,7 +31,7 @@ func cli() cliConfig {
 	helpFlag := flag.Bool("help", false, "Print help message")
 	versionFlag := flag.Bool("version", false, "Print version")
 	debugFlag := flag.Bool("debug", false, "Enable debug output")
-	accessibleFlag := flag.Bool("accessible", false, "Enable accessibility mode for interactiveuse")
+	accessibleFlag := flag.Bool("accessible", false, "Enable accessibility mode for interactive use")
 	downloadDirFlag := flag.String("installDir", ".", "Where to install the tools")
 	listFlag := flag.Bool("list", false, "Print all available tools")
 	flag.Var(&toolList, "tool", "Specify multiple tools to install programmatically (e.g., -tool kustomize -tool task)")
