@@ -70,11 +70,11 @@ func createToolData() (Tools, error) {
 	return tools, nil
 }
 
-func execEget(egetBinDir string, tool Tool) ([]byte, error) {
-	eget := fmt.Sprintf("%s/eget", egetBinDir)
+func execEget(workingDir string, tool Tool) ([]byte, error) {
+	eget := fmt.Sprintf("%s/eget", workingDir)
 	tag := tool.Tag
 	name := tool.Identifier
-	cmd := exec.Command(eget, "-q", "-t", tag, name, "--to", egetBinDir)
+	cmd := exec.Command(eget, "-q", "-t", tag, name, "--to", workingDir)
 	if len(tool.AssetFilters) > 0 {
 		for _, af := range tool.AssetFilters {
 			cmd.Args = append(cmd.Args, fmt.Sprintf("--asset=%s", af))
@@ -83,7 +83,7 @@ func execEget(egetBinDir string, tool Tool) ([]byte, error) {
 	if tool.File != "" {
 		cmd.Args = append(cmd.Args, fmt.Sprintf("--file=\"%s\"", tool.File))
 	}
-	cmd.Dir = egetBinDir
+	cmd.Dir = workingDir
 	logger.Debug("executing command", "cmd", cmd, "wd", cmd.Dir, "env", cmd.Env)
 	out, err := cmd.CombinedOutput()
 	return out, err
@@ -102,7 +102,7 @@ func normalizePath(dir string) (string, error) {
 	return wd, nil
 }
 
-func downloadToolWithEget(dir string, tool Tool) error {
+func downloadToolWithEget(workingdir string, tool Tool) error {
 	tool.Identifier = strings.Replace(tool.Identifier, "ARCH", runtime.GOARCH, 1)
 	tool.Identifier = strings.Replace(tool.Identifier, "OSNAME", runtime.GOOS, 1)
 	tag := "latest"
@@ -110,7 +110,7 @@ func downloadToolWithEget(dir string, tool Tool) error {
 		tag = tool.Tag
 	}
 	logger.Info("downloading tool", "tool", tool.Identifier, "tag", tag)
-	out, err := execEget(dir, tool)
+	out, err := execEget(workingdir, tool)
 	if err != nil {
 		logger.Debug("could not download tool", "tool", tool.Identifier, "error", err, "out", string(out))
 		return err
