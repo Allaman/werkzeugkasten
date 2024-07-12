@@ -23,7 +23,7 @@ type egetConfig struct {
 
 func newDefaultConfig() egetConfig {
 	url := "https://github.com/zyedidia/eget/releases/download/v%s/eget-%s-%s_%s.tar.gz"
-	return egetConfig{arch: runtime.GOARCH, os: runtime.GOOS, url: url, version: "1.3.3"}
+	return egetConfig{arch: runtime.GOARCH, os: runtime.GOOS, url: url, version: "1.3.4"}
 }
 
 // TODO: check if dir exists
