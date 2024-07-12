@@ -71,7 +71,7 @@ tools:
     description: "Intuitive find & replace CLI (sed alternative)."
     categories: ["Utilities", "Text"]
   zellij:
-    identifier: "zellij-org/zellij/"
+    identifier: "zellij-org/zellij"
     description: "A terminal workspace with batteries included (screen/tmux alternative)."
     categories: ["Utilities"]
   micro:
@@ -162,7 +162,7 @@ tools:
     categories: ["Development"]
   tfswitch:
     identifier: "warrensbox/terraform-switcher"
-    description: " A command line tool to switch (and install) between different versions of terraform."
+    description: "A command line tool to switch (and install) between different versions of terraform."
     categories: ["Cloud"]
     file: "tfswitch"
   tenv:
