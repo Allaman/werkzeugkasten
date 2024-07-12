@@ -30,7 +30,7 @@ type Tool struct {
 	// Target       string   `yaml:"target"`
 }
 
-func createDefaultTools() (Tools, error) {
+func createToolData() (Tools, error) {
 	var tools Tools
 	err := yaml.Unmarshal(toolsYAML, &tools)
 	if err != nil {

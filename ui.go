@@ -132,7 +132,7 @@ func process(tools Tools) func() {
 }
 
 func startUI(cfg cliConfig) {
-	tools, err := createDefaultTools()
+	tools, err := createToolData()
 	if err != nil {
 		logger.Error("could not parse tools data", "error", err)
 		os.Exit(1)
