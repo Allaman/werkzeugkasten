@@ -243,6 +243,7 @@ tools:
     identifier: "FiloSottile/age"
     description: "A simple, modern and secure encryption tool (and Go library) with small explicit keys, no config options, and UNIX-style composability."
     categories: ["Utilities", "System"]
+    asset_filters: ["^proof"]
   podman:
     identifier: "containers/podman"
     description: "Podman: A tool for managing OCI containers and pods."
