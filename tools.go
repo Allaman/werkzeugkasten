@@ -30,9 +30,6 @@ type Tool struct {
 	// Target       string   `yaml:"target"`
 }
 
-type Overwrite struct {
-}
-
 func createDefaultTools() (Tools, error) {
 	var tools Tools
 	err := yaml.Unmarshal(toolsYAML, &tools)
