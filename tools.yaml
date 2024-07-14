@@ -335,3 +335,7 @@ tools:
     identifier: "containerd/nerdctl"
     description: "contaiNERD CTL - Docker-compatible CLI for containerd, with support for Compose, Rootless, eStargz, OCIcrypt, IPFS, ..."
     categories: ["Docker"]
+  kaf:
+    identifier: "birdayz/kaf"
+    description: "Modern CLI for Apache Kafka, written in Go."
+    categories: ["Development"]
