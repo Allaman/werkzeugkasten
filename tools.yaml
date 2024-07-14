@@ -331,3 +331,7 @@ tools:
     identifier: "ayoisaiah/f2"
     description: "F2 is a cross-platform command-line tool for batch renaming files and directories quickly and safely. Written in Go!"
     categories: ["Utilities", "Files"]
+  nerdctl:
+    identifier: "containerd/nerdctl"
+    description: "contaiNERD CTL - Docker-compatible CLI for containerd, with support for Compose, Rootless, eStargz, OCIcrypt, IPFS, ..."
+    categories: ["Docker"]
