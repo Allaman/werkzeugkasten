@@ -80,9 +80,9 @@ Flags:
         Print version
 ```
 
-Werkzeugkasten supports an interactive mode and a non-interactive mode.
+Werkzeugkasten supports an **interactive** mode and a **non-interactive** mode.
 
-- `werkzeugkasten` will start the interactive mode where you select your tools you want to install in a menu.
+- `werkzeugkasten` will start in interactive mode where you select your tools you want to install from a searchable list.
 
 - `werkzeugkasten -tools` will print all available tools.
 
@@ -94,12 +94,12 @@ Werkzeugkasten supports an interactive mode and a non-interactive mode.
 
 ## Configuration
 
-Besides CLI flags, further configuration is possible with environment variables. Since Werkzeugkasten is designed to run on minimal systems, I cannot rely on having an editor available for writing configuration files.
+Besides CLI flags, further configuration is possible with environment variables.
 
 Set a tool's version/tag explicitly:
 
 ```sh
-export WK_<TOO_NAME>_<TAG>>=1.33.7
+export WK_<TOOL_NAME>_<TAG>>=1.33.7
 export WK_KUSTOMIZE_TAG=v5.3.0`
 ```
 
