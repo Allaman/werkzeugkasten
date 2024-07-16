@@ -180,15 +180,19 @@ func rename(source, dest string) error {
 }
 
 func installEget(installDir string) {
-	egetConfig := newDefaultEgetConfig()
-	if os.Getenv("WK_EGET_VERSION") != "" {
-		version := os.Getenv("WK_EGET_VERSION")
-		logger.Debug("setting eget version", "version", version)
-		egetConfig.version = version
-	}
-	err := downloadEgetBinary(installDir, egetConfig)
-	if err != nil {
-		logger.Error("could not download eget binary", "error", err)
-		os.Exit(1)
+	if _, err := os.Stat(path.Join(installDir, "eget")); errors.Is(err, os.ErrNotExist) {
+		egetConfig := newDefaultEgetConfig()
+		if os.Getenv("WK_EGET_VERSION") != "" {
+			version := os.Getenv("WK_EGET_VERSION")
+			logger.Debug("setting eget version", "version", version)
+			egetConfig.version = version
+		}
+		err := downloadEgetBinary(installDir, egetConfig)
+		if err != nil {
+			logger.Error("could not download eget binary", "error", err)
+			os.Exit(1)
+		}
+	} else {
+		logger.Debug("eget allready downloaded")
 	}
 }
