@@ -11,7 +11,6 @@ import (
 )
 
 var (
-	// workingDir    string
 	selectedTools []string
 )
 
