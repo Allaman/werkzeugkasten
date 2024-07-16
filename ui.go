@@ -14,10 +14,7 @@ var (
 	selectedTools []string
 )
 
-// TODO: make configurable
-var theme = huh.ThemeCatppuccin()
-
-func formatToolString(name string, tool Tool) string {
+func formatToolString(theme *huh.Theme, name string, tool Tool) string {
 
 	toolNameStyle := lipgloss.NewStyle().
 		Foreground(theme.Focused.Title.GetForeground())
@@ -46,24 +43,24 @@ func formatToolString(name string, tool Tool) string {
 
 }
 
-func createToolOptions(tools Tools) []huh.Option[string] {
+func createToolOptions(theme *huh.Theme, tools Tools) []huh.Option[string] {
 	sortedTools := sortTools(tools)
 	options := make([]huh.Option[string], 0, len(tools.Tools))
 	for _, name := range sortedTools {
 		tool := tools.Tools[name]
-		option := huh.NewOption(formatToolString(name, tool), name)
+		option := huh.NewOption(formatToolString(theme, name, tool), name)
 		options = append(options, option)
 	}
 	return options
 }
 
-func createForm(tools Tools) *huh.Form {
+func createForm(theme *huh.Theme, tools Tools) *huh.Form {
 	form := huh.NewForm(
 		huh.NewGroup(
 			huh.NewMultiSelect[string]().
 				Title("Which tools do you want to install?").
 				Description("Chose one or more tools to be downloaded.").
-				Options(createToolOptions(tools)...).
+				Options(createToolOptions(theme, tools)...).
 				Validate(func(t []string) error {
 					if len(t) == 0 {
 						return errors.New("you must select at least one tool")
@@ -92,7 +89,21 @@ func processSelectedTools(cfg cliConfig, tools Tools) func() {
 }
 
 func startUI(cfg cliConfig, tools Tools) {
-	form := createForm(tools)
+	var theme *huh.Theme
+	switch strings.ToLower(cfg.theme) {
+	case "base16":
+		theme = huh.ThemeBase16()
+	case "catppuccin":
+		theme = huh.ThemeCatppuccin()
+	case "charm":
+		theme = huh.ThemeCharm()
+	case "dracula":
+		theme = huh.ThemeDracula()
+	default:
+		logger.Warn("unknown theme. valid themes are 'base16', 'catppuccin' (default), 'charm', and 'dracula'")
+	}
+
+	form := createForm(theme, tools)
 	form.WithAccessible(cfg.accessible)
 	form.WithTheme(theme)
 

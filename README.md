@@ -68,6 +68,8 @@ Flags:
         Where to install the tools (default ".")
   -list
         Print all available tools
+  -theme string
+        Set theme for interactive mode (default "catppuccin")
   -tool value
         Specify multiple tools to install programmatically (e.g., -tool kustomize -tool task)
   -version
