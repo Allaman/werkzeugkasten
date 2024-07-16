@@ -1,3 +1,15 @@
+## What's Changed in 3.0.0
+* feat(tools): Add category flag by @Allaman
+* fix(tools): Handle optional -t argument properly by @Allaman
+* refactor(tools): Remove normalizedPath function by @Allaman
+* feat!: Add category listing flag and rename list flag by @Allaman
+* fix(tools): Typo by @Allaman
+* docs: Update Screenshot by @Allaman
+* fix(eget): Check if eget is allready downloaded by @Allaman
+* docs: Update CHANGELOG by @Allaman
+
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/2.1.0...3.0.0
+
 ## What's Changed in 2.1.0
 * refactor(ui): More idiomatic code by @Allaman
 * feat(cli): Make theme configurable by @Allaman
