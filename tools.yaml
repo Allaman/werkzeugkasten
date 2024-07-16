@@ -181,7 +181,7 @@ tools:
   ouch:
     identifier: "ouch-org/ouch"
     description: "Painless compression and decompression in the terminal."
-    categories: [Utilities", "Files"]
+    categories: ["Utilities", "Files"]
   miller:
     identifier: "johnkerl/miller"
     description: "Miller is like awk, sed, cut, join, and sort for name-indexed data such as CSV, TSV, and tabular JSON."
