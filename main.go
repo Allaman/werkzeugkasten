@@ -23,10 +23,6 @@ func main() {
 	}
 	logger.Debug("download dir", "dir", cfg.downloadDir)
 
-	installDir, err := normalizePath(cfg.downloadDir)
-	if err != nil {
-		logger.Fatal("could not normalize path")
-	}
 	if cfg.tools {
 		printTools(tools)
 		os.Exit(0)
@@ -42,7 +38,7 @@ func main() {
 		// non-interactive mode
 		installEget(cfg.downloadDir)
 		for _, toolName := range cfg.toolList {
-			err = downloadToolWithEget(installDir, tools.Tools[toolName])
+			err = downloadToolWithEget(cfg.downloadDir, tools.Tools[toolName])
 			if err != nil {
 				logger.Warn("could not download tool", "tool", toolName, "error", err)
 				continue

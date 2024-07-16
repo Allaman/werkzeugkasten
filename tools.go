@@ -5,8 +5,6 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
-	"path"
-	"path/filepath"
 	"runtime"
 	"slices"
 	"strings"
@@ -73,10 +71,9 @@ func createToolData() (Tools, error) {
 }
 
 func execEget(workingDir string, tool Tool) ([]byte, error) {
-	eget := fmt.Sprintf("%s/eget", workingDir)
 	tag := tool.Tag
 	name := tool.Identifier
-	cmd := exec.Command(eget, "-q", "-t", tag, name, "--to", workingDir)
+	cmd := exec.Command("./eget", "-q", name, "--to", workingDir)
 	if len(tool.AssetFilters) > 0 {
 		for _, af := range tool.AssetFilters {
 			cmd.Args = append(cmd.Args, fmt.Sprintf("--asset=%s", af))
@@ -89,19 +86,6 @@ func execEget(workingDir string, tool Tool) ([]byte, error) {
 	logger.Debug("executing command", "cmd", cmd, "wd", cmd.Dir, "env", cmd.Env)
 	out, err := cmd.CombinedOutput()
 	return out, err
-}
-
-func normalizePath(dir string) (string, error) {
-	var wd string
-	var err error
-	wd = dir
-	if !path.IsAbs(wd) {
-		wd, err = filepath.Abs(dir)
-		if err != nil {
-			return "", err
-		}
-	}
-	return wd, nil
 }
 
 func downloadToolWithEget(workingdir string, tool Tool) error {
