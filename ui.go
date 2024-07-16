@@ -31,10 +31,8 @@ func formatToolString(theme *huh.Theme, name string, tool Tool) string {
 	styledDescription := descriptionStyle.Render(tool.Description)
 	styledCategories := categoriesStyle.Render(strings.Join(tool.Categories, ","))
 
-	// when a tool version is explicitly set
 	if tool.Tag != "" {
-		versionStyle := lipgloss.NewStyle().
-			Foreground(theme.Form.GetForeground())
+		versionStyle := lipgloss.NewStyle().Foreground(theme.Form.GetForeground())
 		styledVersion := versionStyle.Render(tool.Tag)
 		return fmt.Sprintf("%s:%s - %s [%s]", styledToolName, styledVersion, styledDescription, styledCategories)
 	}
@@ -45,11 +43,10 @@ func formatToolString(theme *huh.Theme, name string, tool Tool) string {
 
 func createToolOptions(theme *huh.Theme, tools Tools) []huh.Option[string] {
 	sortedTools := sortTools(tools)
-	options := make([]huh.Option[string], 0, len(tools.Tools))
+	options := make([]huh.Option[string], 0, len(sortedTools))
 	for _, name := range sortedTools {
 		tool := tools.Tools[name]
-		option := huh.NewOption(formatToolString(theme, name, tool), name)
-		options = append(options, option)
+		options = append(options, huh.NewOption(formatToolString(theme, name, tool), name))
 	}
 	return options
 }
@@ -59,7 +56,7 @@ func createForm(theme *huh.Theme, tools Tools) *huh.Form {
 		huh.NewGroup(
 			huh.NewMultiSelect[string]().
 				Title("Which tools do you want to install?").
-				Description("Chose one or more tools to be downloaded.").
+				Description("Choose one or more tools to be downloaded.").
 				Options(createToolOptions(theme, tools)...).
 				Validate(func(t []string) error {
 					if len(t) == 0 {
@@ -78,8 +75,7 @@ func processSelectedTools(cfg cliConfig, tools Tools) func() {
 	return func() {
 		installEget(cfg.downloadDir)
 		for _, t := range selectedTools {
-			err := downloadToolWithEget(cfg.downloadDir, tools.Tools[t])
-			if err != nil {
+			if err := downloadToolWithEget(cfg.downloadDir, tools.Tools[t]); err != nil {
 				logger.Warn("could not download tool", "tool", t, "error", err)
 				continue
 			}
@@ -101,19 +97,14 @@ func startUI(cfg cliConfig, tools Tools) {
 		theme = huh.ThemeDracula()
 	default:
 		logger.Warn("unknown theme. valid themes are 'base16', 'catppuccin' (default), 'charm', and 'dracula'")
+		theme = huh.ThemeCatppuccin() // set default theme in case of unknown theme
 	}
 
-	form := createForm(theme, tools)
-	form.WithAccessible(cfg.accessible)
-	form.WithTheme(theme)
+	form := createForm(theme, tools).WithAccessible(cfg.accessible).WithTheme(theme)
 
-	err := form.Run()
-
-	if err != nil {
+	if err := form.Run(); err != nil {
 		logger.Fatal(err)
 	}
 
-	start := processSelectedTools(cfg, tools)
-
-	_ = spinner.New().Title("Downloading tools ...").Accessible(cfg.accessible).Action(start).Run()
+	_ = spinner.New().Title("Downloading tools ...").Accessible(cfg.accessible).Action(processSelectedTools(cfg, tools)).Run()
 }
