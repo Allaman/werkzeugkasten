@@ -1,3 +1,15 @@
+## What's Changed in 2.1.0
+* refactor(ui): More idiomatic code by @Allaman
+* feat(cli): Make theme configurable by @Allaman
+* style: Remove obsolete comment by @Allaman
+* feat(tools): Add birdayz/kaf by @Allaman
+* feat(tools): Add containerd/nerdctl by @Allaman
+* fix: Typo in flag description by @Allaman
+* docs: Update README by @Allaman
+* docs: Update CHANGELOG by @Allaman
+
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/2.0.0...2.1.0
+
 ## What's Changed in 2.0.0
 * feat!: Implement non-interactive mode by @Allaman
 * fix(tools): Formatting by @Allaman
