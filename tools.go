@@ -74,6 +74,9 @@ func execEget(workingDir string, tool Tool) ([]byte, error) {
 	tag := tool.Tag
 	name := tool.Identifier
 	cmd := exec.Command("./eget", "-q", name, "--to", workingDir)
+	if tag != "" {
+		cmd = exec.Command("./eget", "-q", "-t", tag, name, "--to", workingDir)
+	}
 	if len(tool.AssetFilters) > 0 {
 		for _, af := range tool.AssetFilters {
 			cmd.Args = append(cmd.Args, fmt.Sprintf("--asset=%s", af))
