@@ -84,7 +84,11 @@ Werkzeugkasten supports an interactive mode and a non-interactive mode.
 
 - `werkzeugkasten` will start the interactive mode where you select your tools you want to install in a menu.
 
-- `werkzeugkasten -list` will print all available tools.
+- `werkzeugkasten -tools` will print all available tools.
+
+- `werkzeugkasten -categories` will print all available categories.
+
+- `werkzeugkasten -category network` will print all available tools in the "network" category.
 
 - `werkzeugkasten -tool age -tool kustomize` will download age and kustomize.
 
