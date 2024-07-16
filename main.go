@@ -27,8 +27,12 @@ func main() {
 	if err != nil {
 		logger.Fatal("could not normalize path")
 	}
-	if cfg.list {
+	if cfg.tools {
 		printTools(tools)
+		os.Exit(0)
+	}
+	if cfg.categories {
+		printCategories(getCategories(tools))
 		os.Exit(0)
 	}
 	// interactive mode

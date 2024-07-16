@@ -129,6 +129,30 @@ func sortTools(tools Tools) []string {
 	return sortedTools
 }
 
+func getCategories(tools Tools) map[string]int {
+	categories := make(map[string]int, 0)
+	for _, t := range tools.Tools {
+		for _, c := range t.Categories {
+			categories[c] = categories[c] + 1
+		}
+	}
+	return categories
+}
+
+func printCategories(categories map[string]int) {
+	sortedCategories := make([]string, 0, len(categories))
+	for k := range categories {
+		sortedCategories = append(sortedCategories, k)
+	}
+	slices.Sort(sortedCategories)
+	w := tabwriter.NewWriter(os.Stdout, 1, 1, 1, ' ', 0)
+	fmt.Fprintln(w, "Name\tCount")
+	for _, c := range sortedCategories {
+		fmt.Fprintf(w, "%s\t%d\n", c, categories[c])
+	}
+	w.Flush()
+}
+
 func printTools(tools Tools) {
 	w := tabwriter.NewWriter(os.Stdout, 1, 1, 1, ' ', 0)
 	fmt.Fprintln(w, "Key\tURL\tDescription")
