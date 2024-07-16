@@ -60,18 +60,22 @@ Usage: werkzeugkasten [flags]
 Flags:
   -accessible
         Enable accessibility mode for interactive use
+  -categories
+        Print all categories and tool count
+  -category string
+        List tools by category
   -debug
         Enable debug output
+  -dir string
+        Where to download the tools (default ".")
   -help
         Print help message
-  -installDir string
-        Where to install the tools (default ".")
-  -list
-        Print all available tools
   -theme string
         Set theme for interactive mode (default "catppuccin")
   -tool value
         Specify multiple tools to install programmatically (e.g., -tool kustomize -tool task)
+  -tools
+        Print all available tools
   -version
         Print version
 ```

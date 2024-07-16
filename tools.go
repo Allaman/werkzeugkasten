@@ -140,6 +140,22 @@ func printCategories(categories map[string]int) {
 	w.Flush()
 }
 
+func getToolsByCategory(category string, tools Tools) Tools {
+	var toolsFound Tools
+	toolsFound.Tools = make(map[string]Tool, 0)
+	lowerCategory := strings.ToLower(category)
+	for k, t := range tools.Tools {
+		lowerCategories := make([]string, len(t.Categories))
+		for i, v := range t.Categories {
+			lowerCategories[i] = strings.ToLower(v)
+		}
+		if slices.Contains(lowerCategories, lowerCategory) {
+			toolsFound.Tools[k] = t
+		}
+	}
+	return toolsFound
+}
+
 func printTools(tools Tools) {
 	w := tabwriter.NewWriter(os.Stdout, 1, 1, 1, ' ', 0)
 	fmt.Fprintln(w, "Key\tURL\tDescription")

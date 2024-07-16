@@ -25,10 +25,21 @@ func main() {
 
 	if cfg.tools {
 		printTools(tools)
+		logger.Debug("found tools", "count", len(tools.Tools))
 		os.Exit(0)
 	}
 	if cfg.categories {
 		printCategories(getCategories(tools))
+		os.Exit(0)
+	}
+	if cfg.category != "" {
+		result := getToolsByCategory(cfg.category, tools)
+		if len(result.Tools) == 0 {
+			logger.Warn("no results found", "category", cfg.category)
+			os.Exit(0)
+		}
+		printTools(result)
+		logger.Debug("found tools", "category", cfg.category, "count", len(result.Tools))
 		os.Exit(0)
 	}
 	// interactive mode

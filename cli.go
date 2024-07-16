@@ -9,6 +9,7 @@ import (
 
 type cliConfig struct {
 	accessible  bool
+	category    string
 	debug       bool
 	downloadDir string
 	tools       bool
@@ -36,7 +37,8 @@ func cli() cliConfig {
 	accessibleFlag := flag.Bool("accessible", false, "Enable accessibility mode for interactive use")
 	downloadDirFlag := flag.String("dir", ".", "Where to download the tools")
 	listToolsFlag := flag.Bool("tools", false, "Print all available tools")
-	listCategoriesFlag := flag.Bool("categories", false, "Print all available categories")
+	listCategoriesFlag := flag.Bool("categories", false, "Print all categories and tool count")
+	listByCategoriesFlag := flag.String("category", "", "List tools by category")
 	themeFlag := flag.String("theme", "catppuccin", "Set theme for interactive mode")
 	flag.Var(&toolList, "tool", "Specify multiple tools to install programmatically (e.g., -tool kustomize -tool task)")
 	flag.Parse()
@@ -64,6 +66,9 @@ func cli() cliConfig {
 	}
 	if *downloadDirFlag != "" {
 		cliFlags.downloadDir = *downloadDirFlag
+	}
+	if *listByCategoriesFlag != "" {
+		cliFlags.category = *listByCategoriesFlag
 	}
 	cliFlags.toolList = []string{}
 	if len(toolList) > 0 {
