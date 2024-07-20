@@ -1,3 +1,11 @@
+## What's Changed in 3.1.0
+* feat(tools): Add more tools by @Allaman
+* docs: Update README by @Allaman
+* docs: Update README by @Allaman
+* docs: Update CHANGELOG by @Allaman
+
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/3.0.0...3.1.0
+
 ## What's Changed in 3.0.0
 * feat(tools): Add category flag by @Allaman
 * fix(tools): Handle optional -t argument properly by @Allaman
