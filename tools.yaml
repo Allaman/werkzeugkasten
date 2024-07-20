@@ -339,3 +339,78 @@ tools:
     identifier: "birdayz/kaf"
     description: "Modern CLI for Apache Kafka, written in Go."
     categories: ["Development"]
+  chiko:
+    identifier: "felangga/chiko"
+    description: "The ultimate beauty gRPC Client on your Terminal!"
+    categories: ["Development"]
+  go-size-analyzer:
+    identifier: "Zxilly/go-size-analyzer"
+    description: "A tool for analyzing the size of compiled Go binaries, offering cross-platform support, detailed breakdowns, and multiple output formats."
+    categories: ["Development"]
+    file: "gsa"
+  gobuster:
+    identifier: "OJ/gobuster"
+    description: "Directory/File, DNS and VHost busting tool written in Go."
+    categories: ["Security"]
+  naabu:
+    identifier: "projectdiscovery/naabu"
+    description: "A fast port scanner written in go with a focus on reliability and simplicity. Designed to be used in combination with other tools for attack surface discovery in bug bounties and pentests."
+    categories: ["Security"]
+  httpx:
+    identifier: "projectdiscovery/httpx"
+    description: "httpx is a fast and multi-purpose HTTP toolkit that allows running multiple probes using the retryablehttp library."
+    categories: ["Security"]
+  dnsx:
+    identifier: "projectdiscovery/dnsx"
+    description: "dnsx is a fast and multi-purpose DNS toolkit allow to run multiple DNS queries of your choice with a list of user-supplied resolvers."
+    categories: ["Security"]
+  ffuf:
+    identifier: "ffuf/ffuf"
+    description: "Fast web fuzzer written in Go."
+    categories: ["Security"]
+  katana:
+    identifier: "projectdiscovery/katana"
+    description: "A next-generation crawling and spidering framework."
+    categories: ["Security"]
+  subfinder:
+    identifier: "projectdiscovery/subfinder"
+    description: "Fast passive subdomain enumeration tool."
+    categories: ["Security"]
+  rustscan:
+    identifier: "RustScan/RustScan"
+    description: "The Modern Port Scanner."
+    categories: ["Security"]
+  skim:
+    identifier: "lotabout/skim"
+    description: "Fuzzy Finder in rust!"
+    categories: ["Utilities"]
+  tokei:
+    identifier: "XAMPPRocky/tokei"
+    description: "Count your code, quickly."
+    categories: ["Development"]
+    asset_filter: ["^alpha"]
+  choose:
+    identifier: "theryangeary/choose"
+    description: "A human-friendly and fast alternative to cut and (sometimes) awk."
+    categories: ["Utilities", "Text"]
+    asset_filter: ["^musl"]
+  hyperfine:
+    identifier: "sharkdp/hyperfine"
+    description: "A command-line benchmarking tool."
+    categories: ["Development", "Testing"]
+  inlyne:
+    identifier: "Inlyne-Project/inlyne"
+    description: "Introducing Inlyne, a GPU powered yet browserless tool to help you quickly view markdown files in the blink of an eye."
+    categories: ["Utilities", "Markdown"]
+  qsv:
+    identifier: "jqnatividad/qsv"
+    description: "CSVs sliced, diced & analyzed. Fork of xsv."
+    categories: ["Utilities", "CSV"]
+  rargs:
+    identifier: "lotabout/rargs"
+    description: "xargs + awk with pattern matching support."
+    categories: ["Utilities", "Text"]
+  xh:
+    identifier: "ducaale/xh"
+    description: "Friendly and fast tool for sending HTTP requests."
+    categories: ["Utilities", "Network"]
