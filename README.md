@@ -13,7 +13,34 @@
 
 _Conveniently download your favorite binaries (currently 98 supported)!_
 
-![](./screenshot.png)
+![screenshot](https://s10.gifyu.com/images/S5wTq.png)
+
+<details>
+<summary>List categories and tool count</summary>
+
+`werkzeugkasten -categories`
+
+![categories.png](https://s12.gifyu.com/images/S5wTL.png)
+
+</details>
+
+<details>
+<summary>List tools in category "Text"</summary>
+
+`werkzeugkasten -category text`
+
+![category.png](https://s10.gifyu.com/images/S5w37.png)
+
+</details>
+
+<details>
+<summary>Install tools in non-interactive mode</summary>
+
+`werkzeugkasten -dir /tmp -tool age -tool kustomize`
+
+![install.png](https://s12.gifyu.com/images/S5w3I.png)
+
+</details>
 
 From time to time, I need to connect to containers and VMs to troubleshoot them. These systems typically only have the necessary tools for their specific purpose and nothing else. Additionally, there is no root account available, so installing tools through a package manager is not an option. Furthermore, some tools are either not available as a package or the packaged version is outdated.
 
