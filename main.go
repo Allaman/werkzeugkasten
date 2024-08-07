@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log/slog"
 	"os"
+	"time"
 
 	"github.com/allaman/werkzeugkasten/tool"
 	"github.com/allaman/werkzeugkasten/tui/model"
@@ -18,7 +19,16 @@ func main() {
 	cfg := cli()
 	if cfg.debug {
 		opts := &slog.HandlerOptions{
-			Level: slog.LevelDebug,
+			Level:     slog.LevelDebug,
+			AddSource: true,
+			ReplaceAttr: func(groups []string, a slog.Attr) slog.Attr {
+				if a.Key == slog.TimeKey {
+					if t, ok := a.Value.Any().(time.Time); ok {
+						return slog.String(a.Key, t.Format("2006-01-02 15:04:05"))
+					}
+				}
+				return a
+			},
 		}
 		logger := slog.New(slog.NewTextHandler(os.Stdout, opts))
 		slog.SetDefault(logger)
