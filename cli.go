@@ -14,7 +14,6 @@ type cliConfig struct {
 	downloadDir string
 	tools       bool
 	categories  bool
-	theme       string
 	toolList    toolList
 }
 type toolList []string
@@ -39,7 +38,6 @@ func cli() cliConfig {
 	listToolsFlag := flag.Bool("tools", false, "Print all available tools")
 	listCategoriesFlag := flag.Bool("categories", false, "Print all categories and tool count")
 	listByCategoriesFlag := flag.String("category", "", "List tools by category")
-	themeFlag := flag.String("theme", "catppuccin", "Set theme for interactive mode")
 	flag.Var(&toolList, "tool", "Specify multiple tools to install programmatically (e.g., -tool kustomize -tool task)")
 	flag.Parse()
 	if *helpFlag {
@@ -74,6 +72,5 @@ func cli() cliConfig {
 	if len(toolList) > 0 {
 		cliFlags.toolList = toolList
 	}
-	cliFlags.theme = *themeFlag
 	return cliFlags
 }

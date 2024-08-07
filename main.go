@@ -1,9 +1,14 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
+	"github.com/allaman/werkzeugkasten/tui/model"
+
 	"github.com/charmbracelet/log"
+
+	tea "github.com/charmbracelet/bubbletea"
 )
 
 var logger = log.New(os.Stderr)
@@ -44,7 +49,11 @@ func main() {
 	}
 	// interactive mode
 	if len(cfg.toolList) == 0 {
-		startUI(cfg, tools)
+		p := tea.NewProgram(model.InitialModel(), tea.WithAltScreen())
+		if _, err := p.Run(); err != nil {
+			fmt.Printf("Error: %v", err)
+			os.Exit(1)
+		}
 	} else {
 		// non-interactive mode
 		installEget(cfg.downloadDir)
