@@ -47,7 +47,7 @@ func cli() cliConfig {
 		os.Exit(0)
 	}
 	if *versionFlag {
-		logger.Print(version)
+		fmt.Println(version)
 		os.Exit(0)
 	}
 	if *listToolsFlag {

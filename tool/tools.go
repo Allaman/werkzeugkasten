@@ -1,8 +1,9 @@
-package main
+package tool
 
 import (
 	_ "embed"
 	"fmt"
+	"log/slog"
 	"os"
 	"os/exec"
 	"runtime"
@@ -30,7 +31,7 @@ type Tool struct {
 	// Target       string   `yaml:"target"`
 }
 
-func createToolData() (Tools, error) {
+func CreateToolData() (Tools, error) {
 	var tools Tools
 	err := yaml.Unmarshal(toolsYAML, &tools)
 	if err != nil {
@@ -48,18 +49,18 @@ func createToolData() (Tools, error) {
 			trimmedKey := strings.TrimPrefix(key, "WK_")
 			splittedKey := strings.Split(trimmedKey, "_")
 			if len(splittedKey) != 2 {
-				logger.Warn("ignoring environment variable", "var", key)
+				slog.Warn("ignoring environment variable", "var", key)
 				continue
 			}
 			tool := strings.ToLower(splittedKey[0])
 			field := strings.ToLower(splittedKey[1])
 			if field != "tag" {
-				logger.Warn("ignoring malformed environment variable", "var", key)
+				slog.Warn("ignoring malformed environment variable", "var", key)
 				continue
 			}
 			// TODO: overwrite more fields dynamically this way
 			if t, ok := tools.Tools[tool]; ok {
-				logger.Debug("overwriting tag", "tool", tool, "tag", value)
+				slog.Debug("overwriting tag", "tool", tool, "tag", value)
 				// tools.Tools[tool].Tag = value not working because
 				// when modifying the fields of the struct obtained from the map, you are modifying a copy of the struct!
 				t.Tag = value
@@ -86,28 +87,28 @@ func execEget(workingDir string, tool Tool) ([]byte, error) {
 		cmd.Args = append(cmd.Args, fmt.Sprintf("--file=\"%s\"", tool.File))
 	}
 	cmd.Dir = workingDir
-	logger.Debug("executing command", "cmd", cmd, "wd", cmd.Dir, "env", cmd.Env)
+	slog.Debug("executing command", "cmd", cmd, "wd", cmd.Dir, "env", cmd.Env)
 	out, err := cmd.CombinedOutput()
 	return out, err
 }
 
-func downloadToolWithEget(workingdir string, tool Tool) error {
+func DownloadToolWithEget(workingdir string, tool Tool) error {
 	tool.Identifier = strings.Replace(tool.Identifier, "ARCH", runtime.GOARCH, 1)
 	tool.Identifier = strings.Replace(tool.Identifier, "OSNAME", runtime.GOOS, 1)
 	tag := "latest"
 	if tool.Tag != "" {
 		tag = tool.Tag
 	}
-	logger.Info("downloading tool", "tool", tool.Identifier, "tag", tag)
+	slog.Info("downloading tool", "tool", tool.Identifier, "tag", tag)
 	out, err := execEget(workingdir, tool)
 	if err != nil {
-		logger.Debug("could not download tool", "tool", tool.Identifier, "error", err, "out", string(out))
+		slog.Debug("could not download tool", "tool", tool.Identifier, "error", err, "out", string(out))
 		return err
 	}
 	return nil
 }
 
-func sortTools(tools Tools) []string {
+func SortTools(tools Tools) []string {
 	sortedTools := make([]string, 0, len(tools.Tools))
 	for k := range tools.Tools {
 		sortedTools = append(sortedTools, k)
@@ -116,7 +117,7 @@ func sortTools(tools Tools) []string {
 	return sortedTools
 }
 
-func getCategories(tools Tools) map[string]int {
+func GetCategories(tools Tools) map[string]int {
 	categories := make(map[string]int, 0)
 	for _, t := range tools.Tools {
 		for _, c := range t.Categories {
@@ -126,7 +127,7 @@ func getCategories(tools Tools) map[string]int {
 	return categories
 }
 
-func printCategories(categories map[string]int) {
+func PrintCategories(categories map[string]int) {
 	sortedCategories := make([]string, 0, len(categories))
 	for k := range categories {
 		sortedCategories = append(sortedCategories, k)
@@ -140,7 +141,7 @@ func printCategories(categories map[string]int) {
 	w.Flush()
 }
 
-func getToolsByCategory(category string, tools Tools) Tools {
+func GetToolsByCategory(category string, tools Tools) Tools {
 	var toolsFound Tools
 	toolsFound.Tools = make(map[string]Tool, 0)
 	lowerCategory := strings.ToLower(category)
@@ -156,10 +157,10 @@ func getToolsByCategory(category string, tools Tools) Tools {
 	return toolsFound
 }
 
-func printTools(tools Tools) {
+func PrintTools(tools Tools) {
 	w := tabwriter.NewWriter(os.Stdout, 1, 1, 1, ' ', 0)
 	fmt.Fprintln(w, "Key\tURL\tDescription")
-	sortedTools := sortTools(tools)
+	sortedTools := SortTools(tools)
 	for _, tool := range sortedTools {
 		identifier := tools.Tools[tool].Identifier
 		url := fmt.Sprintf("https://github.com/%s", identifier)

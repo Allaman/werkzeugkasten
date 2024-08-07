@@ -16,8 +16,6 @@ type MainModel struct {
 	List            list.Model
 	DetailView      DetailModel
 	ProcessingModel ProcessingModel
-	// Help            help.Model
-	// Keys            keys.KeyMap
 }
 
 type ProcessingModel struct {

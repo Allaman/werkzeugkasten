@@ -414,3 +414,35 @@ tools:
     identifier: "ducaale/xh"
     description: "Friendly and fast tool for sending HTTP requests."
     categories: ["Network"]
+  static-web-server:
+    identifier: "static-web-server/static-web-server"
+    description: "A cross-platform, high-performance and asynchronous web server for static files-serving."
+    categories: ["Network"]
+  just:
+    identifier: "casey/just"
+    description: "Just a command runner."
+    categories: ["Workflow"]
+  eza:
+    identifier: "eza-community/eza"
+    description: "A modern, maintained replacement for ls."
+    categories: ["Files"]
+  coreutils:
+    identifier: "uutils/coreutils"
+    description: "Cross-platform Rust rewrite of the GNU coreutils."
+    categories: ["System"]
+  funzzy:
+    identifier: "cristianoliveira/funzzy"
+    description: "A lightweight blazingly fast file watcher."
+    categories: ["Development", "Files"]
+  watchexec:
+    identifier: "watchexec/watchexec"
+    description: "Executes commands in response to file modifications."
+    categories: ["Development", "Files"]
+  kubie:
+    identifier: "sbstp/kubie"
+    description: "A more powerful alternative to kubectx and kubens."
+    categories: ["Kubernetes"]
+  ngtop:
+    identifier: "facundoolano/ngtop"
+    description: "Request analytics from the nginx access logs."
+    categories: ["Network", "Security"]
