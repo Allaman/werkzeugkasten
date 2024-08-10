@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"strings"
 	"time"
 )
 
@@ -20,6 +21,19 @@ func FetchReadme(url string) (string, error) {
 	resp, err = client.Do(req)
 	if err != nil {
 		return "", err
+	}
+
+	// we don't know the default branch so we also fetch from "master"
+	if resp.StatusCode == http.StatusNotFound {
+		newURL := strings.Replace(url, "/main/", "/master/", 1)
+		req, err := http.NewRequestWithContext(context.Background(), http.MethodGet, newURL, nil)
+		if err != nil {
+			return "", err
+		}
+		resp, err = client.Do(req)
+		if err != nil {
+			return "", err
+		}
 	}
 
 	if resp.StatusCode != http.StatusOK {

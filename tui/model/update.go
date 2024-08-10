@@ -61,7 +61,6 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				if ok {
 					m.CurrentView = "detail"
 					m.DetailView.ItemName = selectedItem.Title()
-					// main and master both work regardless of the actual default branch
 					return m, fetchReadmeCmd(fmt.Sprintf("https://raw.githubusercontent.com/%s/main/README.md", selectedItem.Identifier()))
 				}
 			}
