@@ -12,10 +12,9 @@ func (m *MainModel) View() string {
 		return m.List.View()
 	case "detail":
 		helpView := m.DetailView.Help.View(keys.ViewPortKeys)
-		return fmt.Sprintf("%s\n%s\n%s\n%s", m.DetailView.headerView(), m.DetailView.DetailView.View(), m.DetailView.footerView(), helpView)
+		return fmt.Sprintf("%s\n%s\n%s\n%s", m.headerView(), m.DetailView.ViewPort.View(), m.footerView(), helpView)
 	case "processing":
-		// m.ProcessingModel.DetailView.SetContent(m.ProcessingModel.Spinner.View())
-		return fmt.Sprintf("%s\n%s\n%s", m.ProcessingModel.headerView(), m.ProcessingModel.DetailView.View(), m.ProcessingModel.footerView())
+		return fmt.Sprintf("%s\n%s\n%s", m.headerView(), m.ProcessingModel.ViewPort.View(), m.footerView())
 	default:
 		return "Unknown view"
 	}

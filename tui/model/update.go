@@ -16,10 +16,10 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	case tea.WindowSizeMsg:
 		m.List.SetWidth(msg.Width)
 		m.List.SetHeight(msg.Height)
-		m.DetailView.DetailView.Width = msg.Width - 4
-		m.DetailView.DetailView.Height = msg.Height - 4
-		m.ProcessingModel.DetailView.Width = msg.Width - 4
-		m.ProcessingModel.DetailView.Height = msg.Height - 4
+		m.DetailView.ViewPort.Width = msg.Width - 4
+		m.DetailView.ViewPort.Height = msg.Height - 4
+		m.ProcessingModel.ViewPort.Width = msg.Width - 4
+		m.ProcessingModel.ViewPort.Height = msg.Height - 4
 		// m.ProcessingModel.Width = msg.Width
 		// m.ProcessingModel.Height = msg.Height
 		// headerHeight := lipgloss.Height(m.headerView())
@@ -60,13 +60,13 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		case "detail":
 			switch {
 			case key.Matches(msg, keys.ViewPortKeys.Down):
-				m.DetailView.DetailView.LineDown(1)
+				m.DetailView.ViewPort.LineDown(1)
 			case key.Matches(msg, keys.ViewPortKeys.Up):
-				m.DetailView.DetailView.LineUp(1)
+				m.DetailView.ViewPort.LineUp(1)
 			case key.Matches(msg, keys.ViewPortKeys.HalfPageDown):
-				m.DetailView.DetailView.HalfViewDown()
+				m.DetailView.ViewPort.HalfViewDown()
 			case key.Matches(msg, keys.ViewPortKeys.HalfPageUp):
-				m.DetailView.DetailView.HalfViewUp()
+				m.DetailView.ViewPort.HalfViewUp()
 			case key.Matches(msg, keys.ViewPortKeys.Help):
 				m.DetailView.Help.ShowAll = !m.DetailView.Help.ShowAll
 			case key.Matches(msg, keys.ViewPortKeys.Install):
@@ -89,21 +89,21 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		}
 
 	case fetchReadmeSuccessMsg:
-		m.DetailView.DetailView.SetContent(string(msg))
-		m.DetailView.DetailView.GotoTop()
+		m.DetailView.ViewPort.SetContent(string(msg))
+		m.DetailView.ViewPort.GotoTop()
 		return m, nil
 
 	case fetchReadmeErrMsg:
-		m.DetailView.DetailView.SetContent(msg.err.Error())
+		m.DetailView.ViewPort.SetContent(msg.err.Error())
 		return m, nil
 
 	case processSuccessMsg:
-		m.ProcessingModel.DetailView.SetContent(string(msg))
-		m.ProcessingModel.DetailView.GotoTop()
+		m.ProcessingModel.ViewPort.SetContent(string(msg))
+		m.ProcessingModel.ViewPort.GotoTop()
 		return m, nil
 
 	case processErrMsg:
-		m.ProcessingModel.DetailView.SetContent(msg.err.Error())
+		m.ProcessingModel.ViewPort.SetContent(msg.err.Error())
 		return m, nil
 
 	}
