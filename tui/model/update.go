@@ -2,7 +2,6 @@ package model
 
 import (
 	"fmt"
-	"time"
 
 	"github.com/allaman/werkzeugkasten/tui/item"
 	"github.com/allaman/werkzeugkasten/tui/keys"
@@ -31,10 +30,6 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		// m.DetailView.YPosition = headerHeight
 		// m.DetailView.YPosition = headerHeight + 1
 
-	case processUpdateMsg:
-		m.ProcessingModel.DetailView.SetContent(string(msg))
-		return m, nil
-
 	case tea.KeyMsg:
 		if m.List.FilterState() == list.Filtering {
 			break
@@ -44,18 +39,15 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 		case "list":
 			switch {
+
 			case key.Matches(msg, keys.Keys.Install):
 				selectedItem, ok := m.List.SelectedItem().(item.Item)
 				if ok {
 					m.CurrentView = "processing"
 					m.ProcessingModel.ItemName = selectedItem.Title()
-					return m, tea.Batch(
-						m.processSelectedItem(selectedItem),
-						tea.Tick(time.Millisecond*100, func(t time.Time) tea.Msg {
-							return tickMsg{}
-						}),
-					)
+					return m, m.processSelectedItem()
 				}
+
 			case key.Matches(msg, keys.Keys.Describe):
 				selectedItem, ok := m.List.SelectedItem().(item.Item)
 				if ok {
@@ -82,12 +74,7 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				if ok {
 					m.CurrentView = "processing"
 					m.ProcessingModel.ItemName = selectedItem.Title()
-					return m, tea.Batch(
-						m.processSelectedItem(m.List.SelectedItem().(item.Item)),
-						tea.Tick(time.Millisecond*100, func(t time.Time) tea.Msg {
-							return tickMsg{}
-						}),
-					)
+					return m, m.processSelectedItem()
 				}
 			case key.Matches(msg, keys.ViewPortKeys.Esc):
 				m.CurrentView = "list"
@@ -100,12 +87,6 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				return m, nil
 			}
 		}
-	case tickMsg:
-		if m.CurrentView == "processing" {
-			return m, tea.Tick(time.Millisecond*100, func(t time.Time) tea.Msg {
-				return tickMsg{}
-			})
-		}
 
 	case fetchReadmeSuccessMsg:
 		m.DetailView.DetailView.SetContent(string(msg))
@@ -113,8 +94,18 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		return m, nil
 
 	case fetchReadmeErrMsg:
-		m.DetailView.DetailView.SetContent(msg.Error())
+		m.DetailView.DetailView.SetContent(msg.err.Error())
 		return m, nil
+
+	case processSuccessMsg:
+		m.ProcessingModel.DetailView.SetContent(string(msg))
+		m.ProcessingModel.DetailView.GotoTop()
+		return m, nil
+
+	case processErrMsg:
+		m.ProcessingModel.DetailView.SetContent(msg.err.Error())
+		return m, nil
+
 	}
 
 	var cmd tea.Cmd

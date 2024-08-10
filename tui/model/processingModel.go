@@ -5,7 +5,6 @@ import (
 	"strings"
 
 	"github.com/allaman/werkzeugkasten/tool"
-	"github.com/allaman/werkzeugkasten/tui/item"
 	"github.com/allaman/werkzeugkasten/tui/styles"
 
 	tea "github.com/charmbracelet/bubbletea"
@@ -24,20 +23,18 @@ func (m ProcessingModel) footerView() string {
 	return lipgloss.JoinHorizontal(lipgloss.Center, line, info)
 }
 
-func (m *MainModel) processSelectedItem(i item.Item) tea.Cmd {
+func (m *MainModel) processSelectedItem() tea.Cmd {
 	return func() tea.Msg {
-		output := "Starting processing...\n"
-		output += "Processing: " + i.Title() + "\n"
 		tool.InstallEget(m.config.DownloadDir)
-		err := tool.DownloadToolWithEget(m.config.DownloadDir, m.ToolData.Tools[i.Title()])
+		err := tool.DownloadToolWithEget(m.config.DownloadDir, m.ToolData.Tools[m.ProcessingModel.ItemName])
 		if err != nil {
-			output += "could not download tool"
+			return processErrMsg{err: err}
 		}
-		output += "Processed: " + i.Title() + "\n"
-		output += "Processing complete.\n"
-		return processUpdateMsg(output)
+		return processSuccessMsg("Install complete.\n")
 	}
 }
 
-type processUpdateMsg string
-type tickMsg struct{}
+type processSuccessMsg string
+type processErrMsg struct {
+	err error
+}

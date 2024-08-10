@@ -8,7 +8,7 @@ import (
 )
 
 // will be overwritten in release pipeline
-var version = "dev"
+var Version = "dev"
 
 type CliConfig struct {
 	Accessible  bool
@@ -50,7 +50,7 @@ func Cli() CliConfig {
 		os.Exit(0)
 	}
 	if *versionFlag {
-		fmt.Println(version)
+		fmt.Println(Version)
 		os.Exit(0)
 	}
 	if *listToolsFlag {

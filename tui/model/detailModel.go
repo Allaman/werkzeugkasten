@@ -2,6 +2,7 @@ package model
 
 import (
 	"fmt"
+	"log/slog"
 	"strings"
 
 	"github.com/allaman/werkzeugkasten/tui/styles"
@@ -29,14 +30,14 @@ func fetchReadmeCmd(url string) tea.Cmd {
 	return func() tea.Msg {
 		content, err := utils.FetchReadme(url)
 		if err != nil {
-			fmt.Println("Error fetching README:", err)
-			return fetchReadmeErrMsg(err)
+			slog.Debug("error fetching README", "error", err)
+			return fetchReadmeErrMsg{err: err}
 		}
 
 		renderedContent, err := glamour.Render(content, "dark")
 		if err != nil {
-			fmt.Println("Error rendering content:", err)
-			return fetchReadmeErrMsg(err)
+			slog.Debug("error rendering content", "error", err)
+			return fetchReadmeErrMsg{err: err}
 		}
 
 		return fetchReadmeSuccessMsg(renderedContent)
@@ -44,4 +45,6 @@ func fetchReadmeCmd(url string) tea.Cmd {
 }
 
 type fetchReadmeSuccessMsg string
-type fetchReadmeErrMsg error
+type fetchReadmeErrMsg struct {
+	err error
+}

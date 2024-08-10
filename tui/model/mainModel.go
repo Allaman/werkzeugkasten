@@ -9,6 +9,7 @@ import (
 	"github.com/charmbracelet/bubbles/help"
 	"github.com/charmbracelet/bubbles/key"
 	"github.com/charmbracelet/bubbles/list"
+	"github.com/charmbracelet/bubbles/spinner"
 	"github.com/charmbracelet/bubbles/viewport"
 	tea "github.com/charmbracelet/bubbletea"
 )
@@ -20,11 +21,13 @@ type MainModel struct {
 	ProcessingModel ProcessingModel
 	ToolData        tool.ToolData
 	config          cli.CliConfig
+	version         string
 }
 
 type ProcessingModel struct {
 	ItemName   string
 	DetailView viewport.Model
+	Spinner    spinner.Model
 }
 
 type DetailModel struct {
@@ -58,15 +61,20 @@ func InitialModel(toolData tool.ToolData) *MainModel {
 
 	processingView := viewport.New(80, 20) // Start with a reasonable size
 
+	s := spinner.New()
+	s.Spinner = spinner.Dot
+
 	return &MainModel{
 		CurrentView:     "list",
 		List:            l,
 		ToolData:        toolData,
 		DetailView:      DetailModel{DetailView: detailView, Help: help.New()},
-		ProcessingModel: ProcessingModel{DetailView: processingView},
+		ProcessingModel: ProcessingModel{DetailView: processingView, Spinner: s},
+		version:         cli.Version,
 	}
 }
 
 func (m MainModel) Init() tea.Cmd {
-	return tea.SetWindowTitle("Werkzeugkasten")
+	return tea.Batch(m.ProcessingModel.Spinner.Tick,
+		tea.SetWindowTitle("Werkzeugkasten"))
 }

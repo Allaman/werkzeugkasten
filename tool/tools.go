@@ -99,7 +99,7 @@ func DownloadToolWithEget(workingdir string, tool Tool) error {
 	if tool.Tag != "" {
 		tag = tool.Tag
 	}
-	slog.Info("downloading tool", "tool", tool.Identifier, "tag", tag)
+	slog.Debug("downloading tool", "tool", tool.Identifier, "tag", tag)
 	out, err := execEget(workingdir, tool)
 	if err != nil {
 		slog.Debug("could not download tool", "tool", tool.Identifier, "error", err, "out", string(out))
