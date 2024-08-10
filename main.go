@@ -6,18 +6,16 @@ import (
 	"os"
 	"time"
 
+	"github.com/allaman/werkzeugkasten/cli"
 	"github.com/allaman/werkzeugkasten/tool"
 	"github.com/allaman/werkzeugkasten/tui/model"
 
 	tea "github.com/charmbracelet/bubbletea"
 )
 
-// will be overwritten in release pipeline
-var version = "dev"
-
 func main() {
-	cfg := cli()
-	if cfg.debug {
+	cfg := cli.Cli()
+	if cfg.Debug {
 		opts := &slog.HandlerOptions{
 			Level:     slog.LevelDebug,
 			AddSource: true,
@@ -38,39 +36,39 @@ func main() {
 		slog.Error("could not parse tools data", "error", err)
 		os.Exit(1)
 	}
-	slog.Debug("download dir", "dir", cfg.downloadDir)
+	slog.Debug("download dir", "dir", cfg.DownloadDir)
 
-	if cfg.tools {
+	if cfg.Tools {
 		tool.PrintTools(tools)
 		slog.Debug("found tools", "count", len(tools.Tools))
 		os.Exit(0)
 	}
-	if cfg.categories {
+	if cfg.Categories {
 		tool.PrintCategories(tool.GetCategories(tools))
 		os.Exit(0)
 	}
-	if cfg.category != "" {
-		result := tool.GetToolsByCategory(cfg.category, tools)
+	if cfg.Category != "" {
+		result := tool.GetToolsByCategory(cfg.Category, tools)
 		if len(result.Tools) == 0 {
-			slog.Warn("no results found", "category", cfg.category)
+			slog.Warn("no results found", "category", cfg.Category)
 			os.Exit(0)
 		}
 		tool.PrintTools(result)
-		slog.Debug("found tools", "category", cfg.category, "count", len(result.Tools))
+		slog.Debug("found tools", "category", cfg.Category, "count", len(result.Tools))
 		os.Exit(0)
 	}
 	// interactive mode
-	if len(cfg.toolList) == 0 {
-		p := tea.NewProgram(model.InitialModel(), tea.WithAltScreen())
+	if len(cfg.ToolList) == 0 {
+		p := tea.NewProgram(model.InitialModel(tools), tea.WithAltScreen())
 		if _, err := p.Run(); err != nil {
 			fmt.Printf("Error: %v", err)
 			os.Exit(1)
 		}
 	} else {
 		// non-interactive mode
-		tool.InstallEget(cfg.downloadDir)
-		for _, toolName := range cfg.toolList {
-			err = tool.DownloadToolWithEget(cfg.downloadDir, tools.Tools[toolName])
+		tool.InstallEget(cfg.DownloadDir)
+		for _, toolName := range cfg.ToolList {
+			err = tool.DownloadToolWithEget(cfg.DownloadDir, tools.Tools[toolName])
 			if err != nil {
 				slog.Warn("could not download tool", "tool", toolName, "error", err)
 				continue

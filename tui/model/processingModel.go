@@ -3,8 +3,8 @@ package model
 import (
 	"fmt"
 	"strings"
-	"time"
 
+	"github.com/allaman/werkzeugkasten/tool"
 	"github.com/allaman/werkzeugkasten/tui/item"
 	"github.com/allaman/werkzeugkasten/tui/styles"
 
@@ -28,7 +28,11 @@ func (m *MainModel) processSelectedItem(i item.Item) tea.Cmd {
 	return func() tea.Msg {
 		output := "Starting processing...\n"
 		output += "Processing: " + i.Title() + "\n"
-		time.Sleep(1000 * time.Millisecond)
+		tool.InstallEget(m.config.DownloadDir)
+		err := tool.DownloadToolWithEget(m.config.DownloadDir, m.ToolData.Tools[i.Title()])
+		if err != nil {
+			output += "could not download tool"
+		}
 		output += "Processed: " + i.Title() + "\n"
 		output += "Processing complete.\n"
 		return processUpdateMsg(output)

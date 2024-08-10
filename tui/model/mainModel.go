@@ -1,6 +1,8 @@
 package model
 
 import (
+	"github.com/allaman/werkzeugkasten/cli"
+	"github.com/allaman/werkzeugkasten/tool"
 	"github.com/allaman/werkzeugkasten/tui/item"
 	"github.com/allaman/werkzeugkasten/tui/keys"
 
@@ -16,6 +18,8 @@ type MainModel struct {
 	List            list.Model
 	DetailView      DetailModel
 	ProcessingModel ProcessingModel
+	ToolData        tool.ToolData
+	config          cli.CliConfig
 }
 
 type ProcessingModel struct {
@@ -28,19 +32,13 @@ type DetailModel struct {
 	Help       help.Model
 	DetailView viewport.Model
 	ItemName   string
+	// Tool       tool.Tool
 }
 
-func InitialModel() *MainModel {
-	items := []list.Item{
-		item.NewItem("Item 1", "allaman/werkzeugkasten", "Description for Item 1"),
-		item.NewItem("Item 2", "allaman/werkzeugkasten", "Description for Item 3"),
-		item.NewItem("Item 3", "allaman/werkzeugkasten", "Description for Item 3"),
-		item.NewItem("Item 4", "allaman/werkzeugkasten", "Description for Item 4"),
-		item.NewItem("Item 5", "allaman/werkzeugkasten", "Description for Item 5"),
-		item.NewItem("Item 6", "allaman/werkzeugkasten", "Description for Item 6"),
-		item.NewItem("Item 7", "allaman/werkzeugkasten", "Description for Item 7"),
-		item.NewItem("Item 8", "allaman/werkzeugkasten", "Description for Item 8"),
-		item.NewItem("Item 9", "allaman/werkzeugkasten", "Description for Item 9"),
+func InitialModel(toolData tool.ToolData) *MainModel {
+	items := make([]list.Item, 0, len(toolData.Tools))
+	for name, tool := range toolData.Tools {
+		items = append(items, item.NewItem(name, tool.Identifier, tool.Description))
 	}
 
 	l := list.New(items, list.NewDefaultDelegate(), 0, 0)
@@ -59,6 +57,7 @@ func InitialModel() *MainModel {
 	return &MainModel{
 		CurrentView:     "list",
 		List:            l,
+		ToolData:        toolData,
 		DetailView:      DetailModel{DetailView: detailView, Help: help.New()},
 		ProcessingModel: ProcessingModel{DetailView: processingView},
 	}

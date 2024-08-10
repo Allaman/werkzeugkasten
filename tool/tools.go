@@ -17,7 +17,7 @@ import (
 //go:embed tools.yaml
 var toolsYAML []byte
 
-type Tools struct {
+type ToolData struct {
 	Tools map[string]Tool `yaml:"tools"`
 }
 
@@ -31,11 +31,11 @@ type Tool struct {
 	// Target       string   `yaml:"target"`
 }
 
-func CreateToolData() (Tools, error) {
-	var tools Tools
+func CreateToolData() (ToolData, error) {
+	var tools ToolData
 	err := yaml.Unmarshal(toolsYAML, &tools)
 	if err != nil {
-		return Tools{}, err
+		return ToolData{}, err
 	}
 
 	// Overwrite tags based with ENV variables
@@ -108,7 +108,7 @@ func DownloadToolWithEget(workingdir string, tool Tool) error {
 	return nil
 }
 
-func SortTools(tools Tools) []string {
+func SortTools(tools ToolData) []string {
 	sortedTools := make([]string, 0, len(tools.Tools))
 	for k := range tools.Tools {
 		sortedTools = append(sortedTools, k)
@@ -117,7 +117,7 @@ func SortTools(tools Tools) []string {
 	return sortedTools
 }
 
-func GetCategories(tools Tools) map[string]int {
+func GetCategories(tools ToolData) map[string]int {
 	categories := make(map[string]int, 0)
 	for _, t := range tools.Tools {
 		for _, c := range t.Categories {
@@ -141,8 +141,8 @@ func PrintCategories(categories map[string]int) {
 	w.Flush()
 }
 
-func GetToolsByCategory(category string, tools Tools) Tools {
-	var toolsFound Tools
+func GetToolsByCategory(category string, tools ToolData) ToolData {
+	var toolsFound ToolData
 	toolsFound.Tools = make(map[string]Tool, 0)
 	lowerCategory := strings.ToLower(category)
 	for k, t := range tools.Tools {
@@ -157,7 +157,7 @@ func GetToolsByCategory(category string, tools Tools) Tools {
 	return toolsFound
 }
 
-func PrintTools(tools Tools) {
+func PrintTools(tools ToolData) {
 	w := tabwriter.NewWriter(os.Stdout, 1, 1, 1, ' ', 0)
 	fmt.Fprintln(w, "Key\tURL\tDescription")
 	sortedTools := SortTools(tools)

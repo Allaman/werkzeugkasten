@@ -1,4 +1,4 @@
-package main
+package cli
 
 import (
 	"flag"
@@ -7,14 +7,17 @@ import (
 	"strings"
 )
 
-type cliConfig struct {
-	accessible  bool
-	category    string
-	debug       bool
-	downloadDir string
-	tools       bool
-	categories  bool
-	toolList    toolList
+// will be overwritten in release pipeline
+var version = "dev"
+
+type CliConfig struct {
+	Accessible  bool
+	Category    string
+	Debug       bool
+	DownloadDir string
+	Tools       bool
+	Categories  bool
+	ToolList    toolList
 }
 type toolList []string
 
@@ -27,8 +30,8 @@ func (s *toolList) Set(value string) error {
 	return nil
 }
 
-func cli() cliConfig {
-	var cliFlags cliConfig
+func Cli() CliConfig {
+	var cliFlags CliConfig
 	var toolList toolList
 	helpFlag := flag.Bool("help", false, "Print help message")
 	versionFlag := flag.Bool("version", false, "Print version")
@@ -51,26 +54,26 @@ func cli() cliConfig {
 		os.Exit(0)
 	}
 	if *listToolsFlag {
-		cliFlags.tools = true
+		cliFlags.Tools = true
 	}
 	if *listCategoriesFlag {
-		cliFlags.categories = true
+		cliFlags.Categories = true
 	}
 	if *debugFlag {
-		cliFlags.debug = true
+		cliFlags.Debug = true
 	}
 	if *accessibleFlag {
-		cliFlags.accessible = true
+		cliFlags.Accessible = true
 	}
 	if *downloadDirFlag != "" {
-		cliFlags.downloadDir = *downloadDirFlag
+		cliFlags.DownloadDir = *downloadDirFlag
 	}
 	if *listByCategoriesFlag != "" {
-		cliFlags.category = *listByCategoriesFlag
+		cliFlags.Category = *listByCategoriesFlag
 	}
-	cliFlags.toolList = []string{}
+	cliFlags.ToolList = []string{}
 	if len(toolList) > 0 {
-		cliFlags.toolList = toolList
+		cliFlags.ToolList = toolList
 	}
 	return cliFlags
 }
