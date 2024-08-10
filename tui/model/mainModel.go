@@ -37,8 +37,12 @@ type DetailModel struct {
 
 func InitialModel(toolData tool.ToolData) *MainModel {
 	items := make([]list.Item, 0, len(toolData.Tools))
-	for name, tool := range toolData.Tools {
-		items = append(items, item.NewItem(name, tool.Identifier, tool.Description))
+	sortedTools := tool.SortTools(toolData)
+
+	for _, tool := range sortedTools {
+		identifier := toolData.Tools[tool].Identifier
+		description := toolData.Tools[tool].Description
+		items = append(items, item.NewItem(tool, identifier, description))
 	}
 
 	l := list.New(items, list.NewDefaultDelegate(), 0, 0)
