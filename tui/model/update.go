@@ -54,24 +54,24 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 		case "detail":
 			switch {
-			case key.Matches(msg, keys.ViewPortKeys.Down):
+			case key.Matches(msg, keys.DetailKeys.Down):
 				m.DetailView.ViewPort.LineDown(1)
-			case key.Matches(msg, keys.ViewPortKeys.Up):
+			case key.Matches(msg, keys.DetailKeys.Up):
 				m.DetailView.ViewPort.LineUp(1)
-			case key.Matches(msg, keys.ViewPortKeys.HalfPageDown):
+			case key.Matches(msg, keys.DetailKeys.HalfPageDown):
 				m.DetailView.ViewPort.HalfViewDown()
-			case key.Matches(msg, keys.ViewPortKeys.HalfPageUp):
+			case key.Matches(msg, keys.DetailKeys.HalfPageUp):
 				m.DetailView.ViewPort.HalfViewUp()
-			case key.Matches(msg, keys.ViewPortKeys.Help):
+			case key.Matches(msg, keys.DetailKeys.Help):
 				m.DetailView.Help.ShowAll = !m.DetailView.Help.ShowAll
-			case key.Matches(msg, keys.ViewPortKeys.Install):
+			case key.Matches(msg, keys.DetailKeys.Install):
 				selectedItem, ok := m.List.SelectedItem().(item.Item)
 				if ok {
 					m.CurrentView = "processing"
 					m.ProcessingModel.ItemName = selectedItem.Title()
 					return m, m.processSelectedItem()
 				}
-			case key.Matches(msg, keys.ViewPortKeys.Esc):
+			case key.Matches(msg, keys.DetailKeys.Esc):
 				m.CurrentView = "list"
 				return m, nil
 			}

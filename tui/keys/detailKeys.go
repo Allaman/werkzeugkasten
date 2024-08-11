@@ -2,7 +2,7 @@ package keys
 
 import "github.com/charmbracelet/bubbles/key"
 
-type viewPortKeyMap struct {
+type detailsKeyMap struct {
 	Down         key.Binding
 	Up           key.Binding
 	HalfPageDown key.Binding
@@ -13,7 +13,7 @@ type viewPortKeyMap struct {
 	Quit         key.Binding
 }
 
-var ViewPortKeys = viewPortKeyMap{
+var DetailKeys = detailsKeyMap{
 	Quit: key.NewBinding(
 		key.WithKeys("q", "ctrl+c"),
 		key.WithHelp("q", "quit"),
@@ -48,11 +48,11 @@ var ViewPortKeys = viewPortKeyMap{
 	),
 }
 
-func (k viewPortKeyMap) ShortHelp() []key.Binding {
+func (k detailsKeyMap) ShortHelp() []key.Binding {
 	return []key.Binding{k.Down, k.Up, k.Install, k.Help, k.Esc, k.Quit}
 }
 
-func (k viewPortKeyMap) FullHelp() [][]key.Binding {
+func (k detailsKeyMap) FullHelp() [][]key.Binding {
 	return [][]key.Binding{
 		{k.Down, k.Up, k.Esc, k.Help, k.Quit},
 		{k.HalfPageUp, k.HalfPageDown},

@@ -47,14 +47,10 @@ func InitialModel(toolData tool.ToolData) *MainModel {
 
 	l := list.New(items, list.NewDefaultDelegate(), 0, 0)
 	l.Title = "Werkzeugkasten"
-	l.AdditionalShortHelpKeys = func() []key.Binding {
+	l.AdditionalFullHelpKeys = func() []key.Binding {
 		return []key.Binding{
 			keys.Keys.Install,
 			keys.Keys.Describe,
-		}
-	}
-	l.AdditionalFullHelpKeys = func() []key.Binding {
-		return []key.Binding{
 			keys.Keys.Version,
 		}
 	}
@@ -66,7 +62,7 @@ func InitialModel(toolData tool.ToolData) *MainModel {
 		List:            l,
 		ToolData:        toolData,
 		DetailView:      Output{ViewPort: view, Help: help.New()},
-		ProcessingModel: Output{ViewPort: view},
+		ProcessingModel: Output{ViewPort: view, Help: help.New()},
 		version:         cli.Version,
 	}
 }
