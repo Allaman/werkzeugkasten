@@ -14,7 +14,6 @@ import (
 	"github.com/charmbracelet/bubbles/help"
 	"github.com/charmbracelet/bubbles/key"
 	"github.com/charmbracelet/bubbles/list"
-	"github.com/charmbracelet/bubbles/spinner"
 	"github.com/charmbracelet/bubbles/viewport"
 	tea "github.com/charmbracelet/bubbletea"
 )
@@ -54,11 +53,13 @@ func InitialModel(toolData tool.ToolData) *MainModel {
 			keys.Keys.Describe,
 		}
 	}
+	l.AdditionalFullHelpKeys = func() []key.Binding {
+		return []key.Binding{
+			keys.Keys.Version,
+		}
+	}
 
 	view := viewport.New(80, 20)
-
-	s := spinner.New()
-	s.Spinner = spinner.Dot
 
 	return &MainModel{
 		CurrentView:     "list",
@@ -86,6 +87,10 @@ func (m MainModel) footerView() string {
 	info := styles.InfoStyle.Render(fmt.Sprintf("%3.f%%", m.DetailView.ViewPort.ScrollPercent()*100))
 	line := strings.Repeat("─", max(0, m.DetailView.ViewPort.Width-lipgloss.Width(info)))
 	return lipgloss.JoinHorizontal(lipgloss.Center, line, info)
+}
+
+func (m *MainModel) showVersion() string {
+	return cli.Version
 }
 
 func (m MainModel) Init() tea.Cmd {

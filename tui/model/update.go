@@ -20,15 +20,6 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		m.DetailView.ViewPort.Height = msg.Height - 4
 		m.ProcessingModel.ViewPort.Width = msg.Width - 4
 		m.ProcessingModel.ViewPort.Height = msg.Height - 4
-		// m.ProcessingModel.Width = msg.Width
-		// m.ProcessingModel.Height = msg.Height
-		// headerHeight := lipgloss.Height(m.headerView())
-		// footerHeight := lipgloss.Height(m.footerView())
-		// verticalMarginHeight := headerHeight + footerHeight
-		// m.DetailView.Height = msg.Height - verticalMarginHeight
-		// m.DetailView.Width = (msg.Width)
-		// m.DetailView.YPosition = headerHeight
-		// m.DetailView.YPosition = headerHeight + 1
 
 	case tea.KeyMsg:
 		if m.List.FilterState() == list.Filtering {
@@ -55,6 +46,10 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					m.DetailView.ItemName = selectedItem.Title()
 					return m, fetchReadmeCmd(fmt.Sprintf("https://raw.githubusercontent.com/%s/main/README.md", selectedItem.Identifier()))
 				}
+
+			case key.Matches(msg, keys.Keys.Version):
+				m.CurrentView = "version"
+				return m, nil
 			}
 
 		case "detail":
@@ -82,6 +77,12 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			}
 
 		case "processing":
+			if msg.String() == "esc" {
+				m.CurrentView = "list"
+				return m, nil
+			}
+
+		case "version":
 			if msg.String() == "esc" {
 				m.CurrentView = "list"
 				return m, nil

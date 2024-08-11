@@ -11,6 +11,7 @@ type KeyMap struct {
 	HalfPageDown key.Binding
 	HalfPageUp   key.Binding
 	Esc          key.Binding
+	Version      key.Binding
 }
 
 var Keys = KeyMap{
@@ -38,6 +39,10 @@ var Keys = KeyMap{
 		key.WithKeys("esc"),
 		key.WithHelp("esc", "Esc"),
 	),
+	Version: key.NewBinding(
+		key.WithKeys("v"),
+		key.WithHelp("v", "version"),
+	),
 }
 
 func (k KeyMap) ShortHelp() []key.Binding {
@@ -46,6 +51,6 @@ func (k KeyMap) ShortHelp() []key.Binding {
 
 func (k KeyMap) FullHelp() [][]key.Binding {
 	return [][]key.Binding{
-		{k.Install, k.Describe, k.Esc, k.Quit},
+		{k.Install, k.Describe, k.Esc, k.Version, k.Quit},
 	}
 }
