@@ -446,3 +446,24 @@ tools:
     identifier: "facundoolano/ngtop"
     description: "Request analytics from the nginx access logs."
     categories: ["Network", "Security"]
+  dasel:
+    identifier: "TomWright/dasel"
+    description: "Select, put and delete data from JSON, TOML, YAML, XML and CSV files with a single tool. Supports conversion between formats and can be used as a Go package."
+    asset_filters: [".gz"]
+    categories: ["JSON", "YAML"]
+  pug:
+    identifier: "leg100/pug"
+    description: "Drive terraform at terminal velocity."
+    categories: ["Cloud"]
+  binsider:
+    identifier: "orhun/binsider"
+    description: "Analyze ELF binaries like a boss."
+    categories: ["Security"]
+  gtree:
+    identifier: "ddddddO/gtree"
+    description: "Using either Markdown or Programmatically to generate trees and directories, and to verify directories. Provide CLI, Golang library and Web."
+    categories: ["Markdown", "Text"]
+  pipet:
+    identifier: "bjesus/pipet"
+    description: "A swiss-army tool for scraping and extracting data from online assets, made for hackers."
+    categories: ["Network"]
