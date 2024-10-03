@@ -1,3 +1,11 @@
+## What's Changed in 4.0.0
+* docs: Update README.md by @Allaman
+* feat!: Use bubbletea instead of huh by @Allaman in [#2](https://github.com/allaman/werkzeugkasten/pull/2)
+* docs: More and better screenshots by @Allaman
+* docs: Update CHANGELOG by @Allaman
+
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/3.1.0...4.0.0
+
 ## What's Changed in 3.1.0
 * feat(tools): Add more tools by @Allaman
 * docs: Update README by @Allaman
