@@ -11,9 +11,16 @@
   </p>
 </div>
 
-_Conveniently download your favorite binaries (currently 98 supported)!_
+_Conveniently download your favorite binaries (currently 111 supported)!_
 
 ![screenshot](https://s10.gifyu.com/images/S5wTq.png)
+
+<details>
+<summary>Open a tool's README within werkzeugkasten</summary>
+
+![readme.png]()
+
+</details>
 
 <details>
 <summary>List categories and tool count</summary>
@@ -73,7 +80,9 @@ You could also integrate werkzeugkasten in your golden (Docker) image. ⚠️ Ke
 
 ## How it works
 
-Werkzeugkasten is basically a wrapper around the excellent [eget](https://github.com/zyedidia/eget) that does the heavy lifting and is responsible for downloading the chosen tools. Eget itself is downloaded as binary via `net/http` call and decompression/extracting logic. The awesome [charmbracelet](https://github.com/charmbracelet) tools [huh](https://github.com/charmbracelet/huh), [log](https://github.com/charmbracelet/log), and [lipgloss](https://github.com/charmbracelet/lipgloss) are used for a modern look and feel. By default, the latest release of a tool is downloaded (see [Configuration](#configuration)).
+Werkzeugkasten is basically a wrapper around the excellent [eget](https://github.com/zyedidia/eget) that does the heavy lifting and is responsible for downloading the chosen tools. Eget itself is downloaded as binary via `net/http` call and decompression/extracting logic.
+
+The awesome [charmbracelet](https://github.com/charmbracelet) tools [bubbletea](https://github.com/charmbracelet/bubbletea), [glamour](https://github.com/charmbracelet/glamour), and [lipgloss](https://github.com/charmbracelet/lipgloss) are used for a modern look and feel. By default, the latest release of a tool is downloaded (see [Configuration](#configuration)).
 
 ## What Werkzeugkasten is not
 
@@ -85,8 +94,6 @@ Werkzeugkasten is not intended to replace package managers (such as apt, brew, .
 ❯ werkzeugkasten -help
 Usage: werkzeugkasten [flags]
 Flags:
-  -accessible
-        Enable accessibility mode for interactive use
   -categories
         Print all categories and tool count
   -category string
@@ -97,12 +104,12 @@ Flags:
         Where to download the tools (default ".")
   -help
         Print help message
-  -theme string
-        Set theme for interactive mode (default "catppuccin")
   -tool value
         Specify multiple tools to install programmatically (e.g., -tool kustomize -tool task)
   -tools
         Print all available tools
+  -update
+        Self-update
   -version
         Print version
 ```
@@ -111,13 +118,13 @@ Werkzeugkasten supports an **interactive** mode and a **non-interactive** mode.
 
 - `werkzeugkasten` will start in interactive mode where you select your tools you want to install from a searchable list.
 
+- `werkzeugkasten -tool age -tool kustomize` will download age and kustomize.
+
 - `werkzeugkasten -tools` will print all available tools.
 
 - `werkzeugkasten -categories` will print all available categories.
 
 - `werkzeugkasten -category network` will print all available tools in the "network" category.
-
-- `werkzeugkasten -tool age -tool kustomize` will download age and kustomize.
 
 ## Configuration
 
@@ -126,7 +133,7 @@ Besides CLI flags, further configuration is possible with environment variables.
 Set a tool's version/tag explicitly:
 
 ```sh
-export WK_<TOOL_NAME>_<TAG>>=1.33.7
+export WK_<TOOL_NAME>_<TAG>=1.33.7
 export WK_KUSTOMIZE_TAG=v5.3.0`
 ```
 
