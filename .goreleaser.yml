@@ -1,4 +1,5 @@
 ---
+version: 2
 project_name: werkzeugkasten
 env:
   - CGO_ENABLED=0
@@ -7,9 +8,7 @@ builds:
     id: werkzeugkasten
     main: ./
     ldflags:
-      - s
-      - w
-      - -X github.com/allaman/werkzeugkasten/cli.Version={{ .Version }}
+      - -s -w -X github.com/allaman/werkzeugkasten/cli.Version={{ .Version }}
     targets:
       - darwin_amd64
       - darwin_arm64
