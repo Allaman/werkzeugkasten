@@ -1,21 +1,23 @@
-package main
+package cli
 
 import (
 	"flag"
 	"fmt"
+	"log/slog"
 	"os"
 	"strings"
 )
 
-type cliConfig struct {
-	accessible  bool
-	category    string
-	debug       bool
-	downloadDir string
-	tools       bool
-	categories  bool
-	theme       string
-	toolList    toolList
+// will be overwritten in release pipeline
+var Version = "dev"
+
+type CliConfig struct {
+	Category    string
+	Debug       bool
+	DownloadDir string
+	Tools       bool
+	Categories  bool
+	ToolList    toolList
 }
 type toolList []string
 
@@ -28,18 +30,17 @@ func (s *toolList) Set(value string) error {
 	return nil
 }
 
-func cli() cliConfig {
-	var cliFlags cliConfig
+func Cli() CliConfig {
+	var cliFlags CliConfig
 	var toolList toolList
 	helpFlag := flag.Bool("help", false, "Print help message")
 	versionFlag := flag.Bool("version", false, "Print version")
+	updateFlag := flag.Bool("update", false, "Self-update")
 	debugFlag := flag.Bool("debug", false, "Enable debug output")
-	accessibleFlag := flag.Bool("accessible", false, "Enable accessibility mode for interactive use")
 	downloadDirFlag := flag.String("dir", ".", "Where to download the tools")
 	listToolsFlag := flag.Bool("tools", false, "Print all available tools")
 	listCategoriesFlag := flag.Bool("categories", false, "Print all categories and tool count")
 	listByCategoriesFlag := flag.String("category", "", "List tools by category")
-	themeFlag := flag.String("theme", "catppuccin", "Set theme for interactive mode")
 	flag.Var(&toolList, "tool", "Specify multiple tools to install programmatically (e.g., -tool kustomize -tool task)")
 	flag.Parse()
 	if *helpFlag {
@@ -49,31 +50,34 @@ func cli() cliConfig {
 		os.Exit(0)
 	}
 	if *versionFlag {
-		logger.Print(version)
+		fmt.Println(Version)
+		os.Exit(0)
+	}
+	if *updateFlag {
+		if err := Update(Version); err != nil {
+			slog.Error("could not self-update", "err", err)
+			os.Exit(1)
+		}
 		os.Exit(0)
 	}
 	if *listToolsFlag {
-		cliFlags.tools = true
+		cliFlags.Tools = true
 	}
 	if *listCategoriesFlag {
-		cliFlags.categories = true
+		cliFlags.Categories = true
 	}
 	if *debugFlag {
-		cliFlags.debug = true
-	}
-	if *accessibleFlag {
-		cliFlags.accessible = true
+		cliFlags.Debug = true
 	}
 	if *downloadDirFlag != "" {
-		cliFlags.downloadDir = *downloadDirFlag
+		cliFlags.DownloadDir = *downloadDirFlag
 	}
 	if *listByCategoriesFlag != "" {
-		cliFlags.category = *listByCategoriesFlag
+		cliFlags.Category = *listByCategoriesFlag
 	}
-	cliFlags.toolList = []string{}
+	cliFlags.ToolList = []string{}
 	if len(toolList) > 0 {
-		cliFlags.toolList = toolList
+		cliFlags.ToolList = toolList
 	}
-	cliFlags.theme = *themeFlag
 	return cliFlags
 }

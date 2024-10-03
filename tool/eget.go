@@ -1,4 +1,4 @@
-package main
+package tool
 
 import (
 	"archive/tar"
@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"log/slog"
 	"net/http"
 	"os"
 	"path"
@@ -26,10 +27,9 @@ func newDefaultEgetConfig() egetConfig {
 	return egetConfig{arch: runtime.GOARCH, os: runtime.GOOS, url: url, version: "1.3.4"}
 }
 
-// TODO: check if dir exists
 func createDir(path string) error {
 	if _, err := os.Stat(path); errors.Is(err, os.ErrNotExist) {
-		logger.Debug(fmt.Sprintf("creating directory in %s", path))
+		slog.Debug(fmt.Sprintf("creating directory in %s", path))
 		if err := os.MkdirAll(path, 0777); err != nil {
 			return fmt.Errorf("could not create directory %s", path)
 		}
@@ -42,7 +42,7 @@ func downloadEgetBinary(dir string, c egetConfig) error {
 	operatingSystem := c.os
 	version := c.version
 	url := fmt.Sprintf(c.url, version, version, operatingSystem, arch)
-	logger.Debug("downloading eget binary", "arch", arch, "os", operatingSystem, "version", version, "url", url)
+	slog.Debug("downloading eget binary", "arch", arch, "os", operatingSystem, "version", version, "url", url)
 	tmpDir := path.Join(dir, "tmp")
 	if err := createDir(tmpDir); err != nil {
 		return err
@@ -179,20 +179,20 @@ func rename(source, dest string) error {
 	return os.Rename(source, dest)
 }
 
-func installEget(installDir string) {
+func InstallEget(installDir string) {
 	if _, err := os.Stat(path.Join(installDir, "eget")); errors.Is(err, os.ErrNotExist) {
 		egetConfig := newDefaultEgetConfig()
 		if os.Getenv("WK_EGET_VERSION") != "" {
 			version := os.Getenv("WK_EGET_VERSION")
-			logger.Debug("setting eget version", "version", version)
+			slog.Debug("setting eget version", "version", version)
 			egetConfig.version = version
 		}
 		err := downloadEgetBinary(installDir, egetConfig)
 		if err != nil {
-			logger.Error("could not download eget binary", "error", err)
+			slog.Error("could not download eget binary", "error", err)
 			os.Exit(1)
 		}
 	} else {
-		logger.Debug("eget allready downloaded")
+		slog.Debug("eget allready downloaded")
 	}
 }
