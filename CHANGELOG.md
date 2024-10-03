@@ -1,3 +1,10 @@
+## What's Changed in 4.0.1
+* chore: Fix goreleaser.yml by @Allaman
+* docs: Update README.md by @Allaman
+* docs: Update Changelog by @Allaman
+
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/4.0.0...4.0.1
+
 ## What's Changed in 4.0.0
 * docs: Update README.md by @Allaman
 * feat!: Use bubbletea instead of huh by @Allaman in [#2](https://github.com/allaman/werkzeugkasten/pull/2)
