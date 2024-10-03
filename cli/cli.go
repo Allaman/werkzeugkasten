@@ -11,7 +11,6 @@ import (
 var Version = "dev"
 
 type CliConfig struct {
-	Accessible  bool
 	Category    string
 	Debug       bool
 	DownloadDir string
@@ -36,7 +35,6 @@ func Cli() CliConfig {
 	helpFlag := flag.Bool("help", false, "Print help message")
 	versionFlag := flag.Bool("version", false, "Print version")
 	debugFlag := flag.Bool("debug", false, "Enable debug output")
-	accessibleFlag := flag.Bool("accessible", false, "Enable accessibility mode for interactive use")
 	downloadDirFlag := flag.String("dir", ".", "Where to download the tools")
 	listToolsFlag := flag.Bool("tools", false, "Print all available tools")
 	listCategoriesFlag := flag.Bool("categories", false, "Print all categories and tool count")
@@ -61,9 +59,6 @@ func Cli() CliConfig {
 	}
 	if *debugFlag {
 		cliFlags.Debug = true
-	}
-	if *accessibleFlag {
-		cliFlags.Accessible = true
 	}
 	if *downloadDirFlag != "" {
 		cliFlags.DownloadDir = *downloadDirFlag
