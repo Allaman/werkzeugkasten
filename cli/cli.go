@@ -3,6 +3,7 @@ package cli
 import (
 	"flag"
 	"fmt"
+	"log/slog"
 	"os"
 	"strings"
 )
@@ -34,6 +35,7 @@ func Cli() CliConfig {
 	var toolList toolList
 	helpFlag := flag.Bool("help", false, "Print help message")
 	versionFlag := flag.Bool("version", false, "Print version")
+	updateFlag := flag.Bool("update", false, "Self-update")
 	debugFlag := flag.Bool("debug", false, "Enable debug output")
 	downloadDirFlag := flag.String("dir", ".", "Where to download the tools")
 	listToolsFlag := flag.Bool("tools", false, "Print all available tools")
@@ -49,6 +51,13 @@ func Cli() CliConfig {
 	}
 	if *versionFlag {
 		fmt.Println(Version)
+		os.Exit(0)
+	}
+	if *updateFlag {
+		if err := Update(Version); err != nil {
+			slog.Error("could not self-update", "err", err)
+			os.Exit(1)
+		}
 		os.Exit(0)
 	}
 	if *listToolsFlag {
