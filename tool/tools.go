@@ -28,7 +28,6 @@ type Tool struct {
 	Description  string   `yaml:"description"`
 	AssetFilters []string `yaml:"asset_filters"`
 	File         string   `yaml:"file"`
-	// Target       string   `yaml:"target"`
 }
 
 func CreateToolData() (ToolData, error) {
@@ -58,7 +57,6 @@ func CreateToolData() (ToolData, error) {
 				slog.Warn("ignoring malformed environment variable", "var", key)
 				continue
 			}
-			// TODO: overwrite more fields dynamically this way
 			if t, ok := tools.Tools[tool]; ok {
 				slog.Debug("overwriting tag", "tool", tool, "tag", value)
 				// tools.Tools[tool].Tag = value not working because

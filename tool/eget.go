@@ -27,7 +27,6 @@ func newDefaultEgetConfig() egetConfig {
 	return egetConfig{arch: runtime.GOARCH, os: runtime.GOOS, url: url, version: "1.3.4"}
 }
 
-// TODO: check if dir exists
 func createDir(path string) error {
 	if _, err := os.Stat(path); errors.Is(err, os.ErrNotExist) {
 		slog.Debug(fmt.Sprintf("creating directory in %s", path))
