@@ -459,6 +459,7 @@ tools:
     identifier: "orhun/binsider"
     description: "Analyze ELF binaries like a boss."
     categories: ["Security"]
+    asset_filters: ["^sig", "^sha512", ".tar.gz"]
   gtree:
     identifier: "ddddddO/gtree"
     description: "Using either Markdown or Programmatically to generate trees and directories, and to verify directories. Provide CLI, Golang library and Web."
