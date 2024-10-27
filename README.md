@@ -9,9 +9,8 @@
     <img src="https://img.shields.io/github/license/Allaman/werkzeugkasten" alt="license"/>
     <img src="https://img.shields.io/github/v/release/Allaman/werkzeugkasten?sort=semver" alt="last release"/>
   </p>
+ <em>Conveniently download your favorite binaries (currently 113 supported)!</em>
 </div>
-
-_Conveniently download your favorite binaries (currently 113 supported)!_
 
 [![screenshot](https://s1.gifyu.com/images/SBpu4.png)](https://gifyu.com/image/SBpu4)
 
