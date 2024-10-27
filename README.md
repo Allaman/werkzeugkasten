@@ -11,7 +11,7 @@
   </p>
 </div>
 
-_Conveniently download your favorite binaries (currently 111 supported)!_
+_Conveniently download your favorite binaries (currently 113 supported)!_
 
 [![screenshot](https://s1.gifyu.com/images/SBpu4.png)](https://gifyu.com/image/SBpu4)
 

@@ -468,3 +468,11 @@ tools:
     identifier: "bjesus/pipet"
     description: "A swiss-army tool for scraping and extracting data from online assets, made for hackers."
     categories: ["Network"]
+  rpn:
+    identifier: "marcopaganini/rpn"
+    description: "A CLI RPN calculator in Go."
+    categories: ["System"]
+  up:
+    identifier: "akavel/up"
+    description: "Ultimate Plumber is a tool for writing Linux pipes with instant live preview."
+    categories: ["System"]
