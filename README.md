@@ -12,12 +12,12 @@
  <em>Conveniently download your favorite binaries (currently 113 supported)!</em>
 </div>
 
-[![screenshot](https://s1.gifyu.com/images/SBpu4.png)](https://gifyu.com/image/SBpu4)
+![screenshot](https://s1.gifyu.com/images/SBpu4.png)
 
 <details>
 <summary>Open a tool's README within werkzeugkasten</summary>
 
-[![readme.png](https://s11.gifyu.com/images/SBpu5.png)](https://gifyu.com/image/SBpu5)
+![readme.png](https://s11.gifyu.com/images/SBpu5.png)
 
 </details>
 
@@ -26,7 +26,7 @@
 
 `werkzeugkasten -categories`
 
-[![categories.png](https://s1.gifyu.com/images/SBpuN.png)](https://gifyu.com/image/SBpuN)
+![categories.png](https://s1.gifyu.com/images/SBpuN.png)
 
 </details>
 
@@ -35,7 +35,7 @@
 
 `werkzeugkasten -category text`
 
-[![category.png](https://s1.gifyu.com/images/SBpu9.png)](https://gifyu.com/image/SBpu9)
+![category.png](https://s1.gifyu.com/images/SBpu9.png)
 
 </details>
 
@@ -44,7 +44,7 @@
 
 `werkzeugkasten -dir /tmp -tool age -tool kustomize`
 
-[![install.png](https://s1.gifyu.com/images/SBpuv.png)](https://gifyu.com/image/SBpuv)
+![install.png](https://s1.gifyu.com/images/SBpuv.png)
 
 </details>
 
