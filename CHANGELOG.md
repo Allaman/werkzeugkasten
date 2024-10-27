@@ -1,3 +1,9 @@
+## What's Changed in 4.0.3
+* feat(tools): Add more tools by @Allaman
+* docs: Update Changelog by @Allaman
+
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/4.0.2...4.0.3
+
 ## What's Changed in 4.0.2
 * fix(yaml): Add binsider asset_filters by @Allaman
 * docs: Update Changelog by @Allaman
