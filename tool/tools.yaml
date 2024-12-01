@@ -476,3 +476,20 @@ tools:
     identifier: "akavel/up"
     description: "Ultimate Plumber is a tool for writing Linux pipes with instant live preview."
     categories: ["System"]
+  up-net:
+    identifier: "jesusprubio/up"
+    description: "Troubleshoot problems with your Internet connection."
+    categories: ["Network"]
+  usql:
+    identifier: "xo/usql"
+    description: "Universal command-line interface for SQL databases."
+    categories: ["Development", "Database"]
+  chezmoi:
+    identifier: "twpayne/chezmoi"
+    description: "Manage your dotfiles across multiple diverse machines, securely."
+    categories: ["Development"]
+    asset_filters: [".tar.gz"]
+  jqp:
+    identifier: "noahgorstein/jqp"
+    description: "A TUI playground to experiment with jq."
+    categories: ["Json"]
