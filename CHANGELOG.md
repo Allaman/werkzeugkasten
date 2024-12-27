@@ -1,3 +1,9 @@
+## What's Changed in 4.0.5
+* feat(tools): Add more tools by @Allaman
+* docs: Update Changelog by @Allaman
+
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/4.0.4...4.0.5
+
 ## What's Changed in 4.0.4
 * feat(tools): Add more tools by @Allaman
 * docs: Update README by @Allaman
