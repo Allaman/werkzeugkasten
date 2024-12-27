@@ -493,3 +493,31 @@ tools:
     identifier: "noahgorstein/jqp"
     description: "A TUI playground to experiment with jq."
     categories: ["Json"]
+  television:
+    identifier: "alexpasmantier/television"
+    description: "Television is a blazingly fast general purpose fuzzy finder TUI."
+    categories: ["Text"]
+  onefetch:
+    identifier: "o2sh/onefetch"
+    description: "Command-line Git information tool."
+    categories: ["Git"]
+  repgrep:
+    identifier: "acheronfail/repgrep"
+    description: "An interactive replacer for ripgrep that makes it easy to find and replace across files on the command line."
+    categories: ["Text"]
+  serie:
+    identifier: "lusingander/serie"
+    description: "A rich git commit graph in your terminal, like magic."
+    categories: ["Git"]
+  rainfrog:
+    identifier: "achristmascarl/rainfrog"
+    description: "A database management tui for postgres, mysql, and sqlite."
+    categories: ["Development", "Database"]
+  atac:
+    identifier: "Julien-cpsn/ATAC"
+    description: "A simple API client (postman like) in your terminal"
+    categories: ["Development", "Network"]
+  presenterm:
+    identifier: "mfontanini/presenterm"
+    description: "A markdown terminal slideshow tool."
+    categories: ["Markdown"]
