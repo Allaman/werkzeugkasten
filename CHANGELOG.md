@@ -1,3 +1,9 @@
+## What's Changed in 4.0.6
+* feat(yaml): Add more tools by @Allaman
+* docs: Update Changelog by @Allaman
+
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/4.0.5...4.0.6
+
 ## What's Changed in 4.0.5
 * feat(tools): Add more tools by @Allaman
 * docs: Update Changelog by @Allaman
@@ -197,5 +203,3 @@
 ## What's Changed in 0.9.0
 * ci: Add workflow by @Allaman
 * initial commit by @Allaman
-
-
