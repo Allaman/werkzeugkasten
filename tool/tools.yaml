@@ -73,7 +73,7 @@ tools:
   zellij:
     identifier: "zellij-org/zellij"
     description: "A terminal workspace with batteries included (screen/tmux alternative)."
-    categories: ["Workflow"]
+    categories: ["Shell"]
   micro:
     identifier: "zyedidia/micro"
     description: "A modern and intuitive terminal-based text editor."
@@ -100,7 +100,7 @@ tools:
     identifier: "go-task/task"
     description: "A task runner / simpler Make alternative written in Go."
     asset_filters: [".tar.gz"]
-    categories: ["Workflow"]
+    categories: ["Shell"]
   polaris:
     identifier: "FairwindsOps/polaris"
     description: "Validation of best practices in your Kubernetes clusters."
@@ -421,7 +421,7 @@ tools:
   just:
     identifier: "casey/just"
     description: "Just a command runner."
-    categories: ["Workflow"]
+    categories: ["Shell"]
   eza:
     identifier: "eza-community/eza"
     description: "A modern, maintained replacement for ls."
@@ -450,7 +450,7 @@ tools:
     identifier: "TomWright/dasel"
     description: "Select, put and delete data from JSON, TOML, YAML, XML and CSV files with a single tool. Supports conversion between formats and can be used as a Go package."
     asset_filters: [".gz"]
-    categories: ["JSON", "YAML"]
+    categories: ["Json", "Yaml"]
   pug:
     identifier: "leg100/pug"
     description: "Drive terraform at terminal velocity."
@@ -515,9 +515,28 @@ tools:
     categories: ["Development", "Database"]
   atac:
     identifier: "Julien-cpsn/ATAC"
-    description: "A simple API client (postman like) in your terminal"
+    description: "A simple API client (postman like) in your terminal."
     categories: ["Development", "Network"]
   presenterm:
     identifier: "mfontanini/presenterm"
     description: "A markdown terminal slideshow tool."
     categories: ["Markdown"]
+  freeze:
+    identifier: "charmbracelet/freeze"
+    description: "Generate images of code and terminal output 📸."
+    categories: ["Shell"]
+    asset_filters: ["^sbom"]
+  mods:
+    identifier: "charmbracelet/mods"
+    description: "AI on the command line."
+    categories: ["AI"]
+    asset_filters: ["^sbom"]
+  gum:
+    identifier: "charmbracelet/gum"
+    description: "A tool for glamorous shell scripts 🎀."
+    categories: ["Shell"]
+    asset_filters: ["^sbom"]
+  aichat:
+    identifier: "sigoden/aichat"
+    description: "All-in-one LLM CLI tool featuring Shell Assistant, Chat-REPL, RAG, AI tools & agents, with access to OpenAI, Claude, Gemini, Ollama, Groq, and more."
+    categories: ["AI"]
