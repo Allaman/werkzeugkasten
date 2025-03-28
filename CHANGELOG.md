@@ -1,3 +1,10 @@
+## What's Changed in 4.1.0
+* feat(yaml): Add more tools by @Allaman
+* fix: Pass config to bubbletea model #3 by @Allaman
+* docs: Update Changelog by @Allaman
+
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/4.0.6...4.1.0
+
 ## What's Changed in 4.0.6
 * feat(yaml): Add more tools by @Allaman
 * docs: Update Changelog by @Allaman
@@ -203,3 +210,8 @@
 ## What's Changed in 0.9.0
 * ci: Add workflow by @Allaman
 * initial commit by @Allaman
+
+## New Contributors
+* @Allaman made their first contribution
+
+
