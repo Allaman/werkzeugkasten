@@ -9,7 +9,7 @@
     <img src="https://img.shields.io/github/license/Allaman/werkzeugkasten" alt="license"/>
     <img src="https://img.shields.io/github/v/release/Allaman/werkzeugkasten?sort=semver" alt="last release"/>
   </p>
- <em>Conveniently download your favorite binaries (currently 128 supported)!</em>
+ <em>Conveniently download your favorite binaries (currently 132 supported)!</em>
 </div>
 
 ![screenshot](https://s1.gifyu.com/images/SBpu4.png)
@@ -89,7 +89,7 @@ Werkzeugkasten is not intended to replace package managers (such as apt, brew, .
 
 ## Usage
 
-```
+```sh
 ❯ werkzeugkasten -help
 Usage: werkzeugkasten [flags]
 Flags:

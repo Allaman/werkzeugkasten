@@ -540,3 +540,19 @@ tools:
     identifier: "sigoden/aichat"
     description: "All-in-one LLM CLI tool featuring Shell Assistant, Chat-REPL, RAG, AI tools & agents, with access to OpenAI, Claude, Gemini, Ollama, Groq, and more."
     categories: ["AI"]
+  znscli:
+    identifier: "znscli/zns"
+    description: "CLI tool for querying DNS records with readable, colored output."
+    categories: ["Network"]
+  superfile:
+    identifier: "yorukot/superfile"
+    description: "Pretty fancy and modern terminal file manager."
+    categories: ["Files"]
+  ghorg:
+    identifier: "gabrie30/ghorg"
+    description: "Quickly clone or backup an entire org/users repositories into one directory - Supports GitHub, GitLab, Bitbucket, and more 🐇🥚"
+    categories: ["Git"]
+  stu:
+    identifier: "lusingander/stu"
+    description: "TUI explorer application for Amazon S3 (AWS S3) 🪣"
+    categories: ["Cloud"]
