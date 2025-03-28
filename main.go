@@ -59,7 +59,7 @@ func main() {
 	}
 	// interactive mode
 	if len(cfg.ToolList) == 0 {
-		p := tea.NewProgram(model.InitialModel(tools), tea.WithAltScreen())
+		p := tea.NewProgram(model.InitialModel(tools, cfg), tea.WithAltScreen())
 		if _, err := p.Run(); err != nil {
 			fmt.Printf("Error: %v", err)
 			os.Exit(1)

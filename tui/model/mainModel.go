@@ -35,7 +35,7 @@ type Output struct {
 	Help     help.Model
 }
 
-func InitialModel(toolData tool.ToolData) *MainModel {
+func InitialModel(toolData tool.ToolData, cfg cli.CliConfig) *MainModel {
 	items := make([]list.Item, 0, len(toolData.Tools))
 	sortedTools := tool.SortTools(toolData)
 
@@ -58,6 +58,7 @@ func InitialModel(toolData tool.ToolData) *MainModel {
 	view := viewport.New(80, 20)
 
 	return &MainModel{
+		config:          cfg,
 		CurrentView:     "list",
 		List:            l,
 		ToolData:        toolData,
