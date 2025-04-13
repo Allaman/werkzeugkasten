@@ -43,12 +43,16 @@ func downloadEgetBinary(dir string, c egetConfig) error {
 	version := c.version
 	url := fmt.Sprintf(c.url, version, version, operatingSystem, arch)
 	slog.Debug("downloading eget binary", "arch", arch, "os", operatingSystem, "version", version, "url", url)
-	tmpDir := path.Join(dir, "tmp")
+	tmpDir, err := os.MkdirTemp(dir, "werkzeugkasten-")
+	if err != nil {
+		return err
+	}
+	slog.Debug(fmt.Sprintf("using temporary directory at %s", tmpDir))
 	if err := createDir(tmpDir); err != nil {
 		return err
 	}
 	egetTar := path.Join(tmpDir, "eget.tar.gz")
-	err := downloadFile(url, egetTar)
+	err = downloadFile(url, egetTar)
 	if err != nil {
 		return err
 	}
