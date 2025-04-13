@@ -556,3 +556,12 @@ tools:
     identifier: "lusingander/stu"
     description: "TUI explorer application for Amazon S3 (AWS S3) 🪣"
     categories: ["Cloud"]
+  t-rec:
+    identifier: "sassman/t-rec-rs"
+    description: "Blazingly fast terminal recorder that generates animated gif images for the web written in rust."
+    file: "t-rec"
+    categories: ["Development"]
+  numbat:
+    identifier: "sharkdp/numbat"
+    description: "A statically typed programming language for scientific computations with first class support for physical dimensions and units."
+    categories: ["Math"]
