@@ -1,3 +1,12 @@
+## What's Changed in 4.1.1
+* fix: Use MkdirTemp instead of hard-coded "tmp" as temporary directory by @Allaman
+* feat(tools): Add more tools by @Allaman
+* chore: Update dependencies and go by @Allaman
+* docs: Update CHANGELOG by @Allaman
+* chore: Update clif.toml by @Allaman
+
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/4.1.0...4.1.1
+
 ## What's Changed in 4.1.0
 * feat(yaml): Add more tools by @Allaman
 * fix: Pass config to bubbletea model #3 by @Allaman
