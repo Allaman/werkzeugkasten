@@ -55,13 +55,13 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		case "detail":
 			switch {
 			case key.Matches(msg, keys.DetailKeys.Down):
-				m.DetailView.ViewPort.LineDown(1)
+				m.DetailView.ViewPort.ScrollDown(1)
 			case key.Matches(msg, keys.DetailKeys.Up):
-				m.DetailView.ViewPort.LineUp(1)
+				m.DetailView.ViewPort.ScrollUp(1)
 			case key.Matches(msg, keys.DetailKeys.HalfPageDown):
-				m.DetailView.ViewPort.HalfViewDown()
+				m.DetailView.ViewPort.HalfPageDown()
 			case key.Matches(msg, keys.DetailKeys.HalfPageUp):
-				m.DetailView.ViewPort.HalfViewUp()
+				m.DetailView.ViewPort.HalfPageUp()
 			case key.Matches(msg, keys.DetailKeys.Help):
 				m.DetailView.Help.ShowAll = !m.DetailView.Help.ShowAll
 			case key.Matches(msg, keys.DetailKeys.Install):
