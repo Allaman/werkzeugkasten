@@ -3,20 +3,18 @@ package keys
 import "github.com/charmbracelet/bubbles/key"
 
 type processKeyMap struct {
-	Down key.Binding
-	Up   key.Binding
 	Esc  key.Binding
 	Quit key.Binding
 }
 
-var ProcessingKeys = detailsKeyMap{
-	Quit: key.NewBinding(
-		key.WithKeys("q", "ctrl+c"),
-		key.WithHelp("q", "quit"),
-	),
+var ProcessingKeys = processKeyMap{
 	Esc: key.NewBinding(
 		key.WithKeys("esc"),
 		key.WithHelp("esc", "Esc"),
+	),
+	Quit: key.NewBinding(
+		key.WithKeys("q", "ctrl+c"),
+		key.WithHelp("q", "quit"),
 	),
 }
 
