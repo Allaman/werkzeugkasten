@@ -18,6 +18,8 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		m.List.SetHeight(msg.Height)
 		m.DetailView.ViewPort.Width = msg.Width - 4
 		m.DetailView.ViewPort.Height = msg.Height - 4
+		m.ReleasesView.ViewPort.Width = msg.Width - 4
+		m.ReleasesView.ViewPort.Height = msg.Height - 4
 		m.ProcessingModel.ViewPort.Width = msg.Width - 4
 		m.ProcessingModel.ViewPort.Height = msg.Height - 4
 
@@ -45,6 +47,14 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					m.CurrentView = "detail"
 					m.DetailView.ItemName = selectedItem.Title()
 					return m, fetchReadmeCmd(fmt.Sprintf("https://raw.githubusercontent.com/%s/main/README.md", selectedItem.Identifier()))
+				}
+
+			case key.Matches(msg, keys.Keys.Releases):
+				selectedItem, ok := m.List.SelectedItem().(item.Item)
+				if ok {
+					m.CurrentView = "releases"
+					m.ReleasesView.ItemName = selectedItem.Title()
+					return m, fetchReleasesCmd(selectedItem.Identifier())
 				}
 
 			case key.Matches(msg, keys.Keys.Version):
@@ -76,6 +86,19 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				return m, nil
 			}
 
+		case "releases":
+			switch {
+			case key.Matches(msg, keys.DetailKeys.Down):
+				m.ReleasesView.ViewPort.ScrollDown(1)
+			case key.Matches(msg, keys.DetailKeys.Up):
+				m.ReleasesView.ViewPort.ScrollUp(1)
+			case key.Matches(msg, keys.DetailKeys.Help):
+				m.ReleasesView.Help.ShowAll = !m.DetailView.Help.ShowAll
+			case key.Matches(msg, keys.DetailKeys.Esc):
+				m.CurrentView = "list"
+				return m, nil
+			}
+
 		case "processing":
 			if msg.String() == "esc" {
 				m.CurrentView = "list"
@@ -96,6 +119,15 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 	case fetchReadmeErrMsg:
 		m.DetailView.ViewPort.SetContent(msg.err.Error())
+		return m, nil
+
+	case fetchReleasesSuccessMsg:
+		m.ReleasesView.ViewPort.SetContent(string(msg))
+		m.ReleasesView.ViewPort.GotoTop()
+		return m, nil
+
+	case fetchReleasesErrMsg:
+		m.ReleasesView.ViewPort.SetContent(msg.err.Error())
 		return m, nil
 
 	case processSuccessMsg:

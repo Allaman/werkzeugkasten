@@ -22,6 +22,7 @@ type MainModel struct {
 	CurrentView     string
 	List            list.Model
 	DetailView      Output
+	ReleasesView    Output
 	ProcessingModel Output
 	ToolData        tool.ToolData
 	config          cli.CliConfig
@@ -63,26 +64,38 @@ func InitialModel(toolData tool.ToolData, cfg cli.CliConfig) *MainModel {
 		List:            l,
 		ToolData:        toolData,
 		DetailView:      Output{ViewPort: view, Help: help.New()},
+		ReleasesView:    Output{ViewPort: view, Help: help.New()},
 		ProcessingModel: Output{ViewPort: view, Help: help.New()},
 		version:         cli.Version,
 	}
 }
 
 func (m MainModel) headerView() string {
-	var title string
+	var title, line string
 	if m.CurrentView == "detail" {
 		title = styles.TitleStyle.Render("README of", m.DetailView.ItemName)
+		line = strings.Repeat("─", max(0, m.DetailView.ViewPort.Width-lipgloss.Width(title)))
+	}
+	if m.CurrentView == "releases" {
+		title = styles.TitleStyle.Render("Releases of", m.ReleasesView.ItemName)
+		line = strings.Repeat("─", max(0, m.ReleasesView.ViewPort.Width-lipgloss.Width(title)))
 	}
 	if m.CurrentView == "processing" {
 		title = styles.TitleStyle.Render("Installing", m.ProcessingModel.ItemName)
 	}
-	line := strings.Repeat("─", max(0, m.DetailView.ViewPort.Width-lipgloss.Width(title)))
 	return lipgloss.JoinHorizontal(lipgloss.Center, title, line)
 }
 
 func (m MainModel) footerView() string {
-	info := styles.InfoStyle.Render(fmt.Sprintf("%3.f%%", m.DetailView.ViewPort.ScrollPercent()*100))
-	line := strings.Repeat("─", max(0, m.DetailView.ViewPort.Width-lipgloss.Width(info)))
+	var info, line string
+	if m.CurrentView == "detail" {
+		info = styles.InfoStyle.Render(fmt.Sprintf("%3.f%%", m.DetailView.ViewPort.ScrollPercent()*100))
+		line = strings.Repeat("─", max(0, m.DetailView.ViewPort.Width-lipgloss.Width(info)))
+	}
+	if m.CurrentView == "releases" {
+		info = styles.InfoStyle.Render(fmt.Sprintf("%3.f%%", m.ReleasesView.ViewPort.ScrollPercent()*100))
+		line = strings.Repeat("─", max(0, m.ReleasesView.ViewPort.Width-lipgloss.Width(info)))
+	}
 	return lipgloss.JoinHorizontal(lipgloss.Center, line, info)
 }
 

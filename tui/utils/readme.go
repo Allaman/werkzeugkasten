@@ -40,7 +40,13 @@ func FetchReadme(url string) (string, error) {
 		return "", fmt.Errorf("status code for downloading README was not ok: %d", resp.StatusCode)
 	}
 
-	defer resp.Body.Close()
+	defer func() {
+		if closeErr := resp.Body.Close(); closeErr != nil {
+			if err == nil {
+				err = fmt.Errorf("error closing response body: %w", closeErr)
+			}
+		}
+	}()
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {

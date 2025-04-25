@@ -6,6 +6,7 @@ type KeyMap struct {
 	Down         key.Binding
 	Up           key.Binding
 	Install      key.Binding
+	Releases     key.Binding
 	Describe     key.Binding
 	Quit         key.Binding
 	HalfPageDown key.Binding
@@ -22,6 +23,10 @@ var Keys = KeyMap{
 	Describe: key.NewBinding(
 		key.WithKeys("d"),
 		key.WithHelp("d", "describe"),
+	),
+	Releases: key.NewBinding(
+		key.WithKeys("r"),
+		key.WithHelp("r", "releases"),
 	),
 	Quit: key.NewBinding(
 		key.WithKeys("q", "ctrl+c"),

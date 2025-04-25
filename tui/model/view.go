@@ -13,6 +13,9 @@ func (m *MainModel) View() string {
 	case "detail":
 		helpView := m.DetailView.Help.View(keys.DetailKeys)
 		return fmt.Sprintf("%s\n%s\n%s\n%s", m.headerView(), m.DetailView.ViewPort.View(), m.footerView(), helpView)
+	case "releases":
+		helpView := m.ReleasesView.Help.View(keys.ReleasesKeys)
+		return fmt.Sprintf("%s\n%s\n%s\n%s", m.headerView(), m.ReleasesView.ViewPort.View(), m.footerView(), helpView)
 	case "processing":
 		helpView := m.ProcessingModel.Help.View(keys.ProcessingKeys)
 		return fmt.Sprintf("%s\n%s\n%s\n%s", m.headerView(), m.ProcessingModel.ViewPort.View(), m.footerView(), helpView)
