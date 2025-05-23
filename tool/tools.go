@@ -85,7 +85,7 @@ func execEget(workingDir string, tool Tool) ([]byte, error) {
 		cmd.Args = append(cmd.Args, fmt.Sprintf("--file=\"%s\"", tool.File))
 	}
 	cmd.Dir = workingDir
-	slog.Debug("executing command", "cmd", cmd, "wd", cmd.Dir, "env", cmd.Env)
+	slog.Debug("executing command", "cmd", cmd, "wd", cmd.Dir, "env", cmd.Env, "args", cmd.Args)
 	out, err := cmd.CombinedOutput()
 	return out, err
 }
