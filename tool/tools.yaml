@@ -170,6 +170,7 @@ tools:
     description: "OpenTofu / Terraform / Terragrunt version manager."
     categories: ["Cloud"]
   golang:
+    # TODO: version handling
     identifier: "https://go.dev/dl/go1.17.5.OSNAME-ARCH.tar.gz"
     description: "The Golang programming language."
     file: "go/bin/go"
@@ -565,3 +566,17 @@ tools:
     identifier: "sharkdp/numbat"
     description: "A statically typed programming language for scientific computations with first class support for physical dimensions and units."
     categories: ["Math"]
+  kubectl:
+    # TODO: version handling
+    identifier: "https://dl.k8s.io/release/v1.27.16/bin/OSNAME/ARCH/kubectl"
+    description: "The Kubernetes command-line tool, kubectl, allows you to run commands against Kubernetes clusters."
+    file: "kubectl"
+  hugo:
+    identifier: "gohugoio/hugo"
+    description: "The world’s fastest framework for building websites."
+    categories: ["Network"]
+    asset_filters: ["hugo_extended", "^deploy"]
+  pet:
+    identifier: "knqyf263/pet"
+    description: "Simple command-line snippet manager."
+    categories: ["Text"]
