@@ -1,42 +1,26 @@
 package model
 
 import (
-	"fmt"
 	"log/slog"
 
-	"github.com/allaman/werkzeugkasten/tui/utils"
+	"github.com/allaman/werkzeugkasten/tui/item"
 
 	tea "github.com/charmbracelet/bubbletea"
-
-	"github.com/charmbracelet/glamour"
 )
 
 func fetchReleasesCmd(identifier string) tea.Cmd {
 	return func() tea.Msg {
 		// TODO: Pass GitHub token
-		releases, err := utils.FetchReleases(identifier, "")
+		releases, err := item.FetchReleases(identifier, "")
 		if err != nil {
 			slog.Debug("error fetching releases", "error", err)
 			return fetchReleasesErrMsg{err: err}
 		}
-
-		content := "| Release | Published |\n| --- | --- |\n"
-		for _, release := range releases {
-			formattedTime := release.PublishedAt.Format("2006-01-02")
-			content += fmt.Sprintf("| %s | %s |\n", release.Name, formattedTime)
-		}
-
-		renderedContent, err := glamour.Render(content, "dark")
-		if err != nil {
-			slog.Debug("error rendering content", "error", err)
-			return fetchReleasesErrMsg{err: err}
-		}
-
-		return fetchReleasesSuccessMsg(renderedContent)
+		return fetchReleasesSuccessMsg(releases)
 	}
 }
 
-type fetchReleasesSuccessMsg string
+type fetchReleasesSuccessMsg []item.FetchRelease
 type fetchReleasesErrMsg struct {
 	err error
 }

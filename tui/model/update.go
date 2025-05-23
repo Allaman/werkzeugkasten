@@ -2,6 +2,7 @@ package model
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/allaman/werkzeugkasten/tui/item"
 	"github.com/allaman/werkzeugkasten/tui/keys"
@@ -14,50 +15,55 @@ import (
 func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case tea.WindowSizeMsg:
-		m.List.SetWidth(msg.Width)
-		m.List.SetHeight(msg.Height)
+		m.ToolsListView.SetWidth(msg.Width)
+		m.ToolsListView.SetHeight(msg.Height)
 		m.DetailView.ViewPort.Width = msg.Width - 4
 		m.DetailView.ViewPort.Height = msg.Height - 4
-		m.ReleasesView.ViewPort.Width = msg.Width - 4
-		m.ReleasesView.ViewPort.Height = msg.Height - 4
 		m.ProcessingModel.ViewPort.Width = msg.Width - 4
 		m.ProcessingModel.ViewPort.Height = msg.Height - 4
 
 	case tea.KeyMsg:
-		if m.List.FilterState() == list.Filtering {
+		if m.ToolsListView.FilterState() == list.Filtering {
 			break
 		}
 
 		switch m.CurrentView {
 
-		case "list":
+		case "tools":
 			switch {
 
-			case key.Matches(msg, keys.Keys.Install):
-				selectedItem, ok := m.List.SelectedItem().(item.Item)
+			case key.Matches(msg, keys.ToolsKeys.Install):
+				selectedItem, ok := m.ToolsListView.SelectedItem().(item.Tool)
 				if ok {
 					m.CurrentView = "processing"
 					m.ProcessingModel.ItemName = selectedItem.Title()
 					return m, m.processSelectedItem()
 				}
 
-			case key.Matches(msg, keys.Keys.Describe):
-				selectedItem, ok := m.List.SelectedItem().(item.Item)
+			case key.Matches(msg, keys.ToolsKeys.Describe):
+				selectedItem, ok := m.ToolsListView.SelectedItem().(item.Tool)
 				if ok {
 					m.CurrentView = "detail"
 					m.DetailView.ItemName = selectedItem.Title()
 					return m, fetchReadmeCmd(fmt.Sprintf("https://raw.githubusercontent.com/%s/main/README.md", selectedItem.Identifier()))
 				}
 
-			case key.Matches(msg, keys.Keys.Releases):
-				selectedItem, ok := m.List.SelectedItem().(item.Item)
+			case key.Matches(msg, keys.ToolsKeys.Releases):
+				selectedItem, ok := m.ToolsListView.SelectedItem().(item.Tool)
 				if ok {
 					m.CurrentView = "releases"
-					m.ReleasesView.ItemName = selectedItem.Title()
+					m.SelectedTool = selectedItem
+					m.ReleasesListView.Title = fmt.Sprintf("Releases of %s (max. last 100)", selectedItem.Title())
+					m.ReleasesListView.AdditionalFullHelpKeys = func() []key.Binding {
+						return []key.Binding{
+							keys.ReleasesKeys.Install,
+							keys.ReleasesKeys.Esc,
+						}
+					}
 					return m, fetchReleasesCmd(selectedItem.Identifier())
 				}
 
-			case key.Matches(msg, keys.Keys.Version):
+			case key.Matches(msg, keys.ToolsKeys.Version):
 				m.CurrentView = "version"
 				return m, nil
 			}
@@ -75,39 +81,44 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			case key.Matches(msg, keys.DetailKeys.Help):
 				m.DetailView.Help.ShowAll = !m.DetailView.Help.ShowAll
 			case key.Matches(msg, keys.DetailKeys.Install):
-				selectedItem, ok := m.List.SelectedItem().(item.Item)
+				selectedItem, ok := m.ToolsListView.SelectedItem().(item.Tool)
 				if ok {
 					m.CurrentView = "processing"
 					m.ProcessingModel.ItemName = selectedItem.Title()
 					return m, m.processSelectedItem()
 				}
 			case key.Matches(msg, keys.DetailKeys.Esc):
-				m.CurrentView = "list"
+				m.CurrentView = "tools"
 				return m, nil
 			}
 
 		case "releases":
 			switch {
-			case key.Matches(msg, keys.DetailKeys.Down):
-				m.ReleasesView.ViewPort.ScrollDown(1)
-			case key.Matches(msg, keys.DetailKeys.Up):
-				m.ReleasesView.ViewPort.ScrollUp(1)
-			case key.Matches(msg, keys.DetailKeys.Help):
-				m.ReleasesView.Help.ShowAll = !m.DetailView.Help.ShowAll
-			case key.Matches(msg, keys.DetailKeys.Esc):
-				m.CurrentView = "list"
+			case key.Matches(msg, keys.ReleasesKeys.Install):
+				selectedItem, ok := m.ReleasesListView.SelectedItem().(item.Release)
+				if ok {
+					m.CurrentView = "processing"
+					m.ProcessingModel.ItemName = m.SelectedTool.Title()
+					m.ProcessingModel.ItemTag = selectedItem.Tag
+					return m, m.processSelectedItem()
+				}
+			case key.Matches(msg, keys.ReleasesKeys.Esc):
+				m.CurrentView = "tools"
 				return m, nil
 			}
 
 		case "processing":
-			if msg.String() == "esc" {
-				m.CurrentView = "list"
+			switch {
+			case key.Matches(msg, keys.ProcessingKeys.Esc):
+				m.CurrentView = "tools"
 				return m, nil
+			case key.Matches(msg, keys.ProcessingKeys.Quit):
+				return m, tea.Quit
 			}
 
 		case "version":
 			if msg.String() == "esc" {
-				m.CurrentView = "list"
+				m.CurrentView = "tools"
 				return m, nil
 			}
 		}
@@ -122,12 +133,25 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		return m, nil
 
 	case fetchReleasesSuccessMsg:
-		m.ReleasesView.ViewPort.SetContent(string(msg))
-		m.ReleasesView.ViewPort.GotoTop()
-		return m, nil
+		releases := []item.FetchRelease(msg)
+		items := make([]list.Item, 0, len(releases))
+
+		for _, release := range releases {
+			items = append(items, item.Release{Tag: release.TagName, PublishedAt: release.PublishedAt})
+		}
+		// Update the existing list with the new items
+		cmd := m.ReleasesListView.SetItems(items)
+
+		// Make sure dimensions are correct
+		m.ReleasesListView.SetWidth(m.ToolsListView.Width())
+		m.ReleasesListView.SetHeight(m.ToolsListView.Height())
+
+		// Return the command from SetItems to ensure proper updates
+		return m, cmd
 
 	case fetchReleasesErrMsg:
-		m.ReleasesView.ViewPort.SetContent(msg.err.Error())
+		errorItem := item.NewRelease("Error: "+msg.err.Error(), time.Now())
+		m.ReleasesListView.SetItems([]list.Item{errorItem})
 		return m, nil
 
 	case processSuccessMsg:
@@ -142,7 +166,25 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	}
 
 	var cmd tea.Cmd
-	// TODO:
-	m.List, cmd = m.List.Update(msg)
+	var cmds []tea.Cmd
+
+	switch m.CurrentView {
+	case "tools":
+		newToolsListView, toolsCmd := m.ToolsListView.Update(msg)
+		m.ToolsListView = newToolsListView
+		if toolsCmd != nil {
+			cmds = append(cmds, toolsCmd)
+		}
+	case "releases":
+		newReleasesListView, releasesCmd := m.ReleasesListView.Update(msg)
+		m.ReleasesListView = newReleasesListView
+		if releasesCmd != nil {
+			cmds = append(cmds, releasesCmd)
+		}
+	}
+
+	if len(cmds) > 0 {
+		cmd = tea.Batch(cmds...)
+	}
 	return m, cmd
 }

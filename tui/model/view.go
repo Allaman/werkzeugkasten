@@ -8,14 +8,13 @@ import (
 
 func (m *MainModel) View() string {
 	switch m.CurrentView {
-	case "list":
-		return m.List.View()
+	case "tools":
+		return m.ToolsListView.View()
 	case "detail":
 		helpView := m.DetailView.Help.View(keys.DetailKeys)
 		return fmt.Sprintf("%s\n%s\n%s\n%s", m.headerView(), m.DetailView.ViewPort.View(), m.footerView(), helpView)
 	case "releases":
-		helpView := m.ReleasesView.Help.View(keys.ReleasesKeys)
-		return fmt.Sprintf("%s\n%s\n%s\n%s", m.headerView(), m.ReleasesView.ViewPort.View(), m.footerView(), helpView)
+		return m.ReleasesListView.View()
 	case "processing":
 		helpView := m.ProcessingModel.Help.View(keys.ProcessingKeys)
 		return fmt.Sprintf("%s\n%s\n%s\n%s", m.headerView(), m.ProcessingModel.ViewPort.View(), m.footerView(), helpView)

@@ -22,6 +22,13 @@
 </details>
 
 <details>
+<summary>Install a specific version</summary>
+
+![release.gif](https://s14.gifyu.com/images/bsA18.gif)
+
+</details>
+
+<details>
 <summary>List categories and tool count</summary>
 
 `werkzeugkasten -categories`
@@ -42,7 +49,10 @@
 <details>
 <summary>Install tools in non-interactive mode</summary>
 
-`werkzeugkasten -dir /tmp -tool age -tool kustomize`
+```sh
+export WK_FLUX2_TAG=2.1.0 # optionally specify version
+werkzeugkasten -dir ~/.local/bin -debug -tool flux2
+```
 
 ![install.png](https://s1.gifyu.com/images/SBpuv.png)
 
