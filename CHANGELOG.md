@@ -1,3 +1,18 @@
+## What's Changed in 4.2.0
+* fix: Debug output by @Allaman
+* feat(yaml): Add more tools by @Allaman
+* feat: Add interactive release selection by @Allaman
+* refactor: File renaming by @Allaman
+* chore: Update dependencies by @Allaman
+* chore: Replace gopkg.in/yaml with goccy/go-yaml by @Allaman
+* feat: Add releases view by @Allaman
+* fix: processing keybindings by @Allaman
+* fix: Deprecated viewport commands by @Allaman
+* chore: Update depedencies by @Allaman
+* docs: Update CHANGELOG by @Allaman
+
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/4.1.1...4.2.0
+
 ## What's Changed in 4.1.1
 * fix: Use MkdirTemp instead of hard-coded "tmp" as temporary directory by @Allaman
 * feat(tools): Add more tools by @Allaman
