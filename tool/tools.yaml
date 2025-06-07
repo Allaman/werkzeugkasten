@@ -580,3 +580,7 @@ tools:
     identifier: "knqyf263/pet"
     description: "Simple command-line snippet manager."
     categories: ["Text"]
+  telepresence:
+    identifier: "telepresenceio/telepresence"
+    description: "Local development against a remote Kubernetes or OpenShift cluster."
+    categories: ["Network"]
