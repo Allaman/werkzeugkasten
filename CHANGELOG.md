@@ -1,3 +1,13 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+## What's Changed in 4.2.1
+* feat(tools): Add telepresence by @Allaman
+* docs: Update CHANGELOG by @Allaman
+
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/4.2.0...4.2.1
+
 ## What's Changed in 4.2.0
 * fix: Debug output by @Allaman
 * feat(yaml): Add more tools by @Allaman
@@ -144,7 +154,6 @@
 * fix: Idiomatic info message style by @Allaman
 * docs: Add CHANGELOG by @Allaman
 * chore(deps): bump goreleaser/goreleaser-action from 5 to 6 by @Allaman in [#1](https://github.com/allaman/werkzeugkasten/pull/1)
-* chore(deps): bump goreleaser/goreleaser-action from 5 to 6 by @dependabot[bot]
 * fix: Idiomatic error message style by @Allaman
 
 ## New Contributors
