@@ -91,7 +91,7 @@ You could also integrate werkzeugkasten in your golden (Docker) image. ⚠️ Ke
 
 Werkzeugkasten is basically a wrapper around the excellent [eget](https://github.com/zyedidia/eget) that does the heavy lifting and is responsible for downloading the chosen tools. Eget itself is downloaded as binary via `net/http` call and decompression/extraction logic.
 
-The awesome [charmbracelet](https://github.com/charmbracelet) tools [bubbletea](https://github.com/charmbracelet/bubbletea), [glamour](https://github.com/charmbracelet/glamour), and [lipgloss](https://github.com/charmbracelet/lipgloss) are used for a modern look and feel. By default, the latest release of a tool is downloaded (see [Configuration](#configuration)).
+The awesome [charmbracelet](https://github.com/charmbracelet) tools [bubbletea](https://github.com/charmbracelet/bubbletea), [glamour](https://github.com/charmbracelet/glamour), and [lipgloss](https://github.com/charmbracelet/lipgloss) are used for a modern look and feel.
 
 ## What Werkzeugkasten is not
 
@@ -125,9 +125,9 @@ Flags:
 
 Werkzeugkasten supports an **interactive** mode and a **non-interactive** mode.
 
-- `werkzeugkasten` will start in interactive mode where you select your tools you want to install from a searchable list.
+- `werkzeugkasten` will start in interactive mode where you select your tools (and version) you want to install from a searchable list.
 
-- `werkzeugkasten -tool age -tool kustomize` will download age and kustomize.
+- `werkzeugkasten -tool age -tool kustomize` will download age and kustomize (latest release for both).
 
 - `werkzeugkasten -tools` will print all available tools.
 
