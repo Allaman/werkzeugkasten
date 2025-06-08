@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## What's Changed in 4.2.2
+* feat(tools): Add gecho by @Allaman
+* docs: Update CHANGELOG by @Allaman
+
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/4.2.1...4.2.2
+
 ## What's Changed in 4.2.1
 * feat(tools): Add telepresence by @Allaman
 * docs: Update CHANGELOG by @Allaman
