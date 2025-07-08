@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## What's Changed in 4.2.3
+* feat(tools): Maintain tool list by @Allaman
+* docs: Update README by @Allaman
+* docs: Update README by @Allaman
+* docs: Update README by @Allaman
+
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/4.2.2...4.2.3
+
 ## What's Changed in 4.2.2
 * feat(tools): Add gecho by @Allaman
 * docs: Update CHANGELOG by @Allaman
