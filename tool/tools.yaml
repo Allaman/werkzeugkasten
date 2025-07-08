@@ -189,7 +189,7 @@ tools:
     categories: ["CSV"]
   xsv:
     identifier: "BurntSushi/xsv"
-    description: "A fast CSV command line toolkit written in Rust."
+    description: "A fast CSV command line toolkit written in Rust. (archived)"
     categories: ["CSV"]
   terrascan:
     identifier: "tenable/terrascan"
@@ -403,10 +403,6 @@ tools:
     identifier: "Inlyne-Project/inlyne"
     description: "Introducing Inlyne, a GPU powered yet browserless tool to help you quickly view markdown files in the blink of an eye."
     categories: ["Markdown"]
-  qsv:
-    identifier: "jqnatividad/qsv"
-    description: "CSVs sliced, diced & analyzed. Fork of xsv."
-    categories: ["CSV"]
   rargs:
     identifier: "lotabout/rargs"
     description: "xargs + awk with pattern matching support."
@@ -588,3 +584,16 @@ tools:
     identifier: "allaman/gecho"
     description: "A simple HTTP/TCP server."
     categories: ["Network"]
+  system-manager-tui:
+    identifier: "matheus-git/systemd-manager-tui"
+    description: "A program for managing systemd services through a TUI (Terminal User Interfaces)."
+    categories: ["System"]
+    asset_filters: ["^deb"]
+  xan:
+    identifier: "medialab/xan"
+    description: "The CSV magician."
+    categories: ["CSV"]
+  qsv:
+    identifier: "dathere/qsv"
+    description: "Blazing-fast Data-Wrangling toolkit."
+    categories: ["CSV", "Database", "Json"]
