@@ -63,6 +63,12 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					return m, fetchReleasesCmd(selectedItem.Identifier())
 				}
 
+			case key.Matches(msg, keys.ToolsKeys.Browse):
+				selectedItem, ok := m.ToolsListView.SelectedItem().(item.Tool)
+				if ok {
+					return m, openBrowserCmd(selectedItem.Identifier())
+				}
+
 			case key.Matches(msg, keys.ToolsKeys.Version):
 				m.CurrentView = "version"
 				return m, nil
@@ -161,6 +167,13 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 	case processErrMsg:
 		m.ProcessingModel.ViewPort.SetContent(msg.err.Error())
+		return m, nil
+
+	case browserSuccessMsg:
+		return m, nil
+
+	case browserErrMsg:
+		// TODO: handle error
 		return m, nil
 
 	}

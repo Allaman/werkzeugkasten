@@ -6,6 +6,7 @@ type KeyMap struct {
 	Install  key.Binding
 	Releases key.Binding
 	Describe key.Binding
+	Browse   key.Binding
 	Quit     key.Binding
 	Esc      key.Binding
 	Version  key.Binding
@@ -24,6 +25,10 @@ var ToolsKeys = KeyMap{
 		key.WithKeys("r"),
 		key.WithHelp("r", "releases"),
 	),
+	Browse: key.NewBinding(
+		key.WithKeys("b"),
+		key.WithHelp("b", "browse"),
+	),
 	Quit: key.NewBinding(
 		key.WithKeys("q", "ctrl+c"),
 		key.WithHelp("q", "quit"),
@@ -39,11 +44,9 @@ var ToolsKeys = KeyMap{
 }
 
 func (k KeyMap) ShortHelp() []key.Binding {
-	return []key.Binding{k.Install, k.Describe, k.Esc, k.Quit}
+	return []key.Binding{k.Install}
 }
 
-func (k KeyMap) FullHelp() [][]key.Binding {
-	return [][]key.Binding{
-		{k.Install, k.Describe, k.Esc, k.Version, k.Quit},
-	}
+func (k KeyMap) FullHelp() []key.Binding {
+	return []key.Binding{k.Install, k.Describe, k.Releases, k.Browse, k.Esc, k.Version}
 }
