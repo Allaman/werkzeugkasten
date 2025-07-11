@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## What's Changed in 4.3.0
+* fix: Pass GitHub token by @Allaman
+* feat: Add 'browse' by @Allaman
+* fix: Shorthelp and FullHelp in list view by @Allaman
+* docs: Update README by @Allaman
+* docs: Update CHANGELOG by @Allaman
+
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/4.2.3...4.3.0
+
 ## What's Changed in 4.2.3
 * feat(tools): Maintain tool list by @Allaman
 * docs: Update README by @Allaman
