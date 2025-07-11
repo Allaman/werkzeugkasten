@@ -50,13 +50,11 @@ func InitialModel(toolData tool.ToolData, cfg cli.CliConfig) *MainModel {
 
 	l := list.New(items, list.NewDefaultDelegate(), 0, 0)
 	l.Title = "Available Tools"
+	l.AdditionalShortHelpKeys = func() []key.Binding {
+		return keys.ToolsKeys.ShortHelp()
+	}
 	l.AdditionalFullHelpKeys = func() []key.Binding {
-		return []key.Binding{
-			keys.ToolsKeys.Install,
-			keys.ToolsKeys.Releases,
-			keys.ToolsKeys.Describe,
-			keys.ToolsKeys.Version,
-		}
+		return keys.ToolsKeys.FullHelp()
 	}
 
 	view := viewport.New(80, 20)
