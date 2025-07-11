@@ -2,6 +2,7 @@ package model
 
 import (
 	"log/slog"
+	"os"
 
 	"github.com/allaman/werkzeugkasten/tui/item"
 
@@ -10,8 +11,8 @@ import (
 
 func fetchReleasesCmd(identifier string) tea.Cmd {
 	return func() tea.Msg {
-		// TODO: Pass GitHub token
-		releases, err := item.FetchReleases(identifier, "")
+		token := os.Getenv("EGET_GITHUB_TOKEN")
+		releases, err := item.FetchReleases(identifier, token)
 		if err != nil {
 			slog.Debug("error fetching releases", "error", err)
 			return fetchReleasesErrMsg{err: err}
