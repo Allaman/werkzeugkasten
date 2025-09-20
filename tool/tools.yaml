@@ -597,3 +597,21 @@ tools:
     identifier: "dathere/qsv"
     description: "Blazing-fast Data-Wrangling toolkit."
     categories: ["CSV", "Database", "Json"]
+  caddy:
+    identifier: "caddyserver/caddy"
+    description: "Fast and extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS"
+    categories: ["Network"]
+    asset_filters: ["tar.gz", "^sig"]
+  crush:
+    identifier: "charmbracelet/crush"
+    description: "The glamourous AI coding agent for your favourite terminal."
+    categories: ["AI"]
+    asset_filters: ["^sbom"]
+  schema:
+    identifier: "gigagrug/schema"
+    description: "A CLI tool for working with the database | SQLite, libSQL, PostgreSQL, MySQL, MariaDB"
+    categories: ["Development", "Database"]
+  gonzo:
+    identifier: "control-theory/gonzo"
+    description: "Gonzo! The Go based TUI log analysis tool"
+    categories: ["System"]
