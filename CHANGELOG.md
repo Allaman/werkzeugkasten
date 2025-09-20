@@ -1,6 +1,8 @@
-# Changelog
+## What's Changed in 4.3.1
+* feat(tools): Add more tools by @Allaman
+* docs: Update CHANGELOG by @Allaman
 
-All notable changes to this project will be documented in this file.
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/4.3.0...4.3.1
 
 ## What's Changed in 4.3.0
 * fix: Pass GitHub token by @Allaman
