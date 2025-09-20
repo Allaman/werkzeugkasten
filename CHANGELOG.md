@@ -1,3 +1,13 @@
+## What's Changed in 4.4.0
+* chore: Update go and package versions by @Allaman
+
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/4.3.2...4.4.0
+
+## What's Changed in 4.3.2
+* ci: deprecated archives.format in goreleaser by @Allaman
+
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/4.3.1...4.3.2
+
 ## What's Changed in 4.3.1
 * feat(tools): Add more tools by @Allaman
 * docs: Update CHANGELOG by @Allaman
