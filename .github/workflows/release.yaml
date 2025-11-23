@@ -16,7 +16,7 @@ jobs:
     steps:
       # Checkout and set env
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         # It is required for the changelog to work correctly.
         with:
           fetch-depth: 0
