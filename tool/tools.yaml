@@ -645,3 +645,15 @@ tools:
     identifier: "hatoo/oha"
     description: "Ohayou(おはよう), HTTP load generator, inspired by rakyll/hey with tui animation."
     categories: ["Development", "Testing"]
+  fresh:
+    identifier: "sinelaw/fresh"
+    description: "Text editor for your terminal: easy, powerful and fast"
+    categories: ["Text"]
+  pam:
+    identifier: "eduardofuncao/pam"
+    description: "A minimal CLI tool for managing and executing SQL queries across multiple databases. Written in Go, made beautiful with BubbleTea"
+    categories: ["Development", "Database"]
+  whosthere:
+    identifier: "ramonvermeulen/whosthere"
+    description: "Local Area Network discovery tool with a modern Terminal User Interface (TUI) written in Go. Discover, explore, and understand your LAN in an intuitive way. Knock Knock.. who's there? 🚪"
+    categories: ["Network"]
