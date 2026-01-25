@@ -1,3 +1,10 @@
+## What's Changed in 4.4.2
+* chore: Add markdownlint-cli2 config by @Allaman
+* feat: Add more tools by @Allaman
+* docs: Update CHANGELOG by @Allaman
+
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/4.4.1...4.4.2
+
 ## What's Changed in 4.4.1
 * feat(tools): Add more tools by @Allaman
 * docs: Update CHANGELOG by @Allaman
