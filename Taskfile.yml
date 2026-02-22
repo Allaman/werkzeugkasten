@@ -14,7 +14,7 @@ tasks:
       - task: lint
       - task: vet
       - task: build
-      - go install -ldflags "-s -w -X github.com/allaman/werkzeugkasten/cli.Version=0.1.0"
+      - go install -ldflags "-s -w -X github.com/allaman/werkzeugkasten/cli.Version=dev"
 
   build:
     desc: Build App
