@@ -657,3 +657,7 @@ tools:
     identifier: "ramonvermeulen/whosthere"
     description: "Local Area Network discovery tool with a modern Terminal User Interface (TUI) written in Go. Discover, explore, and understand your LAN in an intuitive way. Knock Knock.. who's there? 🚪"
     categories: ["Network"]
+  witr:
+    identifier: "pranshuparmar/witr"
+    description: "Why is this running?"
+    categories: ["System"]
