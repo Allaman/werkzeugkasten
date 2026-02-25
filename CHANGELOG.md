@@ -1,3 +1,13 @@
+## What's Changed in 4.5.0
+* fix: Make README.md fetching more robust by @Allaman
+* feat: Update Bubble Tea, Lip Gloss, and Bubbles to v2 by @Allaman
+* feat: Add tool by @Allaman
+* chore: Update Taskfile by @Allaman
+* chore: Update dependencies by @Allaman
+* docs: Update CHANGELOG by @Allaman
+
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/4.4.2...4.5.0
+
 ## What's Changed in 4.4.2
 * chore: Add markdownlint-cli2 config by @Allaman
 * feat: Add more tools by @Allaman
