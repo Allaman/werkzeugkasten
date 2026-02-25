@@ -45,7 +45,7 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				if ok {
 					m.CurrentView = "detail"
 					m.DetailView.ItemName = selectedItem.Title()
-					return m, fetchReadmeCmd(fmt.Sprintf("https://raw.githubusercontent.com/%s/main/README.md", selectedItem.Identifier()))
+					return m, fetchReadmeCmd(fmt.Sprintf("https://raw.githubusercontent.com/%s/%%s/%%s", selectedItem.Identifier()))
 				}
 
 			case key.Matches(msg, keys.ToolsKeys.Releases):
