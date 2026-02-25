@@ -1,6 +1,6 @@
 package keys
 
-import "github.com/charmbracelet/bubbles/key"
+import "charm.land/bubbles/v2/key"
 
 type KeyMap struct {
 	Install  key.Binding

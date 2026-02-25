@@ -5,7 +5,7 @@ import (
 
 	"github.com/allaman/werkzeugkasten/tui/utils"
 
-	tea "github.com/charmbracelet/bubbletea"
+	tea "charm.land/bubbletea/v2"
 
 	"github.com/charmbracelet/glamour"
 )

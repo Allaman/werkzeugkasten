@@ -10,7 +10,7 @@ import (
 	"github.com/allaman/werkzeugkasten/tool"
 	"github.com/allaman/werkzeugkasten/tui/model"
 
-	tea "github.com/charmbracelet/bubbletea"
+	tea "charm.land/bubbletea/v2"
 )
 
 func main() {
@@ -59,7 +59,7 @@ func main() {
 	}
 	// interactive mode
 	if len(cfg.ToolList) == 0 {
-		p := tea.NewProgram(model.InitialModel(tools, cfg), tea.WithAltScreen())
+		p := tea.NewProgram(model.InitialModel(tools, cfg))
 		if _, err := p.Run(); err != nil {
 			fmt.Printf("Error: %v", err)
 			os.Exit(1)

@@ -3,7 +3,7 @@ package model
 import (
 	"github.com/allaman/werkzeugkasten/tool"
 
-	tea "github.com/charmbracelet/bubbletea"
+	tea "charm.land/bubbletea/v2"
 )
 
 func (m *MainModel) processSelectedItem() tea.Cmd {

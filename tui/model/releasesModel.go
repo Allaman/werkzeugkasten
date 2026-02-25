@@ -6,7 +6,7 @@ import (
 
 	"github.com/allaman/werkzeugkasten/tui/item"
 
-	tea "github.com/charmbracelet/bubbletea"
+	tea "charm.land/bubbletea/v2"
 )
 
 func fetchReleasesCmd(identifier string) tea.Cmd {

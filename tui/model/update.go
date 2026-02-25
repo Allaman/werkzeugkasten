@@ -7,9 +7,9 @@ import (
 	"github.com/allaman/werkzeugkasten/tui/item"
 	"github.com/allaman/werkzeugkasten/tui/keys"
 
-	"github.com/charmbracelet/bubbles/key"
-	"github.com/charmbracelet/bubbles/list"
-	tea "github.com/charmbracelet/bubbletea"
+	"charm.land/bubbles/v2/key"
+	"charm.land/bubbles/v2/list"
+	tea "charm.land/bubbletea/v2"
 )
 
 func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
@@ -17,12 +17,12 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	case tea.WindowSizeMsg:
 		m.ToolsListView.SetWidth(msg.Width)
 		m.ToolsListView.SetHeight(msg.Height)
-		m.DetailView.ViewPort.Width = msg.Width - 4
-		m.DetailView.ViewPort.Height = msg.Height - 4
-		m.ProcessingModel.ViewPort.Width = msg.Width - 4
-		m.ProcessingModel.ViewPort.Height = msg.Height - 4
+		m.DetailView.ViewPort.SetWidth(msg.Width - 4)
+		m.DetailView.ViewPort.SetHeight(msg.Height - 4)
+		m.ProcessingModel.ViewPort.SetWidth(msg.Width - 4)
+		m.ProcessingModel.ViewPort.SetHeight(msg.Height - 4)
 
-	case tea.KeyMsg:
+	case tea.KeyPressMsg:
 		if m.ToolsListView.FilterState() == list.Filtering {
 			break
 		}

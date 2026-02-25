@@ -3,24 +3,32 @@ package model
 import (
 	"fmt"
 
+	tea "charm.land/bubbletea/v2"
+
 	"github.com/allaman/werkzeugkasten/tui/keys"
 )
 
-func (m *MainModel) View() string {
+func (m *MainModel) View() tea.View {
+	var content string
 	switch m.CurrentView {
 	case "tools":
-		return m.ToolsListView.View()
+		content = m.ToolsListView.View()
 	case "detail":
 		helpView := m.DetailView.Help.View(keys.DetailKeys)
-		return fmt.Sprintf("%s\n%s\n%s\n%s", m.headerView(), m.DetailView.ViewPort.View(), m.footerView(), helpView)
+		content = fmt.Sprintf("%s\n%s\n%s\n%s", m.headerView(), m.DetailView.ViewPort.View(), m.footerView(), helpView)
 	case "releases":
-		return m.ReleasesListView.View()
+		content = m.ReleasesListView.View()
 	case "processing":
 		helpView := m.ProcessingModel.Help.View(keys.ProcessingKeys)
-		return fmt.Sprintf("%s\n%s\n%s\n%s", m.headerView(), m.ProcessingModel.ViewPort.View(), m.footerView(), helpView)
+		content = fmt.Sprintf("%s\n%s\n%s\n%s", m.headerView(), m.ProcessingModel.ViewPort.View(), m.footerView(), helpView)
 	case "version":
-		return fmt.Sprintf("%s\n%s\n%s", m.headerView(), m.showVersion(), m.footerView())
+		content = fmt.Sprintf("%s\n%s\n%s", m.headerView(), m.showVersion(), m.footerView())
 	default:
-		return "Unknown view"
+		content = "Unknown view"
 	}
+
+	view := tea.NewView(content)
+	view.AltScreen = true
+	view.WindowTitle = "Werkzeugkasten"
+	return view
 }

@@ -9,13 +9,13 @@ import (
 	"github.com/allaman/werkzeugkasten/tui/item"
 	"github.com/allaman/werkzeugkasten/tui/keys"
 	"github.com/allaman/werkzeugkasten/tui/styles"
-	"github.com/charmbracelet/lipgloss"
+	"charm.land/lipgloss/v2"
 
-	"github.com/charmbracelet/bubbles/help"
-	"github.com/charmbracelet/bubbles/key"
-	"github.com/charmbracelet/bubbles/list"
-	"github.com/charmbracelet/bubbles/viewport"
-	tea "github.com/charmbracelet/bubbletea"
+	"charm.land/bubbles/v2/help"
+	"charm.land/bubbles/v2/key"
+	"charm.land/bubbles/v2/list"
+	"charm.land/bubbles/v2/viewport"
+	tea "charm.land/bubbletea/v2"
 )
 
 type MainModel struct {
@@ -57,7 +57,7 @@ func InitialModel(toolData tool.ToolData, cfg cli.CliConfig) *MainModel {
 		return keys.ToolsKeys.FullHelp()
 	}
 
-	view := viewport.New(80, 20)
+	view := viewport.New(viewport.WithWidth(80), viewport.WithHeight(20))
 
 	return &MainModel{
 		config:           cfg,
@@ -75,7 +75,7 @@ func (m MainModel) headerView() string {
 	var title, line string
 	if m.CurrentView == "detail" {
 		title = styles.TitleStyle.Render("README of", m.DetailView.ItemName)
-		line = strings.Repeat("─", max(0, m.DetailView.ViewPort.Width-lipgloss.Width(title)))
+		line = strings.Repeat("─", max(0, m.DetailView.ViewPort.Width()-lipgloss.Width(title)))
 	}
 	if m.CurrentView == "processing" {
 		title = styles.TitleStyle.Render("Installing", m.ProcessingModel.ItemName)
@@ -87,7 +87,7 @@ func (m MainModel) footerView() string {
 	var info, line string
 	if m.CurrentView == "detail" {
 		info = styles.InfoStyle.Render(fmt.Sprintf("%3.f%%", m.DetailView.ViewPort.ScrollPercent()*100))
-		line = strings.Repeat("─", max(0, m.DetailView.ViewPort.Width-lipgloss.Width(info)))
+		line = strings.Repeat("─", max(0, m.DetailView.ViewPort.Width()-lipgloss.Width(info)))
 	}
 	return lipgloss.JoinHorizontal(lipgloss.Center, line, info)
 }
@@ -97,5 +97,5 @@ func (m *MainModel) showVersion() string {
 }
 
 func (m MainModel) Init() tea.Cmd {
-	return tea.SetWindowTitle("Werkzeugkasten")
+	return nil
 }
