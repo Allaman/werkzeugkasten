@@ -9,7 +9,6 @@ import (
 	"log/slog"
 	"net/http"
 	"os"
-	"path"
 	"path/filepath"
 	"runtime"
 	"strings"
@@ -51,7 +50,7 @@ func downloadEgetBinary(dir string, c egetConfig) error {
 	if err := createDir(tmpDir); err != nil {
 		return err
 	}
-	egetTar := path.Join(tmpDir, "eget.tar.gz")
+	egetTar := filepath.Join(tmpDir, "eget.tar.gz")
 	err = downloadFile(url, egetTar)
 	if err != nil {
 		return err
@@ -60,11 +59,11 @@ func downloadEgetBinary(dir string, c egetConfig) error {
 	if err != nil {
 		return err
 	}
-	err = makeExecutable(path.Join(tmpDir, "eget"))
+	err = makeExecutable(filepath.Join(tmpDir, "eget"))
 	if err != nil {
 		return err
 	}
-	err = rename(path.Join(tmpDir, "eget"), path.Join(dir, "eget"))
+	err = rename(filepath.Join(tmpDir, "eget"), filepath.Join(dir, "eget"))
 	if err != nil {
 		return err
 	}
@@ -184,7 +183,7 @@ func rename(source, dest string) error {
 }
 
 func InstallEget(installDir string) {
-	if _, err := os.Stat(path.Join(installDir, "eget")); errors.Is(err, os.ErrNotExist) {
+	if _, err := os.Stat(filepath.Join(installDir, "eget")); errors.Is(err, os.ErrNotExist) {
 		egetConfig := newDefaultEgetConfig()
 		if os.Getenv("WK_EGET_VERSION") != "" {
 			version := os.Getenv("WK_EGET_VERSION")
