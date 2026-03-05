@@ -173,7 +173,10 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		return m, nil
 
 	case browserErrMsg:
-		// TODO: handle error
+		m.CurrentView = "processing"
+		m.ProcessingModel.ItemName = "browser"
+		m.ProcessingModel.ViewPort.SetContent("Could not open browser:\n" + msg.err.Error())
+		m.ProcessingModel.ViewPort.GotoTop()
 		return m, nil
 
 	}
