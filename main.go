@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log/slog"
 	"os"
 	"time"
@@ -61,7 +60,7 @@ func main() {
 	if len(cfg.ToolList) == 0 {
 		p := tea.NewProgram(model.InitialModel(tools, cfg))
 		if _, err := p.Run(); err != nil {
-			fmt.Printf("Error: %v", err)
+			slog.Error("program exited with error", "error", err)
 			os.Exit(1)
 		}
 	} else {

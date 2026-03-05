@@ -31,6 +31,6 @@ func Update(currentVersion string) error {
 	if err := selfupdate.UpdateTo(context.Background(), latest.AssetURL, latest.AssetName, exe); err != nil {
 		return fmt.Errorf("error occurred while updating binary: %w", err)
 	}
-	slog.Info(fmt.Sprintf("Successfully updated to version %s", latest.Version()))
+	slog.Info("successfully updated", "version", latest.Version())
 	return nil
 }
