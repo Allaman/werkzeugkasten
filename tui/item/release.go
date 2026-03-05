@@ -2,6 +2,7 @@ package item
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -39,7 +40,7 @@ type FetchRelease struct {
 
 // FetchReleases fetches releases for a GitHub repository
 // If token is an empty string, the request will be made without authentication
-func FetchReleases(identifier, token string) ([]FetchRelease, error) {
+func FetchReleases(identifier, token string) (releases []FetchRelease, err error) {
 	// NOTE: 100 is max per_page. For more, pagination is needed.
 	url := fmt.Sprintf("https://api.github.com/repos/%s/releases?per_page=100", identifier)
 
@@ -66,9 +67,7 @@ func FetchReleases(identifier, token string) ([]FetchRelease, error) {
 	}
 	defer func() {
 		if closeErr := resp.Body.Close(); closeErr != nil {
-			if err == nil {
-				err = fmt.Errorf("error closing response body: %w", closeErr)
-			}
+			err = errors.Join(err, fmt.Errorf("close response body: %w", closeErr))
 		}
 	}()
 
@@ -77,7 +76,6 @@ func FetchReleases(identifier, token string) ([]FetchRelease, error) {
 		return nil, fmt.Errorf("GitHub API returned non-200 status: %d - %s", resp.StatusCode, string(body))
 	}
 
-	var releases []FetchRelease
 	if err := json.NewDecoder(resp.Body).Decode(&releases); err != nil {
 		return nil, fmt.Errorf("failed to decode response: %w", err)
 	}
