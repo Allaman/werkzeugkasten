@@ -30,8 +30,8 @@ func newDefaultEgetConfig() egetConfig {
 func createDir(path string) error {
 	if _, err := os.Stat(path); errors.Is(err, os.ErrNotExist) {
 		slog.Debug(fmt.Sprintf("creating directory in %s", path))
-		if err := os.MkdirAll(path, 0777); err != nil {
-			return fmt.Errorf("could not create directory %s", path)
+		if err := os.MkdirAll(path, 0o755); err != nil {
+			return fmt.Errorf("could not create directory %s: %w", path, err)
 		}
 	}
 	return nil
@@ -151,12 +151,12 @@ func extractTarGz(filePath, destPath string, stripComponents int) error {
 		// Check the type of the file
 		switch header.Typeflag {
 		case tar.TypeDir: // if it's a directory
-			if err := os.MkdirAll(path, 0755); err != nil {
+			if err := os.MkdirAll(path, 0o755); err != nil {
 				return err
 			}
 		case tar.TypeReg: // if it's a file
 			// Create all directories for the file
-			if err := os.MkdirAll(filepath.Dir(path), 0755); err != nil {
+			if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
 				return err
 			}
 			// Create the file
@@ -176,7 +176,7 @@ func extractTarGz(filePath, destPath string, stripComponents int) error {
 }
 
 func makeExecutable(filePath string) error {
-	return os.Chmod(filePath, 0755)
+	return os.Chmod(filePath, 0o755)
 }
 
 func rename(source, dest string) error {
