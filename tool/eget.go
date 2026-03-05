@@ -203,7 +203,7 @@ func InstallEget(installDir string) error {
 			return fmt.Errorf("could not download eget binary: %w", err)
 		}
 	} else {
-		slog.Debug("eget allready downloaded")
+		slog.Debug("eget already downloaded")
 	}
 	return nil
 }
