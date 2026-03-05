@@ -65,9 +65,17 @@ func main() {
 		}
 	} else {
 		// non-interactive mode
-		tool.InstallEget(cfg.DownloadDir)
+		if err := tool.InstallEget(cfg.DownloadDir); err != nil {
+			slog.Error("could not install eget", "error", err)
+			os.Exit(1)
+		}
 		for _, toolName := range cfg.ToolList {
-			err = tool.DownloadToolWithEget(cfg.DownloadDir, tools.Tools[toolName])
+			toolDef, ok := tools.Tools[toolName]
+			if !ok {
+				slog.Warn("unknown tool requested", "tool", toolName)
+				continue
+			}
+			err = tool.DownloadToolWithEget(cfg.DownloadDir, toolDef)
 			if err != nil {
 				slog.Warn("could not download tool", "tool", toolName, "error", err)
 				continue
