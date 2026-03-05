@@ -661,3 +661,7 @@ tools:
     identifier: "pranshuparmar/witr"
     description: "Why is this running?"
     categories: ["System"]
+  lnav:
+    identifier: "tstack/lnav"
+    description: "Log file navigator"
+    categories: ["System"]
