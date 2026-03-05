@@ -14,7 +14,7 @@ import (
 )
 
 func main() {
-	cfg := cli.Cli()
+	cfg := cli.CLI()
 	if cfg.Debug {
 		opts := &slog.HandlerOptions{
 			Level:     slog.LevelDebug,

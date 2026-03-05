@@ -26,7 +26,7 @@ type MainModel struct {
 	ReleasesListView list.Model
 	ProcessingModel  Output
 	ToolData         tool.ToolData
-	config           cli.CliConfig
+	config           cli.CLIConfig
 	version          string
 }
 
@@ -38,7 +38,7 @@ type Output struct {
 	Help     help.Model
 }
 
-func InitialModel(toolData tool.ToolData, cfg cli.CliConfig) *MainModel {
+func InitialModel(toolData tool.ToolData, cfg cli.CLIConfig) *MainModel {
 	items := make([]list.Item, 0, len(toolData.Tools))
 	sortedTools := tool.SortTools(toolData)
 

@@ -11,7 +11,7 @@ import (
 // will be overwritten in release pipeline
 var Version = "dev"
 
-type CliConfig struct {
+type CLIConfig struct {
 	Category    string
 	Debug       bool
 	DownloadDir string
@@ -30,8 +30,8 @@ func (s *toolList) Set(value string) error {
 	return nil
 }
 
-func Cli() CliConfig {
-	var cliFlags CliConfig
+func CLI() CLIConfig {
+	var cliFlags CLIConfig
 	var toolList toolList
 	helpFlag := flag.Bool("help", false, "Print help message")
 	versionFlag := flag.Bool("version", false, "Print version")
