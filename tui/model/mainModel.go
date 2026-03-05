@@ -4,12 +4,12 @@ import (
 	"fmt"
 	"strings"
 
+	"charm.land/lipgloss/v2"
 	"github.com/allaman/werkzeugkasten/cli"
 	"github.com/allaman/werkzeugkasten/tool"
 	"github.com/allaman/werkzeugkasten/tui/item"
 	"github.com/allaman/werkzeugkasten/tui/keys"
 	"github.com/allaman/werkzeugkasten/tui/styles"
-	"charm.land/lipgloss/v2"
 
 	"charm.land/bubbles/v2/help"
 	"charm.land/bubbles/v2/key"

@@ -1,8 +1,8 @@
 package model
 
 import (
-	"github.com/allaman/werkzeugkasten/tui/item"
 	tea "charm.land/bubbletea/v2"
+	"github.com/allaman/werkzeugkasten/tui/item"
 )
 
 func openBrowserCmd(identifier string) tea.Cmd {
