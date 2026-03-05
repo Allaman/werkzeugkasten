@@ -3,6 +3,7 @@ package tool
 import (
 	"archive/tar"
 	"compress/gzip"
+	"context"
 	"errors"
 	"fmt"
 	"io"
@@ -12,6 +13,7 @@ import (
 	"path/filepath"
 	"runtime"
 	"strings"
+	"time"
 )
 
 type egetConfig struct {
@@ -82,15 +84,21 @@ func downloadFile(url, filepath string) error {
 	}
 	defer out.Close()
 
+	client := &http.Client{Timeout: 30 * time.Second}
+	req, err := http.NewRequestWithContext(context.Background(), http.MethodGet, url, nil)
+	if err != nil {
+		return err
+	}
+
 	// Get the data
-	resp, err := http.Get(url)
+	resp, err := client.Do(req)
 	if err != nil {
 		return err
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		return fmt.Errorf("download of %s failed with status %d and error %s", url, resp.StatusCode, err)
+		return fmt.Errorf("download of %s failed with status %d", url, resp.StatusCode)
 	}
 	// Write the body to file
 	_, err = io.Copy(out, resp.Body)
