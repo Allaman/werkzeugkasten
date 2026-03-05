@@ -1,3 +1,21 @@
+## What's Changed in 4.5.1
+* feat: New tool by @Allaman
+* fix: Use named returns in FetchReleases() by @Allaman
+* fix: Use http.MethodGet instead of string GET by @Allaman
+* chore: typo by @Allaman
+* fix: InstallEget returns an error instead of exiting by @Allaman
+* fix: timeout handling by @Allaman
+* fix: Use filepath.Join instead of path.Join for cross-compatibility by @Allaman
+* fix: Explicite octal mode for permissions by @Allaman
+* chore: Use slog instead of fmt by @Allaman
+* fix: Handle browserErrMsg by @Allaman
+* chore: Sort imports by @Allaman
+* fix: exec.Command more robust arg building by @Allaman
+* chore: Idiomatic names by @Allaman
+* docs: Update CHANGELOG by @Allaman
+
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/4.5.0...4.5.1
+
 ## What's Changed in 4.5.0
 * fix: Make README.md fetching more robust by @Allaman
 * feat: Update Bubble Tea, Lip Gloss, and Bubbles to v2 by @Allaman
