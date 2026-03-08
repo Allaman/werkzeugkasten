@@ -1,3 +1,11 @@
+## What's Changed in 4.6.0
+* docs: Update README by @Allaman
+* feat(tui): Add filter by category by @Allaman
+* docs: Update README by @Allaman
+* docs: Update CHANGELOG by @Allaman
+
+**Full Changelog**: https://github.com/allaman/werkzeugkasten/compare/4.5.1...4.6.0
+
 ## What's Changed in 4.5.1
 * feat: New tool by @Allaman
 * fix: Use named returns in FetchReleases() by @Allaman
