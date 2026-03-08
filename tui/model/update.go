@@ -17,13 +17,15 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	case tea.WindowSizeMsg:
 		m.ToolsListView.SetWidth(msg.Width)
 		m.ToolsListView.SetHeight(msg.Height)
+		m.CategoriesListView.SetWidth(msg.Width)
+		m.CategoriesListView.SetHeight(msg.Height)
 		m.DetailView.ViewPort.SetWidth(msg.Width - 4)
 		m.DetailView.ViewPort.SetHeight(msg.Height - 4)
 		m.ProcessingModel.ViewPort.SetWidth(msg.Width - 4)
 		m.ProcessingModel.ViewPort.SetHeight(msg.Height - 4)
 
 	case tea.KeyPressMsg:
-		if m.ToolsListView.FilterState() == list.Filtering {
+		if m.ToolsListView.FilterState() == list.Filtering || m.CategoriesListView.FilterState() == list.Filtering {
 			break
 		}
 
@@ -31,6 +33,10 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 
 		case "tools":
 			switch {
+
+			case key.Matches(msg, keys.ToolsKeys.Category):
+				m.CurrentView = "categories"
+				return m, nil
 
 			case key.Matches(msg, keys.ToolsKeys.Install):
 				selectedItem, ok := m.ToolsListView.SelectedItem().(item.Tool)
@@ -127,6 +133,21 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				m.CurrentView = "tools"
 				return m, nil
 			}
+
+		case "categories":
+			switch {
+			case key.Matches(msg, keys.CategoryKeys.Select):
+				selectedItem, ok := m.CategoriesListView.SelectedItem().(item.Category)
+				if ok {
+					m.ActiveCategory = selectedItem.Name
+					m.ToolsListView = buildToolsList(m.ToolData, m.ActiveCategory, m.ToolsListView.Width(), m.ToolsListView.Height())
+					m.CurrentView = "tools"
+					return m, nil
+				}
+			case key.Matches(msg, keys.CategoryKeys.Esc):
+				m.CurrentView = "tools"
+				return m, nil
+			}
 		}
 
 	case fetchReadmeSuccessMsg:
@@ -196,6 +217,12 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		m.ReleasesListView = newReleasesListView
 		if releasesCmd != nil {
 			cmds = append(cmds, releasesCmd)
+		}
+	case "categories":
+		newCategoriesListView, categoriesCmd := m.CategoriesListView.Update(msg)
+		m.CategoriesListView = newCategoriesListView
+		if categoriesCmd != nil {
+			cmds = append(cmds, categoriesCmd)
 		}
 	}
 

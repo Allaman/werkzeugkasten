@@ -10,6 +10,7 @@ type KeyMap struct {
 	Quit     key.Binding
 	Esc      key.Binding
 	Version  key.Binding
+	Category key.Binding
 }
 
 var ToolsKeys = KeyMap{
@@ -41,6 +42,10 @@ var ToolsKeys = KeyMap{
 		key.WithKeys("v"),
 		key.WithHelp("v", "version"),
 	),
+	Category: key.NewBinding(
+		key.WithKeys("c"),
+		key.WithHelp("c", "filter by category"),
+	),
 }
 
 func (k KeyMap) ShortHelp() []key.Binding {
@@ -48,5 +53,5 @@ func (k KeyMap) ShortHelp() []key.Binding {
 }
 
 func (k KeyMap) FullHelp() []key.Binding {
-	return []key.Binding{k.Install, k.Describe, k.Releases, k.Browse, k.Esc, k.Version}
+	return []key.Binding{k.Install, k.Describe, k.Releases, k.Browse, k.Category, k.Esc, k.Version}
 }

@@ -18,6 +18,8 @@ func (m *MainModel) View() tea.View {
 		content = fmt.Sprintf("%s\n%s\n%s\n%s", m.headerView(), m.DetailView.ViewPort.View(), m.footerView(), helpView)
 	case "releases":
 		content = m.ReleasesListView.View()
+	case "categories":
+		content = m.CategoriesListView.View()
 	case "processing":
 		helpView := m.ProcessingModel.Help.View(keys.ProcessingKeys)
 		content = fmt.Sprintf("%s\n%s\n%s\n%s", m.headerView(), m.ProcessingModel.ViewPort.View(), m.footerView(), helpView)

@@ -2,6 +2,7 @@ package model
 
 import (
 	"fmt"
+	"slices"
 	"strings"
 
 	"charm.land/lipgloss/v2"
@@ -19,15 +20,17 @@ import (
 )
 
 type MainModel struct {
-	CurrentView      string
-	ToolsListView    list.Model
-	SelectedTool     item.Tool
-	DetailView       Output
-	ReleasesListView list.Model
-	ProcessingModel  Output
-	ToolData         tool.ToolData
-	config           cli.CLIConfig
-	version          string
+	CurrentView        string
+	ToolsListView      list.Model
+	SelectedTool       item.Tool
+	DetailView         Output
+	ReleasesListView   list.Model
+	CategoriesListView list.Model
+	ActiveCategory     string
+	ProcessingModel    Output
+	ToolData           tool.ToolData
+	config             cli.CLIConfig
+	version            string
 }
 
 type Output struct {
@@ -38,36 +41,75 @@ type Output struct {
 	Help     help.Model
 }
 
-func InitialModel(toolData tool.ToolData, cfg cli.CLIConfig) *MainModel {
-	items := make([]list.Item, 0, len(toolData.Tools))
-	sortedTools := tool.SortTools(toolData)
-
-	for _, tool := range sortedTools {
-		identifier := toolData.Tools[tool].Identifier
-		description := toolData.Tools[tool].Description
-		items = append(items, item.NewItem(tool, identifier, description))
+func buildToolsList(toolData tool.ToolData, category string, width, height int) list.Model {
+	filteredData := toolData
+	if category != "" && category != "All" {
+		filteredData = tool.GetToolsByCategory(category, toolData)
 	}
 
-	l := list.New(items, list.NewDefaultDelegate(), 0, 0)
+	sortedTools := tool.SortTools(filteredData)
+	items := make([]list.Item, 0, len(filteredData.Tools))
+	for _, t := range sortedTools {
+		identifier := filteredData.Tools[t].Identifier
+		description := filteredData.Tools[t].Description
+		items = append(items, item.NewItem(t, identifier, description))
+	}
+
+	l := list.New(items, list.NewDefaultDelegate(), width, height)
 	l.Title = "Available Tools"
+	if category != "" && category != "All" {
+		l.Title = fmt.Sprintf("Available Tools [%s]", category)
+	}
 	l.AdditionalShortHelpKeys = func() []key.Binding {
 		return keys.ToolsKeys.ShortHelp()
 	}
 	l.AdditionalFullHelpKeys = func() []key.Binding {
 		return keys.ToolsKeys.FullHelp()
 	}
+	return l
+}
+
+func buildCategoriesList(toolData tool.ToolData, width, height int) list.Model {
+	categories := tool.GetCategories(toolData)
+	sortedCategories := make([]string, 0, len(categories))
+	for k := range categories {
+		sortedCategories = append(sortedCategories, k)
+	}
+	slices.Sort(sortedCategories)
+
+	items := make([]list.Item, 0, len(categories)+1)
+	items = append(items, item.Category{Name: "All", Count: len(toolData.Tools)})
+	for _, c := range sortedCategories {
+		items = append(items, item.Category{Name: c, Count: categories[c]})
+	}
+
+	l := list.New(items, list.NewDefaultDelegate(), width, height)
+	l.Title = "Categories"
+	l.AdditionalShortHelpKeys = func() []key.Binding {
+		return keys.CategoryKeys.ShortHelp()
+	}
+	l.AdditionalFullHelpKeys = func() []key.Binding {
+		return keys.CategoryKeys.ShortHelp()
+	}
+	return l
+}
+
+func InitialModel(toolData tool.ToolData, cfg cli.CLIConfig) *MainModel {
+	l := buildToolsList(toolData, "", 0, 0)
+	cl := buildCategoriesList(toolData, 0, 0)
 
 	view := viewport.New(viewport.WithWidth(80), viewport.WithHeight(20))
 
 	return &MainModel{
-		config:           cfg,
-		CurrentView:      "tools",
-		ToolsListView:    l,
-		ToolData:         toolData,
-		DetailView:       Output{ViewPort: view, Help: help.New()},
-		ReleasesListView: list.New([]list.Item{}, list.NewDefaultDelegate(), 0, 0),
-		ProcessingModel:  Output{ViewPort: view, Help: help.New()},
-		version:          cli.Version,
+		config:             cfg,
+		CurrentView:        "tools",
+		ToolsListView:      l,
+		CategoriesListView: cl,
+		ToolData:           toolData,
+		DetailView:         Output{ViewPort: view, Help: help.New()},
+		ReleasesListView:   list.New([]list.Item{}, list.NewDefaultDelegate(), 0, 0),
+		ProcessingModel:    Output{ViewPort: view, Help: help.New()},
+		version:            cli.Version,
 	}
 }
 
