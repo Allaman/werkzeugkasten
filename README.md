@@ -125,7 +125,19 @@ Flags:
 
 Werkzeugkasten supports an **interactive** mode and a **non-interactive** mode.
 
-- `werkzeugkasten` will start in interactive mode where you select your tools (and version) you want to install from a searchable list.
+- `werkzeugkasten` will start in interactive mode. Key bindings:
+
+  | Key         | Action                                                                       |
+  | ----------- | ---------------------------------------------------------------------------- |
+  | `i`         | Install the selected tool                                                    |
+  | `d`         | Open the tool's README in the TUI                                            |
+  | `r`         | Browse releases and install a specific version                               |
+  | `b`         | Open the tool's repository in the browser                                    |
+  | `c`         | Open the categories view to filter tools by category (select "All" to clear) |
+  | `v`         | Show the current werkzeugkasten version                                      |
+  | `/`         | Text-search within the current (filtered) list                               |
+  | `?`         | Unfold help footer                                                           |
+  | `q` / `ESC` | Quit                                                                         |
 
 - `werkzeugkasten -tool age -tool kustomize` will download age and kustomize (latest release for both).
 
