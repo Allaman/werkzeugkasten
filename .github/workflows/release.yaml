@@ -33,3 +33,24 @@ jobs:
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
+
+  changelog:
+    name: Generate changelog
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Generate changelog
+        uses: orhun/git-cliff-action@v4
+        env:
+          OUTPUT: CHANGELOG.md
+          GITHUB_REPO: ${{ github.repository }}
+
+      - name: Commit changelog
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          commit_message: "docs: Update CHANGELOG"
+          file_pattern: CHANGELOG.md
