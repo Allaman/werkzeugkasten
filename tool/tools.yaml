@@ -674,3 +674,7 @@ tools:
     description: "CLI tool and library for generating a Software Bill of Materials from container images and filesystems"
     categories: ["Development", "Docker"]
     asset_filters: ["^sbom"]
+  mdterm:
+    identifier: "bahdotsh/mdterm"
+    description: "A terminal-based Markdown viewer written in Rust. Renders Markdown files with syntax highlighting, styled formatting, and interactive navigation."
+    categories: ["Markdown"]
