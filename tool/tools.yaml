@@ -665,3 +665,7 @@ tools:
     identifier: "tstack/lnav"
     description: "Log file navigator"
     categories: ["System"]
+  gype:
+    identifier: "anchore/grype"
+    description: "A vulnerability scanner for container images and filesystems"
+    categories: ["Docker", "Validation", "Security"]
