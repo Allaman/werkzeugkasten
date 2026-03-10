@@ -669,3 +669,8 @@ tools:
     identifier: "anchore/grype"
     description: "A vulnerability scanner for container images and filesystems"
     categories: ["Docker", "Validation", "Security"]
+  syft:
+    identifier: "anchore/syft"
+    description: "CLI tool and library for generating a Software Bill of Materials from container images and filesystems"
+    categories: ["Development", "Docker"]
+    asset_filters: ["^sbom"]
