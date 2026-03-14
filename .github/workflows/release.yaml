@@ -41,7 +41,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
         with:
-          ref: ${{ github.head_ref || github.ref_name }}
+          ref: main
 
       - name: Generate changelog
         uses: orhun/git-cliff-action@v4
