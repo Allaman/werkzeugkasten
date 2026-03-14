@@ -54,4 +54,4 @@ jobs:
         with:
           commit_message: "docs: Update CHANGELOG"
           file_pattern: CHANGELOG.md
-          branch: ${{ github.ref_name }}
+          branch: main
