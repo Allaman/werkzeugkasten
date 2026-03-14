@@ -3,28 +3,28 @@ tools:
   kustomize:
     identifier: "kubernetes-sigs/kustomize"
     description: "Customization of kubernetes YAML configurations."
-    categories: ["Kubernetes", "GitOps"]
+    categories: ["DevOps"]
   flux2:
     identifier: "fluxcd/flux2"
     description: "Open and extensible continuous delivery solution for Kubernetes. Powered by GitOps Toolkit."
-    categories: ["Kubernetes", "GitOps"]
+    categories: ["DevOps"]
   k6:
     identifier: "grafana/k6"
     description: "A modern load testing tool, using Go and JavaScript."
-    categories: ["Development", "Testing"]
+    categories: ["Development"]
   kubeconform:
     identifier: "yannh/kubeconform"
     description: "A FAST Kubernetes manifests validator, with support for Custom Resources!"
-    categories: ["Kubernetes", "Validation"]
+    categories: ["DevOps"]
   kubent:
     identifier: "doitintl/kube-no-trouble"
     description: "Easily check your clusters for use of deprecated APIs."
-    categories: ["Kubernetes", "Validation"]
+    categories: ["DevOps"]
   kyverno:
     identifier: "kyverno/kyverno"
     description: "Kubernetes Native Policy Management."
     asset_filters: ["^sig", "^pem", ".tar.gz"]
-    categories: ["Kubernetes", "Validation"]
+    categories: ["DevOps"]
   fd:
     identifier: "sharkdp/fd"
     description: "A simple, fast and user-friendly alternative to 'find'."
@@ -48,11 +48,11 @@ tools:
   gojq:
     identifier: "itchyny/gojq"
     description: "Pure Go implementation of jq."
-    categories: ["Json"]
+    categories: ["Data"]
   jaq:
     identifier: "01mf02/jaq"
     description: "A jq clone focussed on correctness, speed, and simplicity."
-    categories: ["Json"]
+    categories: ["Data"]
   bottom:
     identifier: "ClementTsang/bottom"
     description: "Yet another cross-platform graphical process/system monitor."
@@ -104,16 +104,16 @@ tools:
   polaris:
     identifier: "FairwindsOps/polaris"
     description: "Validation of best practices in your Kubernetes clusters."
-    categories: ["Kubernetes", "Validation"]
+    categories: ["DevOps"]
   yamlfmt:
     identifier: "google/yamlfmt"
     description: "An extensible command line tool or library to format yaml files."
-    categories: ["Yaml"]
+    categories: ["Data"]
   kube-linter:
     identifier: "stackrox/kube-linter"
     description: "KubeLinter is a static analysis tool that checks Kubernetes YAML files and Helm charts to ensure the applications represented in them adhere to best practices."
     asset_filters: [".tar.gz"]
-    categories: ["Kubernetes", "Validation"]
+    categories: ["DevOps"]
   lazygit:
     identifier: "jesseduffield/lazygit"
     description: "simple terminal UI for git commands."
@@ -122,11 +122,11 @@ tools:
     identifier: "derailed/k9s"
     description: "Kubernetes CLI To Manage Your Clusters In Style!"
     asset_filters: ["^sbom"]
-    categories: ["Kubernetes"]
+    categories: ["DevOps"]
   lazydocker:
     identifier: "jesseduffield/lazydocker"
     description: "The lazier way to manage everything docker."
-    categories: ["Docker"]
+    categories: ["DevOps"]
   gping:
     identifier: "orf/gping"
     description: "Ping, but with a graph."
@@ -134,15 +134,15 @@ tools:
   stern:
     identifier: "stern/stern"
     description: "Multi pod and container log tailing for Kubernetes."
-    categories: ["Kubernetes", "Development"]
+    categories: ["DevOps", "Development"]
   lazysql:
     identifier: "jorgerojas26/lazysql"
     description: "A cross-platform TUI database management tool written in Go."
-    categories: ["Development", "Database"]
+    categories: ["Database"]
   dive:
     identifier: "wagoodman/dive"
     description: "A tool for exploring each layer in a docker image."
-    categories: ["Docker"]
+    categories: ["DevOps"]
   yazi:
     identifier: "sxyazi/yazi"
     description: "Blazing fast terminal file manager written in Rust, based on async I/O."
@@ -151,7 +151,7 @@ tools:
     identifier: "charmbracelet/glow"
     description: "Render markdown on the CLI, with pizzazz!"
     asset_filters: ["^sbom"]
-    categories: ["Markdown"]
+    categories: ["Data"]
   lf:
     identifier: "gokcehan/lf"
     description: "Terminal file manager."
@@ -186,24 +186,24 @@ tools:
   miller:
     identifier: "johnkerl/miller"
     description: "Miller is like awk, sed, cut, join, and sort for name-indexed data such as CSV, TSV, and tabular JSON."
-    categories: ["CSV"]
+    categories: ["Data"]
   xsv:
     identifier: "BurntSushi/xsv"
     description: "A fast CSV command line toolkit written in Rust. (archived)"
-    categories: ["CSV"]
+    categories: ["Data"]
   terrascan:
     identifier: "tenable/terrascan"
     description: "Detect compliance and security violations across Infrastructure as Code to mitigate risk before provisioning cloud native infrastructure."
-    categories: ["Cloud"]
+    categories: ["Cloud", "Security"]
   tfsec:
     identifier: "aquasecurity/tfsec"
     description: "Security scanner for your Terraform code."
     asset_filters: ["^checkgen", "^sig", "^tar.gz"]
-    categories: ["Cloud"]
+    categories: ["Cloud", "Security"]
   argocd:
     identifier: "argoproj/argo-cd"
     description: "Declarative Continuous Deployment for Kubernetes."
-    categories: ["Kubernetes", "GitOps"]
+    categories: ["DevOps"]
   dog:
     identifier: "ogham/dog"
     description: "A command-line DNS client."
@@ -220,36 +220,36 @@ tools:
   gron:
     identifier: "tomnomnom/gron"
     description: "Make JSON greppable!"
-    categories: ["Json"]
+    categories: ["Data"]
   helm:
     identifier: "https://get.helm.sh/helm-v3.12.3-OSNAME-ARCH.tar.gz"
     description: "The Kubernetes Package Manager."
     file: "helm"
-    categories: ["Kubernetes"]
+    categories: ["DevOps"]
   hurl:
     identifier: "Orange-OpenSource/hurl"
     description: "Hurl, run and test HTTP requests with plain text."
-    categories: ["Development", "Testing"]
+    categories: ["Development", "Network"]
   kubeseal:
     identifier: "bitnami-labs/sealed-secrets"
     description: "A Kubernetes controller and tool for one-way encrypted Secrets."
     asset_filters: ["^sig"]
     file: "kubeseal"
-    categories: ["Kubernetes"]
+    categories: ["DevOps", "Security"]
   enc:
     identifier: "life4/enc"
     description: "A modern and friendly CLI alternative to GnuPG: generate and download keys, encrypt, decrypt, and sign text and files, and more."
-    categories: ["System"]
+    categories: ["System", "Security"]
   age:
     identifier: "FiloSottile/age"
     description: "A simple, modern and secure encryption tool (and Go library) with small explicit keys, no config options, and UNIX-style composability."
     asset_filters: ["^proof"]
-    categories: ["System"]
+    categories: ["System", "Security"]
   podman:
     identifier: "containers/podman"
     description: "Podman: A tool for managing OCI containers and pods."
     asset_filters: ["^pkg"]
-    categories: ["Docker"]
+    categories: ["DevOps"]
   bandwhich:
     identifier: "imsnif/bandwhich"
     description: "Terminal bandwidth utilization tool."
@@ -266,7 +266,7 @@ tools:
     identifier: "aquasecurity/trivy"
     description: "Find vulnerabilities, misconfigurations, secrets, SBOM in containers, Kubernetes, code repositories, clouds and more."
     asset_filters: ["^pem", "^sig"]
-    categories: ["Cloud", "Validation"]
+    categories: ["DevOps", "Security"]
   process_compose:
     identifier: "F1bonacc1/process-compose"
     description: "Process Compose is a simple and flexible scheduler and orchestrator to manage non-containerized applications."
@@ -286,7 +286,7 @@ tools:
     categories: ["System"]
   github-cli:
     identifier: "cli/cli"
-    description: "GitHub’s official command line tool."
+    description: "GitHub's official command line tool."
     categories: ["Git"]
   gitu:
     identifier: "altsem/gitu"
@@ -319,11 +319,11 @@ tools:
   jnv:
     identifier: "ynqa/jnv"
     description: "Interactive JSON filter using jq."
-    categories: ["Json"]
+    categories: ["Data"]
   fx:
     identifier: "antonmedv/fx"
     description: "Terminal JSON viewer & processor"
-    categories: ["Json"]
+    categories: ["Data"]
   humanlog:
     identifier: "humanlogio/humanlog"
     description: "Logs for humans to read."
@@ -335,7 +335,7 @@ tools:
   nerdctl:
     identifier: "containerd/nerdctl"
     description: "contaiNERD CTL - Docker-compatible CLI for containerd, with support for Compose, Rootless, eStargz, OCIcrypt, IPFS, ..."
-    categories: ["Docker"]
+    categories: ["DevOps"]
   kaf:
     identifier: "birdayz/kaf"
     description: "Modern CLI for Apache Kafka, written in Go."
@@ -343,7 +343,7 @@ tools:
   chiko:
     identifier: "felangga/chiko"
     description: "The ultimate beauty gRPC Client on your Terminal!"
-    categories: ["Development"]
+    categories: ["Development", "Network"]
   go-size-analyzer:
     identifier: "Zxilly/go-size-analyzer"
     description: "A tool for analyzing the size of compiled Go binaries, offering cross-platform support, detailed breakdowns, and multiple output formats."
@@ -355,16 +355,16 @@ tools:
     categories: ["Security"]
   naabu:
     identifier: "projectdiscovery/naabu"
-    description: "A fast port scanner written in go with a focus on reliability and simplicity. Designed to be used in combination with other tools for attack surface discovery in bug bounties and pentests."
+    description: "A fast port scanner written in go with a focus on reliability and simplicity."
     categories: ["Security"]
   httpx:
     identifier: "projectdiscovery/httpx"
     description: "httpx is a fast and multi-purpose HTTP toolkit that allows running multiple probes using the retryablehttp library."
-    categories: ["Security"]
+    categories: ["Security", "Network"]
   dnsx:
     identifier: "projectdiscovery/dnsx"
     description: "dnsx is a fast and multi-purpose DNS toolkit allow to run multiple DNS queries of your choice with a list of user-supplied resolvers."
-    categories: ["Security"]
+    categories: ["Security", "Network"]
   ffuf:
     identifier: "ffuf/ffuf"
     description: "Fast web fuzzer written in Go."
@@ -398,11 +398,11 @@ tools:
   hyperfine:
     identifier: "sharkdp/hyperfine"
     description: "A command-line benchmarking tool."
-    categories: ["Development", "Testing"]
+    categories: ["Development"]
   inlyne:
     identifier: "Inlyne-Project/inlyne"
     description: "Introducing Inlyne, a GPU powered yet browserless tool to help you quickly view markdown files in the blink of an eye."
-    categories: ["Markdown"]
+    categories: ["Data"]
   rargs:
     identifier: "lotabout/rargs"
     description: "xargs + awk with pattern matching support."
@@ -438,7 +438,7 @@ tools:
   kubie:
     identifier: "sbstp/kubie"
     description: "A more powerful alternative to kubectx and kubens."
-    categories: ["Kubernetes"]
+    categories: ["DevOps"]
   ngtop:
     identifier: "facundoolano/ngtop"
     description: "Request analytics from the nginx access logs."
@@ -447,7 +447,7 @@ tools:
     identifier: "TomWright/dasel"
     description: "Select, put and delete data from JSON, TOML, YAML, XML and CSV files with a single tool. Supports conversion between formats and can be used as a Go package."
     asset_filters: [".gz"]
-    categories: ["Json", "Yaml"]
+    categories: ["Data"]
   pug:
     identifier: "leg100/pug"
     description: "Drive terraform at terminal velocity."
@@ -455,12 +455,12 @@ tools:
   binsider:
     identifier: "orhun/binsider"
     description: "Analyze ELF binaries like a boss."
-    categories: ["Security"]
+    categories: ["Security", "Development"]
     asset_filters: ["^sig", "^sha512", ".tar.gz"]
   gtree:
     identifier: "ddddddO/gtree"
     description: "Using either Markdown or Programmatically to generate trees and directories, and to verify directories. Provide CLI, Golang library and Web."
-    categories: ["Markdown", "Text"]
+    categories: ["Data", "Text"]
   pipet:
     identifier: "bjesus/pipet"
     description: "A swiss-army tool for scraping and extracting data from online assets, made for hackers."
@@ -472,7 +472,7 @@ tools:
   up:
     identifier: "akavel/up"
     description: "Ultimate Plumber is a tool for writing Linux pipes with instant live preview."
-    categories: ["System"]
+    categories: ["Shell"]
   up-net:
     identifier: "jesusprubio/up"
     description: "Troubleshoot problems with your Internet connection."
@@ -480,7 +480,7 @@ tools:
   usql:
     identifier: "xo/usql"
     description: "Universal command-line interface for SQL databases."
-    categories: ["Development", "Database"]
+    categories: ["Database"]
   chezmoi:
     identifier: "twpayne/chezmoi"
     description: "Manage your dotfiles across multiple diverse machines, securely."
@@ -489,7 +489,7 @@ tools:
   jqp:
     identifier: "noahgorstein/jqp"
     description: "A TUI playground to experiment with jq."
-    categories: ["Json"]
+    categories: ["Data"]
   television:
     identifier: "alexpasmantier/television"
     description: "Television is a blazingly fast general purpose fuzzy finder TUI."
@@ -509,7 +509,7 @@ tools:
   rainfrog:
     identifier: "achristmascarl/rainfrog"
     description: "A database management tui for postgres, mysql, and sqlite."
-    categories: ["Development", "Database"]
+    categories: ["Database"]
   atac:
     identifier: "Julien-cpsn/ATAC"
     description: "A simple API client (postman like) in your terminal."
@@ -517,7 +517,7 @@ tools:
   presenterm:
     identifier: "mfontanini/presenterm"
     description: "A markdown terminal slideshow tool."
-    categories: ["Markdown"]
+    categories: ["Data"]
   freeze:
     identifier: "charmbracelet/freeze"
     description: "Generate images of code and terminal output 📸."
@@ -561,16 +561,17 @@ tools:
   numbat:
     identifier: "sharkdp/numbat"
     description: "A statically typed programming language for scientific computations with first class support for physical dimensions and units."
-    categories: ["Math"]
+    categories: ["Development"]
   kubectl:
     # TODO: version handling
     identifier: "https://dl.k8s.io/release/v1.27.16/bin/OSNAME/ARCH/kubectl"
     description: "The Kubernetes command-line tool, kubectl, allows you to run commands against Kubernetes clusters."
     file: "kubectl"
+    categories: ["DevOps"]
   hugo:
     identifier: "gohugoio/hugo"
-    description: "The world’s fastest framework for building websites."
-    categories: ["Network"]
+    description: "The world's fastest framework for building websites."
+    categories: ["Development"]
     asset_filters: ["hugo_extended", "^deploy"]
   pet:
     identifier: "knqyf263/pet"
@@ -579,7 +580,7 @@ tools:
   telepresence:
     identifier: "telepresenceio/telepresence"
     description: "Local development against a remote Kubernetes or OpenShift cluster."
-    categories: ["Network"]
+    categories: ["DevOps", "Network"]
   gecho:
     identifier: "allaman/gecho"
     description: "A simple HTTP/TCP server."
@@ -592,11 +593,11 @@ tools:
   xan:
     identifier: "medialab/xan"
     description: "The CSV magician."
-    categories: ["CSV"]
+    categories: ["Data"]
   qsv:
     identifier: "dathere/qsv"
     description: "Blazing-fast Data-Wrangling toolkit."
-    categories: ["CSV", "Database", "Json"]
+    categories: ["Data", "Database"]
   caddy:
     identifier: "caddyserver/caddy"
     description: "Fast and extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS"
@@ -610,7 +611,7 @@ tools:
   schema:
     identifier: "gigagrug/schema"
     description: "A CLI tool for working with the database | SQLite, libSQL, PostgreSQL, MySQL, MariaDB"
-    categories: ["Development", "Database"]
+    categories: ["Database"]
   gonzo:
     identifier: "control-theory/gonzo"
     description: "Gonzo! The Go based TUI log analysis tool"
@@ -622,7 +623,7 @@ tools:
   kat:
     identifier: "MacroPower/kat"
     description: "TUI and rule-based rendering engine for Kubernetes manifests"
-    categories: ["Kubernetes", "GitOps"]
+    categories: ["DevOps"]
     asset_filters: ["tar.gz", "^sig", "^json"]
   onedump:
     identifier: "liweiyi88/onedump"
@@ -644,7 +645,7 @@ tools:
   oha:
     identifier: "hatoo/oha"
     description: "Ohayou(おはよう), HTTP load generator, inspired by rakyll/hey with tui animation."
-    categories: ["Development", "Testing"]
+    categories: ["Development", "Network"]
   fresh:
     identifier: "sinelaw/fresh"
     description: "Text editor for your terminal: easy, powerful and fast"
@@ -652,10 +653,10 @@ tools:
   pam:
     identifier: "eduardofuncao/pam"
     description: "A minimal CLI tool for managing and executing SQL queries across multiple databases. Written in Go, made beautiful with BubbleTea"
-    categories: ["Development", "Database"]
+    categories: ["Database"]
   whosthere:
     identifier: "ramonvermeulen/whosthere"
-    description: "Local Area Network discovery tool with a modern Terminal User Interface (TUI) written in Go. Discover, explore, and understand your LAN in an intuitive way. Knock Knock.. who's there? 🚪"
+    description: "Local Area Network discovery tool with a modern Terminal User Interface (TUI) written in Go."
     categories: ["Network"]
   witr:
     identifier: "pranshuparmar/witr"
@@ -668,13 +669,13 @@ tools:
   gype:
     identifier: "anchore/grype"
     description: "A vulnerability scanner for container images and filesystems"
-    categories: ["Docker", "Validation", "Security"]
+    categories: ["DevOps", "Security"]
   syft:
     identifier: "anchore/syft"
     description: "CLI tool and library for generating a Software Bill of Materials from container images and filesystems"
-    categories: ["Development", "Docker"]
+    categories: ["Development", "DevOps", "Security"]
     asset_filters: ["^sbom"]
   mdterm:
     identifier: "bahdotsh/mdterm"
-    description: "A terminal-based Markdown viewer written in Rust. Renders Markdown files with syntax highlighting, styled formatting, and interactive navigation."
-    categories: ["Markdown"]
+    description: "A terminal-based Markdown viewer written in Rust."
+    categories: ["Data"]
