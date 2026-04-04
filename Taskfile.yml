@@ -50,3 +50,9 @@ tasks:
     desc: Check for vulnerabilities
     cmds:
       - govulncheck .
+
+  nix-flake:
+    desc: Lock and validate flake via Docker
+    summary: This will likey fail on first run. Copy the vendor hash and update the hash in flake.nix. Then run again and there should be no error.
+    cmds:
+      - docker run --rm -it -v "$PWD":/work -w /work nixos/nix:latest sh -lc 'nix --extra-experimental-features "nix-command flakes" flake lock && nix --extra-experimental-features "nix-command flakes" build'
