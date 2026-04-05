@@ -1,0 +1,13 @@
+---
+version: "2"
+
+linters:
+  settings:
+    errcheck:
+      exclude-functions:
+        - fmt.Fprintf
+        - fmt.Fprintln
+        - (*os.File).Close
+        - (*compress/gzip.Reader).Close
+        - (*text/tabwriter.Writer).Flush
+        - (io.ReadCloser).Close
