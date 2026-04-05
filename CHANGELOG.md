@@ -1,3 +1,17 @@
+## What's Changed in 4.6.8
+* docs: Update README by @Allaman
+* feat(yaml): Add tools by @Allaman
+* chore: Fix taskfile lint by @Allaman
+* ci: Exclude lint errchecks by @Allaman
+* ci: Add lint and govulncheck by @Allaman
+* chore: code style by @Allaman
+* ci: Add gomod dependabot by @Allaman
+* Revert "chore: Add flake.nix" by @Allaman
+* chore: Add flake.nix by @Allaman
+* docs: Update CHANGELOG by @Allaman
+
+**Full Changelog**: https://github.com/Allaman/werkzeugkasten/compare/4.6.7...4.6.8
+
 ## What's Changed in 4.6.7
 * ci: Fix changelog checkout branch by @Allaman
 * docs: Update CHANGELOG by @Allaman
