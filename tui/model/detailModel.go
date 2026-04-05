@@ -28,7 +28,9 @@ func fetchReadmeCmd(url string) tea.Cmd {
 	}
 }
 
-type fetchReadmeSuccessMsg string
-type fetchReadmeErrMsg struct {
-	err error
-}
+type (
+	fetchReadmeSuccessMsg string
+	fetchReadmeErrMsg     struct {
+		err error
+	}
+)
