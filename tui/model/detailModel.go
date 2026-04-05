@@ -7,7 +7,7 @@ import (
 
 	tea "charm.land/bubbletea/v2"
 
-	"github.com/charmbracelet/glamour"
+	"charm.land/glamour/v2"
 )
 
 func fetchReadmeCmd(url string) tea.Cmd {

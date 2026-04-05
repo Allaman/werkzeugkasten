@@ -6,12 +6,12 @@ require (
 	charm.land/bubbles/v2 v2.1.0
 	charm.land/bubbletea/v2 v2.0.2
 	charm.land/lipgloss/v2 v2.0.2
-	github.com/charmbracelet/glamour v0.10.0
 	github.com/creativeprojects/go-selfupdate v1.5.2
 	github.com/goccy/go-yaml v1.19.2
 )
 
 require (
+	charm.land/glamour/v2 v2.0.0 // indirect
 	code.gitea.io/sdk/gitea v0.23.2 // indirect
 	github.com/42wim/httpsig v1.2.3 // indirect
 	github.com/Masterminds/semver/v3 v3.4.0 // indirect
