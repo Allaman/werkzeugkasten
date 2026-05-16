@@ -687,3 +687,7 @@ tools:
     identifier: "maaslalani/sheets"
     description: "Terminal based spreadsheet tool"
     categories: ["Data"]
+  terraprism:
+    identifier: "CaptShanks/terraprism"
+    description: "A beautiful terminal UI for viewing Terraform and OpenTofu plans"
+    categories: ["Cloud"]
