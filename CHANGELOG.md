@@ -1,3 +1,9 @@
+## What's Changed in 4.6.9
+* feat(yaml): Add tools by @Allaman
+* docs: Update CHANGELOG by @Allaman
+
+**Full Changelog**: https://github.com/Allaman/werkzeugkasten/compare/4.6.8...4.6.9
+
 ## What's Changed in 4.6.8
 * docs: Update README by @Allaman
 * feat(yaml): Add tools by @Allaman
