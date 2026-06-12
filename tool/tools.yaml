@@ -691,3 +691,7 @@ tools:
     identifier: "CaptShanks/terraprism"
     description: "A beautiful terminal UI for viewing Terraform and OpenTofu plans"
     categories: ["Cloud"]
+  linktui:
+    identifier: "austinemk/linktui"
+    description: " Tui based wifi, bluetooth and vpn manager for linux "
+    categories: ["Network"]
