@@ -695,3 +695,7 @@ tools:
     identifier: "austinemk/linktui"
     description: " Tui based wifi, bluetooth and vpn manager for linux "
     categories: ["Network"]
+  portwho:
+    identifier: "allaman/portwho"
+    description: "A simple CLI written in C to list local open ports on Linux and macOS"
+    categories: ["Network"]
