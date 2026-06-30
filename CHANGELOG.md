@@ -1,3 +1,11 @@
+## What's Changed in 4.6.10
+* feat(yaml): Add tool by @Allaman
+* Merge branch 'main' of github.com:Allaman/werkzeugkasten by @Allaman
+* feat(yaml): Add tools by @Allaman
+* docs: Update CHANGELOG by @Allaman
+
+**Full Changelog**: https://github.com/Allaman/werkzeugkasten/compare/4.6.9...4.6.10
+
 ## What's Changed in 4.6.9
 * feat(yaml): Add tools by @Allaman
 * docs: Update CHANGELOG by @Allaman
