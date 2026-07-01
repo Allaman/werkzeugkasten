@@ -5,8 +5,8 @@ go 1.26.0
 require (
 	charm.land/bubbles/v2 v2.1.0
 	charm.land/bubbletea/v2 v2.0.7
-	charm.land/glamour/v2 v2.0.0
-	charm.land/lipgloss/v2 v2.0.3
+	charm.land/glamour/v2 v2.0.1
+	charm.land/lipgloss/v2 v2.0.4
 	github.com/creativeprojects/go-selfupdate v1.5.2
 	github.com/goccy/go-yaml v1.19.2
 )
