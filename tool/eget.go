@@ -190,20 +190,40 @@ func rename(source, dest string) error {
 	return os.Rename(source, dest)
 }
 
-func InstallEget(installDir string) error {
-	if _, err := os.Stat(filepath.Join(installDir, "eget")); errors.Is(err, os.ErrNotExist) {
+// egetDir resolves to the user cache dir (~/.cache on Linux,
+// ~/Library/Caches on macOS), falling back to the temp dir if unavailable.
+func egetDir() string {
+	base, err := os.UserCacheDir()
+	if err != nil {
+		slog.Debug("could not determine user cache dir, falling back to temp dir", "error", err)
+		base = os.TempDir()
+	}
+	return filepath.Join(base, "werkzeugkasten")
+}
+
+// EgetPath returns the absolute path to the cached eget binary.
+func EgetPath() string {
+	return filepath.Join(egetDir(), "eget")
+}
+
+func InstallEget() error {
+	dir := egetDir()
+	if err := createDir(dir); err != nil {
+		return err
+	}
+	if _, err := os.Stat(EgetPath()); errors.Is(err, os.ErrNotExist) {
 		egetConfig := newDefaultEgetConfig()
 		if os.Getenv("WK_EGET_VERSION") != "" {
 			version := os.Getenv("WK_EGET_VERSION")
 			slog.Debug("setting eget version", "version", version)
 			egetConfig.version = version
 		}
-		err := downloadEgetBinary(installDir, egetConfig)
+		err := downloadEgetBinary(dir, egetConfig)
 		if err != nil {
 			return fmt.Errorf("could not download eget binary: %w", err)
 		}
 	} else {
-		slog.Debug("eget already downloaded")
+		slog.Debug("eget already downloaded", "path", EgetPath())
 	}
 	return nil
 }
