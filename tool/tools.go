@@ -70,11 +70,12 @@ func CreateToolData() (ToolData, error) {
 }
 
 func execEget(workingDir string, tool Tool) ([]byte, error) {
+	egetBin := EgetPath()
 	tag := tool.Tag
 	name := tool.Identifier
-	cmd := exec.Command("./eget", "-q", name, "--to", workingDir)
+	cmd := exec.Command(egetBin, "-q", name, "--to", workingDir)
 	if tag != "" {
-		cmd = exec.Command("./eget", "-q", "-t", tag, name, "--to", workingDir)
+		cmd = exec.Command(egetBin, "-q", "-t", tag, name, "--to", workingDir)
 	}
 	if len(tool.AssetFilters) > 0 {
 		for _, af := range tool.AssetFilters {

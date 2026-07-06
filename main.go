@@ -65,7 +65,7 @@ func main() {
 		}
 	} else {
 		// non-interactive mode
-		if err := tool.InstallEget(cfg.DownloadDir); err != nil {
+		if err := tool.InstallEget(); err != nil {
 			slog.Error("could not install eget", "error", err)
 			os.Exit(1)
 		}

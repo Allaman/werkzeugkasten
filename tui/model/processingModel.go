@@ -8,7 +8,7 @@ import (
 
 func (m *MainModel) processSelectedItem() tea.Cmd {
 	return func() tea.Msg {
-		if err := tool.InstallEget(m.config.DownloadDir); err != nil {
+		if err := tool.InstallEget(); err != nil {
 			return processErrMsg{err: err}
 		}
 		item := m.ToolData.Tools[m.ProcessingModel.ItemName]
