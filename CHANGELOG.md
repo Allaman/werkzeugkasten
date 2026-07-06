@@ -1,3 +1,9 @@
+## What's Changed in 4.7.0
+* feat: Download eget to cache directory by @Allaman
+* docs: Update CHANGELOG by @Allaman
+
+**Full Changelog**: https://github.com/Allaman/werkzeugkasten/compare/4.6.10...4.7.0
+
 ## What's Changed in 4.6.10
 * feat(yaml): Add tool by @Allaman
 * Merge branch 'main' of github.com:Allaman/werkzeugkasten by @Allaman
