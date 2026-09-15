@@ -424,6 +424,7 @@ tools:
     identifier: "eza-community/eza"
     description: "A modern, maintained replacement for ls."
     categories: ["Files"]
+    asset_filters: ["gnu.tar.gz"]
   coreutils:
     identifier: "uutils/coreutils"
     description: "Cross-platform Rust rewrite of the GNU coreutils."
