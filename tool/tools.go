@@ -2,10 +2,12 @@ package tool
 
 import (
 	_ "embed"
+	"errors"
 	"fmt"
 	"log/slog"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"runtime"
 	"slices"
 	"strings"
@@ -73,6 +75,15 @@ func execEget(workingDir string, tool Tool, system string) ([]byte, error) {
 	egetBin := EgetPath()
 	tag := tool.Tag
 	name := tool.Identifier
+	// eget runs with workingDir as its cwd, so --to must be absolute
+	// to not resolve relative to workingDir a second time.
+	workingDir, err := filepath.Abs(workingDir)
+	if err != nil {
+		return nil, err
+	}
+	if _, err := os.Stat(workingDir); errors.Is(err, os.ErrNotExist) {
+		return nil, fmt.Errorf("download directory %s does not exist, create it or pass an existing one with -dir", workingDir)
+	}
 	cmd := exec.Command(egetBin, "-q", name, "--to", workingDir)
 	if tag != "" {
 		cmd = exec.Command(egetBin, "-q", "-t", tag, name, "--to", workingDir)
