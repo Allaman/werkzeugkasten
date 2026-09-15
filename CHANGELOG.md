@@ -1,3 +1,12 @@
+## What's Changed in 4.8.0
+* fix: -dir handling by @Allaman
+* feat: Add system flag to overwrite arch and OS by @Allaman
+* fix(tools): Use gnu eza by @Allaman
+* docs: Update README by @Allaman
+* docs: Update CHANGELOG by @Allaman
+
+**Full Changelog**: https://github.com/Allaman/werkzeugkasten/compare/4.7.4...4.8.0
+
 ## What's Changed in 4.7.4
 * fix(tools): Use gnu starship by @Allaman
 * docs: Update CHANGELOG by @Allaman
