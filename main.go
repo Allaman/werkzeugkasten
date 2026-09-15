@@ -69,17 +69,23 @@ func main() {
 			slog.Error("could not install eget", "error", err)
 			os.Exit(1)
 		}
+		failed := false
 		for _, toolName := range cfg.ToolList {
 			toolDef, ok := tools.Tools[toolName]
 			if !ok {
 				slog.Warn("unknown tool requested", "tool", toolName)
+				failed = true
 				continue
 			}
 			err = tool.DownloadToolWithEget(cfg.DownloadDir, toolDef, cfg.System)
 			if err != nil {
 				slog.Warn("could not download tool", "tool", toolName, "error", err)
+				failed = true
 				continue
 			}
+		}
+		if failed {
+			os.Exit(1)
 		}
 	}
 }
