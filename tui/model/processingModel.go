@@ -15,7 +15,7 @@ func (m *MainModel) processSelectedItem() tea.Cmd {
 		if m.ProcessingModel.ItemTag != "" {
 			item.Tag = m.ProcessingModel.ItemTag
 		}
-		err := tool.DownloadToolWithEget(m.config.DownloadDir, item)
+		err := tool.DownloadToolWithEget(m.config.DownloadDir, item, m.config.System)
 		if err != nil {
 			return processErrMsg{err: err}
 		}

@@ -69,13 +69,16 @@ func CreateToolData() (ToolData, error) {
 	return tools, nil
 }
 
-func execEget(workingDir string, tool Tool) ([]byte, error) {
+func execEget(workingDir string, tool Tool, system string) ([]byte, error) {
 	egetBin := EgetPath()
 	tag := tool.Tag
 	name := tool.Identifier
 	cmd := exec.Command(egetBin, "-q", name, "--to", workingDir)
 	if tag != "" {
 		cmd = exec.Command(egetBin, "-q", "-t", tag, name, "--to", workingDir)
+	}
+	if system != "" {
+		cmd.Args = append(cmd.Args, "-s", system)
 	}
 	if len(tool.AssetFilters) > 0 {
 		for _, af := range tool.AssetFilters {
@@ -91,15 +94,27 @@ func execEget(workingDir string, tool Tool) ([]byte, error) {
 	return out, err
 }
 
-func DownloadToolWithEget(workingdir string, tool Tool) error {
-	tool.Identifier = strings.Replace(tool.Identifier, "ARCH", runtime.GOARCH, 1)
-	tool.Identifier = strings.Replace(tool.Identifier, "OSNAME", runtime.GOOS, 1)
+// splitSystem splits an eget system string ("linux/amd64") into os and arch.
+// An empty system resolves to the system werkzeugkasten runs on.
+func splitSystem(system string) (string, string) {
+	if system == "" {
+		return runtime.GOOS, runtime.GOARCH
+	}
+	operatingSystem, arch, _ := strings.Cut(system, "/")
+	return operatingSystem, arch
+}
+
+func DownloadToolWithEget(workingdir string, tool Tool, system string) error {
+	operatingSystem, arch := splitSystem(system)
+	// special handling for identifiers containing ARCH, e.g. helm
+	tool.Identifier = strings.Replace(tool.Identifier, "ARCH", arch, 1)
+	tool.Identifier = strings.Replace(tool.Identifier, "OSNAME", operatingSystem, 1)
 	tag := "latest"
 	if tool.Tag != "" {
 		tag = tool.Tag
 	}
-	slog.Debug("downloading tool", "tool", tool.Identifier, "tag", tag)
-	out, err := execEget(workingdir, tool)
+	slog.Debug("downloading tool", "tool", tool.Identifier, "tag", tag, "system", system)
+	out, err := execEget(workingdir, tool, system)
 	if err != nil {
 		slog.Debug("could not download tool", "tool", tool.Identifier, "error", err, "out", string(out))
 		return err

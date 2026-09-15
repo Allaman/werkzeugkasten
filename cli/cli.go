@@ -17,6 +17,7 @@ type CLIConfig struct {
 	DownloadDir string
 	Tools       bool
 	Categories  bool
+	System      string
 	ToolList    toolList
 }
 type toolList []string
@@ -41,6 +42,7 @@ func CLI() CLIConfig {
 	listToolsFlag := flag.Bool("tools", false, "Print all available tools")
 	listCategoriesFlag := flag.Bool("categories", false, "Print all categories and tool count")
 	listByCategoriesFlag := flag.String("category", "", "List tools by category")
+	systemFlag := flag.String("system", "", "Target system to download for in the form os/arch (e.g., linux/amd64), defaults to the current system")
 	flag.Var(&toolList, "tool", "Specify multiple tools to install programmatically (e.g., -tool kustomize -tool task)")
 	flag.Parse()
 	if *helpFlag {
@@ -74,6 +76,13 @@ func CLI() CLIConfig {
 	}
 	if *listByCategoriesFlag != "" {
 		cliFlags.Category = *listByCategoriesFlag
+	}
+	if *systemFlag != "" {
+		if o, a, ok := strings.Cut(*systemFlag, "/"); !ok || o == "" || a == "" {
+			slog.Error("-system must be in the form os/arch, e.g. linux/amd64", "system", *systemFlag)
+			os.Exit(1)
+		}
+		cliFlags.System = *systemFlag
 	}
 	cliFlags.ToolList = []string{}
 	if len(toolList) > 0 {

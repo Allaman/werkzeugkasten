@@ -75,7 +75,7 @@ func main() {
 				slog.Warn("unknown tool requested", "tool", toolName)
 				continue
 			}
-			err = tool.DownloadToolWithEget(cfg.DownloadDir, toolDef)
+			err = tool.DownloadToolWithEget(cfg.DownloadDir, toolDef, cfg.System)
 			if err != nil {
 				slog.Warn("could not download tool", "tool", toolName, "error", err)
 				continue
