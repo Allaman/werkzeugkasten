@@ -223,7 +223,7 @@ tools:
     description: "Make JSON greppable!"
     categories: ["Data"]
   helm:
-    identifier: "https://get.helm.sh/helm-v3.12.3-OSNAME-ARCH.tar.gz"
+    identifier: "https://get.helm.sh/helm-v4.3.0-OSNAME-ARCH.tar.gz"
     description: "The Kubernetes Package Manager."
     file: "helm"
     categories: ["DevOps"]
