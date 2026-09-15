@@ -695,3 +695,7 @@ tools:
     identifier: "allaman/portwho"
     description: "A simple CLI written in C to list local open ports on Linux and macOS"
     categories: ["Network"]
+  zerobox:
+    identifier: "afshinm/zerobox"
+    description: "Lightweight, cross-platform process sandboxing powered by OpenAI Codex's runtime. Sandbox any command with file, network, and credential controls."
+    categories: ["AI"]
