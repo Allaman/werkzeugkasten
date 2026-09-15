@@ -1,3 +1,9 @@
+## What's Changed in 4.7.3
+* feat(tools): Add starship and oh-my-posh by @Allaman
+* docs: Update CHANGELOG by @Allaman
+
+**Full Changelog**: https://github.com/Allaman/werkzeugkasten/compare/4.7.2...4.7.3
+
 ## What's Changed in 4.7.2
 * feat(yaml): Add atuin and mcfly by @Allaman
 * docs: Update CHANGELOG by @Allaman
