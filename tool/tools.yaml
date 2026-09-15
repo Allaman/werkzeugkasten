@@ -712,6 +712,7 @@ tools:
     identifier: "starship/starship"
     description: "The minimal, blazing-fast, and infinitely customizable prompt for any shell!"
     categories: ["Shell"]
+    asset_filters: ["^musl.tar.gz"]
   oh-my-posh:
     identifier: "JanDeDobbeleer/oh-my-posh"
     description: "The most customisable and low-latency cross platform/shell prompt renderer"
