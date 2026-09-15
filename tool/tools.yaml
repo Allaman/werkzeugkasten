@@ -524,11 +524,6 @@ tools:
     description: "Generate images of code and terminal output 📸."
     categories: ["Shell"]
     asset_filters: ["^sbom"]
-  mods:
-    identifier: "charmbracelet/mods"
-    description: "AI on the command line."
-    categories: ["AI"]
-    asset_filters: ["^sbom"]
   gum:
     identifier: "charmbracelet/gum"
     description: "A tool for glamorous shell scripts 🎀."
