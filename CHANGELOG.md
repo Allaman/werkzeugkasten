@@ -1,3 +1,11 @@
+## What's Changed in 4.7.1
+* feat(yaml): Add zerobox by @Allaman
+* feat(yaml)!: Remove deprecated mods tool by @Allaman
+* fix(yaml): use gnu version of fd by @Allaman
+* docs: Update CHANGELOG by @Allaman
+
+**Full Changelog**: https://github.com/Allaman/werkzeugkasten/compare/4.7.0...4.7.1
+
 ## What's Changed in 4.7.0
 * feat: Download eget to cache directory by @Allaman
 * docs: Update CHANGELOG by @Allaman
