@@ -29,6 +29,7 @@ tools:
     identifier: "sharkdp/fd"
     description: "A simple, fast and user-friendly alternative to 'find'."
     categories: ["Files"]
+    asset_filters: ["^musl.tar.gz"]
   ripgrep:
     identifier: "BurntSushi/ripgrep"
     description: "ripgrep recursively searches directories for a regex pattern while respecting your gitignore."
