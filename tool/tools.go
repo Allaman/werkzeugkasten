@@ -46,27 +46,20 @@ func CreateToolData() (ToolData, error) {
 		key := pair[0]
 		value := pair[1]
 
-		if strings.HasPrefix(key, "WK_") {
-			trimmedKey := strings.TrimPrefix(key, "WK_")
-			splittedKey := strings.Split(trimmedKey, "_")
-			if len(splittedKey) != 2 {
-				slog.Warn("ignoring environment variable", "var", key)
-				continue
-			}
-			tool := strings.ToLower(splittedKey[0])
-			field := strings.ToLower(splittedKey[1])
-			if field != "tag" {
-				slog.Warn("ignoring malformed environment variable", "var", key)
-				continue
-			}
-			if t, ok := tools.Tools[tool]; ok {
-				slog.Debug("overwriting tag", "tool", tool, "tag", value)
-				// tools.Tools[tool].Tag = value not working because
-				// when modifying the fields of the struct obtained from the map, you are modifying a copy of the struct!
-				t.Tag = value
-				tools.Tools[tool] = t
-			}
+		if !strings.HasPrefix(key, "WK_") || !strings.HasSuffix(key, "_TAG") {
+			continue
 		}
+		// the tool name itself may contain underscores, e.g. WK_PROCESS_COMPOSE_TAG
+		tool := strings.ToLower(strings.TrimSuffix(strings.TrimPrefix(key, "WK_"), "_TAG"))
+		t, ok := tools.Tools[tool]
+		if !ok {
+			slog.Warn("ignoring environment variable for unknown tool", "var", key, "tool", tool)
+			continue
+		}
+		slog.Debug("overwriting tag", "tool", tool, "tag", value)
+		// don't modify a copy of the struct with tools.Tools[tool].Tag
+		t.Tag = value
+		tools.Tools[tool] = t
 	}
 	return tools, nil
 }
