@@ -699,3 +699,12 @@ tools:
     identifier: "afshinm/zerobox"
     description: "Lightweight, cross-platform process sandboxing powered by OpenAI Codex's runtime. Sandbox any command with file, network, and credential controls."
     categories: ["AI"]
+  mcfly:
+    identifier: "cantino/mcfly"
+    description: "Fly through your shell history. Great Scott!"
+    categories: ["Shell"]
+  atuin:
+    identifier: "atuinsh/atuin"
+    description: "Making your shell magical"
+    categories: ["Shell"]
+    asset_filters: ["^server"]
