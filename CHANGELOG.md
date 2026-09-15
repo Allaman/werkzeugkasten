@@ -1,3 +1,10 @@
+## What's Changed in 4.8.2
+* fix(tools): Update helm version by [@Allaman](https://github.com/Allaman)
+* fix(tools): use gnu atuin by [@Allaman](https://github.com/Allaman)
+* docs: Update CHANGELOG by [@Allaman](https://github.com/Allaman)
+
+**Full Changelog**: https://github.com/Allaman/werkzeugkasten/compare/4.8.1...4.8.2
+
 ## What's Changed in 4.8.1
 * fix: Handle underscore in tool name by [@Allaman](https://github.com/Allaman)
 * fix: return right exit codes by [@Allaman](https://github.com/Allaman)
