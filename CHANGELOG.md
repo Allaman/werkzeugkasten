@@ -1,3 +1,9 @@
+## What's Changed in 4.7.2
+* feat(yaml): Add atuin and mcfly by @Allaman
+* docs: Update CHANGELOG by @Allaman
+
+**Full Changelog**: https://github.com/Allaman/werkzeugkasten/compare/4.7.1...4.7.2
+
 ## What's Changed in 4.7.1
 * feat(yaml): Add zerobox by @Allaman
 * feat(yaml)!: Remove deprecated mods tool by @Allaman
