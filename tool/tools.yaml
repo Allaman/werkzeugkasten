@@ -717,3 +717,6 @@ tools:
   oh-my-posh:
     identifier: "JanDeDobbeleer/oh-my-posh"
     description: "The most customisable and low-latency cross platform/shell prompt renderer"
+  flux9s:
+    identifier: "dgunzy/flux9s"
+    description: "A K9s-inspired terminal UI for monitoring Flux resources in real-time"
