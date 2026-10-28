@@ -102,6 +102,8 @@ func (m *MainModel) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			case key.Matches(msg, keys.DetailKeys.Esc):
 				m.CurrentView = "tools"
 				return m, nil
+			case key.Matches(msg, keys.DetailKeys.Quit):
+				return m, tea.Quit
 			}
 
 		case "releases":
