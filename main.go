@@ -10,26 +10,25 @@ import (
 	"github.com/allaman/werkzeugkasten/tui/model"
 
 	tea "charm.land/bubbletea/v2"
+	"github.com/charmbracelet/x/term"
+	"github.com/lmittmann/tint"
 )
 
 func main() {
 	cfg := cli.CLI()
-	if cfg.Debug {
-		opts := &slog.HandlerOptions{
-			Level:     slog.LevelDebug,
-			AddSource: true,
-			ReplaceAttr: func(groups []string, a slog.Attr) slog.Attr {
-				if a.Key == slog.TimeKey {
-					if t, ok := a.Value.Any().(time.Time); ok {
-						return slog.String(a.Key, t.Format("2006-01-02 15:04:05"))
-					}
-				}
-				return a
-			},
-		}
-		logger := slog.New(slog.NewTextHandler(os.Stdout, opts))
-		slog.SetDefault(logger)
+	opts := &tint.Options{
+		Level:      slog.LevelInfo,
+		TimeFormat: time.DateTime,
 	}
+	out := os.Stderr
+	if cfg.Debug {
+		opts.Level = slog.LevelDebug
+		opts.AddSource = true
+		out = os.Stdout
+	}
+	_, noColorEnv := os.LookupEnv("NO_COLOR")
+	opts.NoColor = cfg.NoColor || noColorEnv || !term.IsTerminal(out.Fd())
+	slog.SetDefault(slog.New(tint.NewTextHandler(out, opts)))
 	tools, err := tool.CreateToolData()
 	if err != nil {
 		slog.Error("could not parse tools data", "error", err)

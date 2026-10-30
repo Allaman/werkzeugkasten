@@ -14,6 +14,7 @@ var Version = "dev"
 type CLIConfig struct {
 	Category    string
 	Debug       bool
+	NoColor     bool
 	DownloadDir string
 	Tools       bool
 	Categories  bool
@@ -38,6 +39,7 @@ func CLI() CLIConfig {
 	versionFlag := flag.Bool("version", false, "Print version")
 	updateFlag := flag.Bool("update", false, "Self-update")
 	debugFlag := flag.Bool("debug", false, "Enable debug output")
+	noColorFlag := flag.Bool("no-color", false, "Disable colored log output (also respects NO_COLOR)")
 	downloadDirFlag := flag.String("dir", ".", "Where to download the tools")
 	listToolsFlag := flag.Bool("tools", false, "Print all available tools")
 	listCategoriesFlag := flag.Bool("categories", false, "Print all categories and tool count")
@@ -70,6 +72,9 @@ func CLI() CLIConfig {
 	}
 	if *debugFlag {
 		cliFlags.Debug = true
+	}
+	if *noColorFlag {
+		cliFlags.NoColor = true
 	}
 	if *downloadDirFlag != "" {
 		cliFlags.DownloadDir = *downloadDirFlag
