@@ -113,6 +113,8 @@ Flags:
         Where to download the tools (default ".")
   -help
         Print help message
+  -system string
+        Target system to download for in the form os/arch (e.g., linux/amd64), defaults to the current system
   -tool value
         Specify multiple tools to install programmatically (e.g., -tool kustomize -tool task)
   -tools
