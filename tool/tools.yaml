@@ -171,8 +171,8 @@ tools:
     description: "OpenTofu / Terraform / Terragrunt version manager."
     categories: ["Cloud"]
   golang:
-    # TODO: version handling
-    identifier: "https://go.dev/dl/go1.17.5.OSNAME-ARCH.tar.gz"
+    identifier: "https://go.dev/dl/goVERSION.OSNAME-ARCH.tar.gz"
+    tag: "1.27.3"
     description: "The Golang programming language."
     file: "go/bin/go"
     categories: ["Development"]
@@ -223,7 +223,9 @@ tools:
     description: "Make JSON greppable!"
     categories: ["Data"]
   helm:
-    identifier: "https://get.helm.sh/helm-v4.3.0-OSNAME-ARCH.tar.gz"
+    # In GitHub releases now binaries are available
+    identifier: "https://get.helm.sh/helm-VERSION-OSNAME-ARCH.tar.gz"
+    tag: "v4.3.1"
     description: "The Kubernetes Package Manager."
     file: "helm"
     categories: ["DevOps"]
@@ -560,8 +562,8 @@ tools:
     description: "A statically typed programming language for scientific computations with first class support for physical dimensions and units."
     categories: ["Development"]
   kubectl:
-    # TODO: version handling
-    identifier: "https://dl.k8s.io/release/v1.27.16/bin/OSNAME/ARCH/kubectl"
+    identifier: "https://dl.k8s.io/release/VERSION/bin/OSNAME/ARCH/kubectl"
+    tag: "v1.36.1"
     description: "The Kubernetes command-line tool, kubectl, allows you to run commands against Kubernetes clusters."
     file: "kubectl"
     categories: ["DevOps"]

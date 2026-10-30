@@ -117,6 +117,11 @@ func DownloadToolWithEget(workingdir string, tool Tool, system string) error {
 	if tool.Tag != "" {
 		tag = tool.Tag
 	}
+	// URL identifiers like Helm have their version in the URL, eget's -t only applies to GitHub releases
+	if strings.Contains(tool.Identifier, "VERSION") {
+		tool.Identifier = strings.Replace(tool.Identifier, "VERSION", tool.Tag, 1)
+		tool.Tag = ""
+	}
 	slog.Debug("downloading tool", "tool", tool.Identifier, "tag", tag, "system", system)
 	out, err := execEget(workingdir, tool, system)
 	if err != nil {
