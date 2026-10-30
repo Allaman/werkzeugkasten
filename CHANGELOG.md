@@ -1,3 +1,16 @@
+## What's Changed in 4.9.0
+* docs: Update README by [@Allaman](https://github.com/Allaman)
+* fix: Downgrade bubbles again by [@Allaman](https://github.com/Allaman)
+* refactor(cli): Only parse config and do not exit by [@Allaman](https://github.com/Allaman)
+* feat: Add colored logging by [@Allaman](https://github.com/Allaman)
+* fix: Handle non GitHub versions by [@Allaman](https://github.com/Allaman)
+* chore: Update Go and packages but downgrade bubbles by [@Allaman](https://github.com/Allaman)
+* fix: Also quit with q in describe by [@Allaman](https://github.com/Allaman)
+* feat(tools): Add flux9s by [@Allaman](https://github.com/Allaman)
+* docs: Update CHANGELOG by [@Allaman](https://github.com/Allaman)
+
+**Full Changelog**: https://github.com/Allaman/werkzeugkasten/compare/4.8.2...4.9.0
+
 ## What's Changed in 4.8.2
 * fix(tools): Update helm version by [@Allaman](https://github.com/Allaman)
 * fix(tools): use gnu atuin by [@Allaman](https://github.com/Allaman)
