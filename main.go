@@ -15,7 +15,7 @@ import (
 )
 
 func main() {
-	cfg := cli.CLI()
+	cfg, cfgErr := cli.CLI()
 	opts := &tint.Options{
 		Level:      slog.LevelInfo,
 		TimeFormat: time.DateTime,
@@ -29,6 +29,17 @@ func main() {
 	_, noColorEnv := os.LookupEnv("NO_COLOR")
 	opts.NoColor = cfg.NoColor || noColorEnv || !term.IsTerminal(out.Fd())
 	slog.SetDefault(slog.New(tint.NewTextHandler(out, opts)))
+	if cfgErr != nil {
+		slog.Error("invalid arguments", "error", cfgErr)
+		os.Exit(1)
+	}
+	if cfg.Update {
+		if err := cli.Update(cli.Version); err != nil {
+			slog.Error("could not self-update", "error", err)
+			os.Exit(1)
+		}
+		os.Exit(0)
+	}
 	tools, err := tool.CreateToolData()
 	if err != nil {
 		slog.Error("could not parse tools data", "error", err)

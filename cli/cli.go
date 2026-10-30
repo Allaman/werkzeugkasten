@@ -3,7 +3,6 @@ package cli
 import (
 	"flag"
 	"fmt"
-	"log/slog"
 	"os"
 	"strings"
 )
@@ -15,6 +14,7 @@ type CLIConfig struct {
 	Category    string
 	Debug       bool
 	NoColor     bool
+	Update      bool
 	DownloadDir string
 	Tools       bool
 	Categories  bool
@@ -32,7 +32,8 @@ func (s *toolList) Set(value string) error {
 	return nil
 }
 
-func CLI() CLIConfig {
+// CLI parses the flags. The returned config is usable even on error so callers can set up logging first.
+func CLI() (CLIConfig, error) {
 	var cliFlags CLIConfig
 	var toolList toolList
 	helpFlag := flag.Bool("help", false, "Print help message")
@@ -58,11 +59,7 @@ func CLI() CLIConfig {
 		os.Exit(0)
 	}
 	if *updateFlag {
-		if err := Update(Version); err != nil {
-			slog.Error("could not self-update", "err", err)
-			os.Exit(1)
-		}
-		os.Exit(0)
+		cliFlags.Update = true
 	}
 	if *listToolsFlag {
 		cliFlags.Tools = true
@@ -82,16 +79,15 @@ func CLI() CLIConfig {
 	if *listByCategoriesFlag != "" {
 		cliFlags.Category = *listByCategoriesFlag
 	}
-	if *systemFlag != "" {
-		if o, a, ok := strings.Cut(*systemFlag, "/"); !ok || o == "" || a == "" {
-			slog.Error("-system must be in the form os/arch, e.g. linux/amd64", "system", *systemFlag)
-			os.Exit(1)
-		}
-		cliFlags.System = *systemFlag
-	}
 	cliFlags.ToolList = []string{}
 	if len(toolList) > 0 {
 		cliFlags.ToolList = toolList
 	}
-	return cliFlags
+	if *systemFlag != "" {
+		if o, a, ok := strings.Cut(*systemFlag, "/"); !ok || o == "" || a == "" {
+			return cliFlags, fmt.Errorf("-system must be in the form os/arch, e.g. linux/amd64, got %q", *systemFlag)
+		}
+		cliFlags.System = *systemFlag
+	}
+	return cliFlags, nil
 }
