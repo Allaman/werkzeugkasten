@@ -1,3 +1,9 @@
+## What's Changed in 4.9.1
+* ci: Bump Go version in release by [@Allaman](https://github.com/Allaman)
+* docs: Update CHANGELOG by [@Allaman](https://github.com/Allaman)
+
+**Full Changelog**: https://github.com/Allaman/werkzeugkasten/compare/4.9.0...4.9.1
+
 ## What's Changed in 4.9.0
 * docs: Update README by [@Allaman](https://github.com/Allaman)
 * fix: Downgrade bubbles again by [@Allaman](https://github.com/Allaman)
