@@ -9,3 +9,7 @@ updates:
     directory: /
     schedule:
       interval: monthly
+    ignore:
+      # https://github.com/charmbracelet/bubbles/issues/1045
+      - dependency-name: "charm.land/bubbles/v2"
+        versions: [">= 2.2.0"]
