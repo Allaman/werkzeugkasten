@@ -1,3 +1,12 @@
+## What's Changed in 4.9.2
+* feat(tools): Add yq by [@Allaman](https://github.com/Allaman)
+* chore: Taskfile install version set to Git tag by [@Allaman](https://github.com/Allaman)
+* ci: Allow rebuilding an existing tag by [@Allaman](https://github.com/Allaman)
+* docs: Update README by [@Allaman](https://github.com/Allaman)
+* docs: Update CHANGELOG by [@Allaman](https://github.com/Allaman)
+
+**Full Changelog**: https://github.com/Allaman/werkzeugkasten/compare/4.9.1...4.9.2
+
 ## What's Changed in 4.9.1
 * ci: Bump Go version in release by [@Allaman](https://github.com/Allaman)
 * docs: Update CHANGELOG by [@Allaman](https://github.com/Allaman)
