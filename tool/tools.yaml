@@ -54,6 +54,11 @@ tools:
     identifier: "01mf02/jaq"
     description: "A jq clone focussed on correctness, speed, and simplicity."
     categories: ["Data"]
+  yq:
+    identifier: "mikefarah/yq"
+    description: "A portable command-line YAML, JSON, XML, CSV, TOML and properties processor."
+    asset_filters: ["^tar.gz"]
+    categories: ["Data"]
   bottom:
     identifier: "ClementTsang/bottom"
     description: "Yet another cross-platform graphical process/system monitor."
