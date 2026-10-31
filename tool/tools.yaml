@@ -34,6 +34,7 @@ tools:
     identifier: "BurntSushi/ripgrep"
     description: "ripgrep recursively searches directories for a regex pattern while respecting your gitignore."
     categories: ["Text"]
+    asset_filters: ["^gnu"]
   bat:
     identifier: "sharkdp/bat"
     description: "A cat(1) clone with wings."
@@ -83,7 +84,8 @@ tools:
   micro:
     identifier: "zyedidia/micro"
     description: "A modern and intuitive terminal-based text editor."
-    asset_filters: ["static"]
+    # linux/amd64 has a static and a dynamic build, prefer the static one
+    asset_filters: ["^.sha", "^linux64.tar.gz"]
     categories: ["Text"]
   helix:
     identifier: "helix-editor/helix"
