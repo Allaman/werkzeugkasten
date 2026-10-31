@@ -1,3 +1,12 @@
+## What's Changed in 4.9.5
+* feat(tools): Add jq by [@Allaman](https://github.com/Allaman)
+* fix(tools): Add asset_filters by [@Allaman](https://github.com/Allaman)
+* ci: Pin goreleaser to 2.x by [@Allaman](https://github.com/Allaman)
+* ci: Use main to generate changelog by [@Allaman](https://github.com/Allaman)
+* docs: Update CHANGELOG by [@Allaman](https://github.com/Allaman)
+
+**Full Changelog**: https://github.com/Allaman/werkzeugkasten/compare/4.9.4...4.9.5
+
 ## What's Changed in 4.9.4
 * docs: Fix installation instruction by [@Allaman](https://github.com/Allaman)
 * fix: WK_EGET_VERSION works even when eget is already cached by [@Allaman](https://github.com/Allaman)
