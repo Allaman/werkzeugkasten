@@ -731,3 +731,7 @@ tools:
   flux9s:
     identifier: "dgunzy/flux9s"
     description: "A K9s-inspired terminal UI for monitoring Flux resources in real-time"
+  jq:
+    identifier: "jqlang/jq"
+    description: "Command-line JSON processor"
+    categories: ["Data"]
