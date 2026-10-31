@@ -70,14 +70,16 @@ with curl
 
 ```sh
 VERSION=$(curl -s https://api.github.com/repos/allaman/werkzeugkasten/releases/latest | grep tag_name | cut -d '"' -f 4)
-curl -sLo werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/${VERSION}/werkzeugkasten_${VERSION}_$(uname -s)_$(uname -m)
+ARCH=$(uname -m | sed s/aarch64/arm64/)
+curl -fsSLo werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/${VERSION}/werkzeugkasten_${VERSION}_$(uname -s)_${ARCH}
 ```
 
 with wget
 
 ```sh
 VERSION=$(wget -qO - https://api.github.com/repos/allaman/werkzeugkasten/releases/latest | grep tag_name | cut -d '"' -f 4)
-wget -qO werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/${VERSION}/werkzeugkasten_${VERSION}_$(uname -s)_$(uname -m)
+ARCH=$(uname -m | sed s/aarch64/arm64/)
+wget -qO werkzeugkasten https://github.com/Allaman/werkzeugkasten/releases/download/${VERSION}/werkzeugkasten_${VERSION}_$(uname -s)_${ARCH}
 ```
 
 ```sh
