@@ -9,12 +9,15 @@ tasks:
 
   install:
     desc: Install App
+    vars:
+      VERSION:
+        sh: git describe --tags --abbrev=0 2>/dev/null || echo dev
     cmds:
       - task: fmt
       - task: lint
       - task: vet
       - task: build
-      - go install -ldflags "-s -w -X github.com/allaman/werkzeugkasten/cli.Version=dev"
+      - go install -ldflags "-s -w -X github.com/allaman/werkzeugkasten/cli.Version={{.VERSION}}"
 
   build:
     desc: Build App
