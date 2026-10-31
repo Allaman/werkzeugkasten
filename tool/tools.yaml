@@ -43,6 +43,7 @@ tools:
     identifier: "rs/curlie"
     description: "The power of curl, the ease of use of httpie."
     categories: ["Network"]
+    asset_filters: [".tar.gz"]
   dua:
     identifier: "Byron/dua-cli"
     description: "View disk space usage and delete unwanted data, fast."
@@ -139,6 +140,7 @@ tools:
     identifier: "orf/gping"
     description: "Ping, but with a graph."
     categories: ["Network"]
+    asset_filters: ["^gnu"]
   stern:
     identifier: "stern/stern"
     description: "Multi pod and container log tailing for Kubernetes."
