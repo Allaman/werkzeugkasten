@@ -1,3 +1,11 @@
+## What's Changed in 4.9.4
+* docs: Fix installation instruction by [@Allaman](https://github.com/Allaman)
+* fix: WK_EGET_VERSION works even when eget is already cached by [@Allaman](https://github.com/Allaman)
+* fix(tools): Typo in asset_filters by [@Allaman](https://github.com/Allaman)
+* docs: Update CHANGELOG by [@Allaman](https://github.com/Allaman)
+
+**Full Changelog**: https://github.com/Allaman/werkzeugkasten/compare/4.9.3...4.9.4
+
 ## What's Changed in 4.9.3
 * fix(tools): ripgrep and micro filters by [@Allaman](https://github.com/Allaman)
 * docs: Update CHANGELOG by [@Allaman](https://github.com/Allaman)
