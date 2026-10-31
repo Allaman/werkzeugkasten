@@ -398,12 +398,12 @@ tools:
   tokei:
     identifier: "XAMPPRocky/tokei"
     description: "Count your code, quickly."
-    asset_filter: ["^alpha"]
+    asset_filters: ["^alpha"]
     categories: ["Development"]
   choose:
     identifier: "theryangeary/choose"
     description: "A human-friendly and fast alternative to cut and (sometimes) awk."
-    asset_filter: ["^musl"]
+    asset_filters: ["^musl"]
     categories: ["Text"]
   hyperfine:
     identifier: "sharkdp/hyperfine"
