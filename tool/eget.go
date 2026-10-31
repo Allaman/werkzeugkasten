@@ -201,23 +201,30 @@ func egetDir() string {
 	return filepath.Join(base, "werkzeugkasten")
 }
 
+// egetVersion returns WK_EGET_VERSION if set, otherwise the default eget version.
+func egetVersion() string {
+	if version := os.Getenv("WK_EGET_VERSION"); version != "" {
+		return version
+	}
+	return newDefaultEgetConfig().version
+}
+
 // EgetPath returns the absolute path to the cached eget binary.
+// The path contains the version so that a changed WK_EGET_VERSION
+// is downloaded instead of reusing a previously cached eget.
 func EgetPath() string {
-	return filepath.Join(egetDir(), "eget")
+	return filepath.Join(egetDir(), egetVersion(), "eget")
 }
 
 func InstallEget() error {
-	dir := egetDir()
+	dir := filepath.Dir(EgetPath())
 	if err := createDir(dir); err != nil {
 		return err
 	}
 	if _, err := os.Stat(EgetPath()); errors.Is(err, os.ErrNotExist) {
 		egetConfig := newDefaultEgetConfig()
-		if os.Getenv("WK_EGET_VERSION") != "" {
-			version := os.Getenv("WK_EGET_VERSION")
-			slog.Debug("setting eget version", "version", version)
-			egetConfig.version = version
-		}
+		egetConfig.version = egetVersion()
+		slog.Debug("setting eget version", "version", egetConfig.version)
 		err := downloadEgetBinary(dir, egetConfig)
 		if err != nil {
 			return fmt.Errorf("could not download eget binary: %w", err)
